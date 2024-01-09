@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 170124037
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Camera
+    uniqueID: 4196587181
     locked: 0
