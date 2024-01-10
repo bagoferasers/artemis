@@ -1,0 +1,709 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.16f1 (d2c21f0ef2f1) revision 13812255'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Core' Language: 'en' Physical Memory: 65500 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+E:\UNITY\Editors\2022.3.16f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+E:/artemis/Artemis Project
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+63682
+Successfully changed project path to: E:/artemis/Artemis Project
+E:/artemis/Artemis Project
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [18200] Host "[IP] 10.0.0.100 [Port] 0 [Flags] 2 [Guid] 439424969 [EditorId] 439424969 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-35ESIFL) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [18200] Host "[IP] 10.0.0.100 [Port] 0 [Flags] 2 [Guid] 439424969 [EditorId] 439424969 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-35ESIFL) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 7 workers.
+Refreshing native plugins compatible for Editor in 27.12 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.16f1 (d2c21f0ef2f1)
+[Subsystems] Discovering subsystems at path E:/UNITY/Editors/2022.3.16f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/artemis/Artemis Project/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3080 (ID=0x220a)
+    Vendor:   NVIDIA
+    VRAM:     12107 MB
+    Driver:   31.0.15.4617
+Initialize mono
+Mono path[0] = 'E:/UNITY/Editors/2022.3.16f1/Editor/Data/Managed'
+Mono path[1] = 'E:/UNITY/Editors/2022.3.16f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'E:/UNITY/Editors/2022.3.16f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56244
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/UNITY/Editors/2022.3.16f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: E:/UNITY/Editors/2022.3.16f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: E:/UNITY/Editors/2022.3.16f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: E:/UNITY/Editors/2022.3.16f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
+Registered in 0.015572 seconds.
+- Loaded All Assemblies, in  0.530 seconds
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.332 seconds
+Domain Reload Profiling: 860ms
+	BeginReloadAssembly (173ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (53ms)
+	RebuildNativeTypeToScriptingClass (18ms)
+	initialDomainReloadingComplete (87ms)
+	LoadAllAssembliesAndSetupDomain (197ms)
+		LoadAssemblies (172ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (194ms)
+			TypeCache.Refresh (192ms)
+				TypeCache.ScanAssembly (173ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (333ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (258ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (15ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (176ms)
+			ProcessInitializeOnLoadMethodAttributes (60ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.958 seconds
+Refreshing native plugins compatible for Editor in 9.05 ms, found 4 plugins.
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.144 seconds
+Domain Reload Profiling: 2102ms
+	BeginReloadAssembly (174ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (28ms)
+	RebuildCommonClasses (44ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (47ms)
+	LoadAllAssembliesAndSetupDomain (682ms)
+		LoadAssemblies (435ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (347ms)
+			TypeCache.Refresh (280ms)
+				TypeCache.ScanAssembly (247ms)
+			ScanForSourceGeneratedMonoScriptInfo (52ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (1145ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (911ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (122ms)
+			ProcessInitializeOnLoadAttributes (488ms)
+			ProcessInitializeOnLoadMethodAttributes (279ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 10.17 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 7216 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 151 unused Assets / (2.1 MB). Loaded Objects now: 7621.
+Memory consumption went from 270.5 MB to 268.4 MB.
+Total: 16.816500 ms (FindLiveObjects: 1.015300 ms CreateObjectMapping: 0.968600 ms MarkObjects: 13.876200 ms  DeleteObjects: 0.955300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 39606d92bcf39ac9cd6fca1116091104 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 126506.282058 seconds.
+  path: Assets/Settings/Renderer2D.asset
+  artifactKey: Guid(424799608f7334c24bf367e4bbfa7f9a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Settings/Renderer2D.asset using Guid(424799608f7334c24bf367e4bbfa7f9a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f1f5658591e952cd63335585ce4eb1e5') in 0.435924 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Resources/BillingMode.json
+  artifactKey: Guid(3e74a9b67ecc25743b141f8cc0296f91) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Resources/BillingMode.json using Guid(3e74a9b67ecc25743b141f8cc0296f91) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '378ea879241810a7ae3cf73c9121c36c') in 0.026563 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000681 seconds.
+  path: Assets/Settings/UniversalRP.asset
+  artifactKey: Guid(681886c5eb7344803b6206f758bf0b1c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Settings/UniversalRP.asset using Guid(681886c5eb7344803b6206f758bf0b1c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '330d5ac05700e2a2a7fe32c0c6076cf0') in 0.072792 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1085.693336 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile
+  artifactKey: Guid(4289f5cd64d6bfe4896d9edc91c02df6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile using Guid(4289f5cd64d6bfe4896d9edc91c02df6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '5345e29d50b3e373a7bfbb724919bb6c') in 0.025215 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile
+  artifactKey: Guid(c4fd7287681a95c45b52bf69246b3979) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile using Guid(c4fd7287681a95c45b52bf69246b3979) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c85f633fc43b6d4dc11a8072a1b07125') in 0.019500 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000327 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Tilemap Palettes
+  artifactKey: Guid(553e3be723a664c748d3e7094cd95da8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Tilemap Palettes using Guid(553e3be723a664c748d3e7094cd95da8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2eb483df6817f363ad7818787f04fcf2') in 0.015523 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Textures/RoboHero.png
+  artifactKey: Guid(061b63d975d324c42b7fe3f99bb7ff23) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Textures/RoboHero.png using Guid(061b63d975d324c42b7fe3f99bb7ff23) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'd9345648d88e058e750ce166e4491bea') in 0.155892 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile/Tile Asset
+  artifactKey: Guid(03991bdd665f50a4ab4b4d0419bc3acd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile/Tile Asset using Guid(03991bdd665f50a4ab4b4d0419bc3acd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '16cf0d32fe037181cf7973a8f8ae22b2') in 0.018979 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Physics2D Materials/Bouncy.physicsMaterial2D
+  artifactKey: Guid(552718e596d0e408295d5ae742cc4097) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Physics2D Materials/Bouncy.physicsMaterial2D using Guid(552718e596d0e408295d5ae742cc4097) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '4b099175e40594db5189f42ee6ad16ca') in 0.016821 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Tilemap Palettes/Rule Tiles.prefab
+  artifactKey: Guid(c67fca4441fb7d1479fd4b32f838d684) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Tilemap Palettes/Rule Tiles.prefab using Guid(c67fca4441fb7d1479fd4b32f838d684) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f040312736b95988f2ddb459f9114173') in 0.046609 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/_Scenes/SpriteRenderer Examples.unity
+  artifactKey: Guid(cf67692491464794e9bbef0fe044325f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/_Scenes/SpriteRenderer Examples.unity using Guid(cf67692491464794e9bbef0fe044325f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'e5ba66fcecbc22b2792590d8793ed899') in 0.019515 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile/Sprites/ocean.png
+  artifactKey: Guid(1dbca277352d7e7438b1f9ba168025cc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile/Sprites/ocean.png using Guid(1dbca277352d7e7438b1f9ba168025cc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9987b2d4adcd0f5d17ec7892d523966f') in 0.227713 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 50
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Extras/Custom Canvas Scaler/UI Scaling Example.unity
+  artifactKey: Guid(a5b499b9e1c89094c83a36dd583972f3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Extras/Custom Canvas Scaler/UI Scaling Example.unity using Guid(a5b499b9e1c89094c83a36dd583972f3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '17dd2b3b483b246b65da850d4d8619af') in 0.015253 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000076 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Presets
+  artifactKey: Guid(b7381bd17ebd04728b9a225859c7c73b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Presets using Guid(b7381bd17ebd04728b9a225859c7c73b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6b2c786080ae9964c7d8f8390755fd1d') in 0.015304 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero
+  artifactKey: Guid(1e05cc4d30ac741898ad2f8fbefde299) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero using Guid(1e05cc4d30ac741898ad2f8fbefde299) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'dcb483182f53b31c3cb4f4029f16fc96') in 0.013037 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Third-Party Notices.md
+  artifactKey: Guid(57169de316008f640817935054b81df2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Third-Party Notices.md using Guid(57169de316008f640817935054b81df2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f4abc954c18b45922d322121066b96af') in 0.015598 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/_Scenes/Tilemap Examples.unity
+  artifactKey: Guid(24974b8a9efb54de4a877934942f26ef) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/_Scenes/Tilemap Examples.unity using Guid(24974b8a9efb54de4a877934942f26ef) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b44a323e5b1d3335a813a86c72d9748d') in 0.014231 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_idle.anim
+  artifactKey: Guid(b1c1abeba0dea46ac8850b03c6ad1074) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_idle.anim using Guid(b1c1abeba0dea46ac8850b03c6ad1074) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f4e286bf31fc1f9f52607a8ec6389aaa') in 0.031024 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Fonts/RobotoCondensed-Bold.ttf
+  artifactKey: Guid(b20f139c373fa4555a05cdd0036dfa44) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Fonts/RobotoCondensed-Bold.ttf using Guid(b20f139c373fa4555a05cdd0036dfa44) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '46bd1bcd23c90be8c1cdfc70fb0e2b32') in 0.046114 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000306 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Extras/Custom Canvas Scaler
+  artifactKey: Guid(c0fa7f2d905c54ebcab10535eb524708) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Extras/Custom Canvas Scaler using Guid(c0fa7f2d905c54ebcab10535eb524708) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '4b60d8f1120aa7798c3cad8b6b2c8741') in 0.014535 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Sprites/Hero.png
+  artifactKey: Guid(fc6d5f2018b324fcb8b63dd9f88d39e7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Sprites/Hero.png using Guid(fc6d5f2018b324fcb8b63dd9f88d39e7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'de685725d5e39582e32f9867224d9d14') in 0.050521 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Animation/Animators/Hero - Animated.controller
+  artifactKey: Guid(945d9f228206f4b4eaa8579bc6a10b18) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Animation/Animators/Hero - Animated.controller using Guid(945d9f228206f4b4eaa8579bc6a10b18) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '14ba62c0d8761efe62c1cd30fb5ea506') in 0.018368 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_walk.anim
+  artifactKey: Guid(a7af69d7df5174a068b23fb56cb04d46) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_walk.anim using Guid(a7af69d7df5174a068b23fb56cb04d46) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '977b97371d7d4e870faa5bee80420196') in 0.028849 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile/Sprites
+  artifactKey: Guid(28ff1e2346a2da04b904f0d47e5baae9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile/Sprites using Guid(28ff1e2346a2da04b904f0d47e5baae9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '870099ec2c70e1a4c432764624145522') in 0.022077 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Scripts/RuleTile.cs
+  artifactKey: Guid(d746e0082aaaaf0458b2b02bb4d45a47) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Scripts/RuleTile.cs using Guid(d746e0082aaaaf0458b2b02bb4d45a47) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c02be32ea379c94d57abd996d438be2e') in 0.019688 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Animation/Clips/Hero Animation.anim
+  artifactKey: Guid(7237359e596ae4b3493528d1dc54c6bc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Animation/Clips/Hero Animation.anim using Guid(7237359e596ae4b3493528d1dc54c6bc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b9e81b4422da7eddfc03881688272f33') in 0.021523 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Samples
+  artifactKey: Guid(e3f5a9cacf01a1e418618ae192312fdc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples using Guid(e3f5a9cacf01a1e418618ae192312fdc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '62fbdbe098ae3b73ed26d4dab7273ab0') in 0.023205 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_die.anim
+  artifactKey: Guid(5f8d99e1f6cbd6140a7a315bbc1bb077) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_die.anim using Guid(5f8d99e1f6cbd6140a7a315bbc1bb077) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'd6318ea2aa8ca084b41f1d792be68b5d') in 0.025991 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile/Atlas/Dungeon.spriteatlas
+  artifactKey: Guid(4bef31d7092412c4b8c3b9da120b8a74) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile/Atlas/Dungeon.spriteatlas using Guid(4bef31d7092412c4b8c3b9da120b8a74) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c603b43a3b8bf44ac8b6f731e91452ac') in 0.025581 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Presets/Pixel Perfect Cameras/PixelPerfectCamera_32PPU_320x240_Pixel Snapped.preset
+  artifactKey: Guid(6680887e1c3df45c69746fd58f044a8c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Presets/Pixel Perfect Cameras/PixelPerfectCamera_32PPU_320x240_Pixel Snapped.preset using Guid(6680887e1c3df45c69746fd58f044a8c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6b3fad7ad5be4d07d9eb7bcb70ab9c72') in 0.023800 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Scripts/Editor
+  artifactKey: Guid(c1cbbd5ac8fed1a4087cbe4fbee0d570) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Scripts/Editor using Guid(c1cbbd5ac8fed1a4087cbe4fbee0d570) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a72bc6616fcf6906afcf86825308ebc9') in 0.021941 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Prefabs
+  artifactKey: Guid(4f882420f8c38475698eb7da59d91558) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Prefabs using Guid(4f882420f8c38475698eb7da59d91558) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9340c7c790ff9ab62c9d6e0a743d8a9a') in 0.016641 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Presets/Texture Importers/TextureImporter_32PPU_PointFilter.preset
+  artifactKey: Guid(4f62a0152df2d416b942f08e2f23785d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Presets/Texture Importers/TextureImporter_32PPU_PointFilter.preset using Guid(4f62a0152df2d416b942f08e2f23785d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '5265b7e8094fecb0d0cf9c6b87ddbcb7') in 0.033237 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_dash_reloading.anim
+  artifactKey: Guid(601df0c32a7617a43a5f591fd295241e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_dash_reloading.anim using Guid(601df0c32a7617a43a5f591fd295241e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '259fbf6be6edbb1c20ca53092f40841f') in 0.021199 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile/Tile Asset
+  artifactKey: Guid(db45e7ef29f4bec4595184f0752dfab5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile/Tile Asset using Guid(db45e7ef29f4bec4595184f0752dfab5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3c6bb29ad4cfb54d3b2f598fd6d65f56') in 0.019165 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Fonts/LICENSE.txt
+  artifactKey: Guid(b8784b247b090471695b945937cf5a6b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Fonts/LICENSE.txt using Guid(b8784b247b090471695b945937cf5a6b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '79dc8f5410de91461fe8f476cf787058') in 0.018249 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_dash_ready.anim
+  artifactKey: Guid(a2ba10ed52029104a8fe89a6d5c01caa) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/RoboHero/Animations/player_dash_ready.anim using Guid(a2ba10ed52029104a8fe89a6d5c01caa) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6795691016c0938d1e0395cdcc2aa2e2') in 0.023729 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Scripts/HeroMover.cs
+  artifactKey: Guid(c009ff863a0ae4c33809953147cc9fee) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Scripts/HeroMover.cs using Guid(c009ff863a0ae4c33809953147cc9fee) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '39c8e6c010b1546896295f59f5cb10d0') in 0.018836 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Presets/Pixel Perfect Cameras
+  artifactKey: Guid(cc2fb811f43eb478497d53d76fa4e294) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Presets/Pixel Perfect Cameras using Guid(cc2fb811f43eb478497d53d76fa4e294) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '894cfb325cfd3a1c4c5d93cfc90ec69c') in 0.015641 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Physics2D Materials
+  artifactKey: Guid(7cc7dea6d8065409e89700580d5f805e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Physics2D Materials using Guid(7cc7dea6d8065409e89700580d5f805e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '76e24ba8dc852ca92951759fc282acca') in 0.018788 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Scripts/Editor/Unity.2D.PixelPerfect.Samples.Editor.asmdef
+  artifactKey: Guid(2577262ae6c562e478a09842b1269c41) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Scripts/Editor/Unity.2D.PixelPerfect.Samples.Editor.asmdef using Guid(2577262ae6c562e478a09842b1269c41) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a81798b69ba7ba15a42d9b75d43b2acc') in 0.018222 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile/Atlas
+  artifactKey: Guid(aeafc7b05e4be084b9193c7a46e2e993) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile/Atlas using Guid(aeafc7b05e4be084b9193c7a46e2e993) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'd8e31a118f0d24cb438cb397564dfdf1') in 0.012572 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.898 seconds
+Refreshing native plugins compatible for Editor in 10.73 ms, found 4 plugins.
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.174 seconds
+Domain Reload Profiling: 3069ms
+	BeginReloadAssembly (280ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (16ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (107ms)
+	RebuildCommonClasses (58ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (494ms)
+		LoadAssemblies (522ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (89ms)
+			TypeCache.Refresh (22ms)
+				TypeCache.ScanAssembly (3ms)
+			ScanForSourceGeneratedMonoScriptInfo (46ms)
+			ResolveRequiredComponents (19ms)
+	FinalizeReload (2175ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1289ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (123ms)
+			ProcessInitializeOnLoadAttributes (824ms)
+			ProcessInitializeOnLoadMethodAttributes (319ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (15ms)
+Refreshing native plugins compatible for Editor in 6.26 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 7058 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 107 unused Assets / (2.1 MB). Loaded Objects now: 7635.
+Memory consumption went from 242.3 MB to 240.2 MB.
+Total: 10.838700 ms (FindLiveObjects: 0.771100 ms CreateObjectMapping: 1.111900 ms MarkObjects: 6.456800 ms  DeleteObjects: 2.497700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 39606d92bcf39ac9cd6fca1116091104 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 607.098317 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile/Sprites/dungeon.png
+  artifactKey: Guid(5c4f1fa01d076b0448a9438531d30a91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Dungeon Tile/Sprites/dungeon.png using Guid(5c4f1fa01d076b0448a9438531d30a91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87ecd1cc9611f1356a4ca7718b0a0089') in 0.179435 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile/Sprites/ocean.png
+  artifactKey: Guid(1dbca277352d7e7438b1f9ba168025cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Rule Tiles/Animated Ocean Tile/Sprites/ocean.png using Guid(1dbca277352d7e7438b1f9ba168025cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e64e0616037a038131c9e8c3f28a7d9f') in 0.137519 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 50
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Sprites/Hero.png
+  artifactKey: Guid(fc6d5f2018b324fcb8b63dd9f88d39e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Sprites/Hero.png using Guid(fc6d5f2018b324fcb8b63dd9f88d39e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33a354238575f21dd4b01ab851ac5533') in 0.023024 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Sprites/Ground.png
+  artifactKey: Guid(a262b59e67b934b1b92684d42069e37c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/2D Pixel Perfect/5.0.3/Sample Scenes and Extras/Scenes/Sprites/Ground.png using Guid(a262b59e67b934b1b92684d42069e37c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36bcd8e18c4d66c6640670888118cf2e') in 0.030801 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 3103.773862 seconds.
+  path: Assets/Sprites/Player/coreStage.png
+  artifactKey: Guid(27bde85dfce6a2d4ca1e1351c74dc919) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Player/coreStage.png using Guid(27bde85dfce6a2d4ca1e1351c74dc919) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83d78c61d89e1ffe54a6837177510ae5') in 0.034568 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Sprites/Player/launchAbortSystem.png
+  artifactKey: Guid(15977d97b50cc194c85cc07df2f8351f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Player/launchAbortSystem.png using Guid(15977d97b50cc194c85cc07df2f8351f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c67a6cef9bc074d8a31ba856d275d5e') in 0.023550 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Sprites/Player/secondStage.png
+  artifactKey: Guid(b2bc7575799f3864cb3aa09a6a1398cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Player/secondStage.png using Guid(b2bc7575799f3864cb3aa09a6a1398cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f50debef6296d6f217a09d1e131963a6') in 0.022276 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 33.567141 seconds.
+  path: Assets/Sprites/Player/crewCapsule.png
+  artifactKey: Guid(465ecadea2dc4a843a2549b5de0ff337) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Player/crewCapsule.png using Guid(465ecadea2dc4a843a2549b5de0ff337) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd691ebffb70e927939f1cb69b843129e') in 0.019890 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Sprites/Player/orion.png
+  artifactKey: Guid(0cbdb31b460214a4eb9e2bc4925e3c36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Player/orion.png using Guid(0cbdb31b460214a4eb9e2bc4925e3c36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '413b430844bf3e731009cc9d37bec9dd') in 0.022044 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3

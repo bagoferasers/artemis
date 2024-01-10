@@ -44,6 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 3186261693
+    locked: 0
+  - name: UI
+    uniqueID: 2762828691
+    locked: 0
   - name: Camera
     uniqueID: 4196587181
     locked: 0
