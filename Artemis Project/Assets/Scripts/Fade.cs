@@ -7,7 +7,7 @@ public class Fade : MonoBehaviour
 {
     private CanvasGroup fade;
     public bool fadeIn = true;
-    public float fadeTime = 20f;
+    private float fadeTime = 0.1f;
     void Start( )
     {
         try 

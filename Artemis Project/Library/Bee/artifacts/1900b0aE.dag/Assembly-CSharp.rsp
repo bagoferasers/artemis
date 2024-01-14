@@ -427,6 +427,7 @@
 "Assets/Scripts/BackgroundMove.cs"
 "Assets/Scripts/Fade.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/QuestionHandler.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"
