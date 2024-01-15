@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b654be6a16fbf41bfbdf9cf499b8eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundMove: {fileID: 2038190063}
 --- !u!1 &332192745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1088,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 824289037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 82186492}
+        m_TargetAssemblyTypeName: ReadQuestions, Assembly-CSharp
+        m_MethodName: CheckAnswer
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Answer2Text
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &824289037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,7 +1827,7 @@ Camera:
     x: 0
     y: 0
     width: 1
-    height: 0.99994797
+    height: 1
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
@@ -2008,7 +2021,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1442520630}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 82186492}
+        m_TargetAssemblyTypeName: ReadQuestions, Assembly-CSharp
+        m_MethodName: CheckAnswer
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: Answer4Text
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1442520630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2165,7 +2190,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1537860014}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 82186492}
+        m_TargetAssemblyTypeName: ReadQuestions, Assembly-CSharp
+        m_MethodName: CheckAnswer
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Answer1Text
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1537860014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2325,7 +2362,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1746811063}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 82186492}
+        m_TargetAssemblyTypeName: ReadQuestions, Assembly-CSharp
+        m_MethodName: CheckAnswer
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: Answer3Text
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1746811063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2790,7 +2839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.42352945, g: 0.49411768, b: 0.63529414, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3087,8 +3136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be801131f9898014f9fd24e270c88d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  paused: 0
+  paused: 1
 --- !u!1001 &3780611377842707144
 PrefabInstance:
   m_ObjectHideFlags: 0

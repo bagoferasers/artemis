@@ -9,16 +9,28 @@ public class ReadQuestions : MonoBehaviour
 {
 
     private List< string[] > questionsAndAnswers = new List< string[] >( );
-    private bool questionRight = false;
     private System.Random rnd = new System.Random( );
     private int randomQuestionNumber, randomAnswerNumber, numberOfQuestionsRight = 0;
     private string correctAnswer;
+    public BackgroundMove backgroundMove;
     
     // Start is called before the first frame update
     void Start( )
     {
         //start off game with questions on stage 0
-        HandleStage( 0 );
+        HandleStage( stageNumber: 0 );
+    }
+
+    void Update( )
+    {
+        if( numberOfQuestionsRight == 5 )
+        {
+            questionsAndAnswers.Clear( );
+            backgroundMove.paused = false;
+            CheckIfNoMoreQuestions( );
+        }
+
+        //when collide with next stage, start that stage
     }
 
     private void HandleStage( int stageNumber )
@@ -31,6 +43,9 @@ public class ReadQuestions : MonoBehaviour
                 // PrintCurrentStage( );
                 AskQuestion( );
                 break;
+            case 1: 
+                // won game
+                break;
             default:
                 Debug.Log( "Please enter valid stage number!" );
                 Application.Quit( );
@@ -40,26 +55,32 @@ public class ReadQuestions : MonoBehaviour
 
     private void AskQuestion( )
     {
-        //generate random number between 0 and number left
-        randomQuestionNumber = rnd.Next( 1, questionsAndAnswers.Count );
-        Debug.Log( "Random Question Number: " + randomQuestionNumber );
+        //check if there are any questions left
+        CheckIfNoMoreQuestions( );
 
-        //display question
-        GameObject.Find( "QuestionText" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ 0 ].ToString( );
+        if( questionsAndAnswers.Count > 0 )
+        {
+            //generate random number between 0 and number left
+            randomQuestionNumber = rnd.Next( 0, questionsAndAnswers.Count );
+            // Debug.Log( questionsAndAnswers.Count + " questions left!" );
 
-        //store correct answer
-        correctAnswer = questionsAndAnswers[ randomQuestionNumber ][ 1 ].ToString( );
-        Debug.Log( "Correct Answer: " + correctAnswer );
+            //display question
+            GameObject.Find( "QuestionText" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ 0 ].ToString( );
 
-        //randomize answers
-        int[] numbers = new int[] { 1, 2, 3, 4 };
-        numbers = RandomizeAnswers( ints: numbers );
+            //store correct answer
+            correctAnswer = questionsAndAnswers[ randomQuestionNumber ][ 1 ].ToString( );
+            // Debug.Log( "Correct Answer: " + correctAnswer );
 
-        //display answers
-        GameObject.Find( "Answer1Text" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ numbers[ 0 ] ].ToString( );
-        GameObject.Find( "Answer2Text" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ numbers[ 1 ] ].ToString( );
-        GameObject.Find( "Answer3Text" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ numbers[ 2 ] ].ToString( );
-        GameObject.Find( "Answer4Text" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ numbers[ 3 ] ].ToString( );   
+            //randomize answers
+            int[] numbers = new int[] { 1, 2, 3, 4 };
+            numbers = RandomizeAnswers( ints: numbers );
+
+            //display answers
+            GameObject.Find( "Answer1Text" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ numbers[ 0 ] ].ToString( );
+            GameObject.Find( "Answer2Text" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ numbers[ 1 ] ].ToString( );
+            GameObject.Find( "Answer3Text" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ numbers[ 2 ] ].ToString( );
+            GameObject.Find( "Answer4Text" ).GetComponent< TextMeshProUGUI >( ).text = questionsAndAnswers[ randomQuestionNumber ][ numbers[ 3 ] ].ToString( );  
+        } 
     }
 
     private int[] RandomizeAnswers( int[] ints )
@@ -75,47 +96,54 @@ public class ReadQuestions : MonoBehaviour
         return ints;
     }
 
-    private void AskQuestions( )
+    public void CheckAnswer( string incomingAnswerText )
     {
-        // //loop through questions and ask
-        // while( numberOfQuestionsRight != 5 )
-        // {
-        //     questionRight = AskQuestion( );
-        //     numberOfQuestionsRight = 5;
-        //     // //if right answer
-        //     // if( questionRight == true )
-        //     // {
-        //     //     //increase number of questions right by one
-        //     //     numberOfQuestionsRight++;
+        if( questionsAndAnswers.Count > 0 )
+        {
+            if( correctAnswer == GameObject.Find( incomingAnswerText ).GetComponent< TextMeshProUGUI >( ).text )
+            {
+                // Debug.Log( "Found correct answer!" );
+                numberOfQuestionsRight++;
+                //displaycolor()
+                //managepoints()  
+            }
+            else
+            {
+                // Debug.Log( "Incorrect answer!" );
+                //displaycolor()
+                //managepoints()
+            }
 
-        //     //     //displaycolor()
-        //     //     //managepoints()
-        //     // }
-        //     // //else if wrong answer
-        //     // else
-        //     // {
-        //     //     //displaycolor()
-        //     //     //managepoints()                
-        //     // }
-            
-        //     // //check if no more questions
-        //     // CheckIfNoMoreQuestions( );
+            //remove question from list
+            RemoveQuestion( );
 
-        //     // //reset questionRight
-        //     // questionRight = false;
-        // }
-        //if button with correct answer is selected set questionRight to true else false
+            //ask a new question
+            AskQuestion( );            
+        }
+    }
 
-        //remove question from list
-        // questionsAndAnswers.Remove( questionsAndAnswers[ randomQuestionNumber ] );
+    private void RemoveQuestion( )
+    {
+        ResetTrivia( );
+        questionsAndAnswers.Remove( questionsAndAnswers[ randomQuestionNumber ] );
+    }
+    private void ResetTrivia( )
+    {
+        GameObject.Find( "QuestionText" ).GetComponent< TextMeshProUGUI >( ).text = "This will be the question";
+        GameObject.Find( "Answer1Text" ).GetComponent< TextMeshProUGUI >( ).text = "Default answer";
+        GameObject.Find( "Answer2Text" ).GetComponent< TextMeshProUGUI >( ).text = "Default answer";
+        GameObject.Find( "Answer3Text" ).GetComponent< TextMeshProUGUI >( ).text = "Default answer";
+        GameObject.Find( "Answer4Text" ).GetComponent< TextMeshProUGUI >( ).text = "Default answer";      
     }
 
     private void CheckIfNoMoreQuestions( )
     {
         //check if no more questions
-        if( questionsAndAnswers.Count == 0 )
+        if( questionsAndAnswers.Count <= 0 )
         {
-            Debug.Log( "No more questions in stage!" );
+            Debug.Log( numberOfQuestionsRight + " questions right!" );
+            Debug.Log( "Exiting application!" );
+            ResetTrivia( );
             Application.Quit( );
         } 
     }
