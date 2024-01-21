@@ -270,7 +270,6 @@ GameObject:
   - component: {fileID: 82186488}
   - component: {fileID: 82186491}
   - component: {fileID: 82186490}
-  - component: {fileID: 82186492}
   m_Layer: 5
   m_Name: TriviaHolder
   m_TagString: Untagged
@@ -380,19 +379,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82186486}
   m_CullTransparentMesh: 1
---- !u!114 &82186492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82186486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03b654be6a16fbf41bfbdf9cf499b8eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundMove: {fileID: 2038190063}
 --- !u!1 &332192745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,8 +1075,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 82186492}
-        m_TargetAssemblyTypeName: ReadQuestions, Assembly-CSharp
+      - m_Target: {fileID: 1592506967}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: CheckAnswer
         m_Mode: 5
         m_Arguments:
@@ -2022,8 +2008,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 82186492}
-        m_TargetAssemblyTypeName: ReadQuestions, Assembly-CSharp
+      - m_Target: {fileID: 1592506967}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: CheckAnswer
         m_Mode: 5
         m_Arguments:
@@ -2191,8 +2177,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 82186492}
-        m_TargetAssemblyTypeName: ReadQuestions, Assembly-CSharp
+      - m_Target: {fileID: 1592506967}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: CheckAnswer
         m_Mode: 5
         m_Arguments:
@@ -2241,6 +2227,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537860011}
   m_CullTransparentMesh: 1
+--- !u!1 &1592506966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592506968}
+  - component: {fileID: 1592506967}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1592506967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592506966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2767b75911e36243a71ab72ed0e85db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1592506968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592506966}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30.087017, y: -4.331312, z: -12.009167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1677735510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,8 +2393,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 82186492}
-        m_TargetAssemblyTypeName: ReadQuestions, Assembly-CSharp
+      - m_Target: {fileID: 1592506967}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: CheckAnswer
         m_Mode: 5
         m_Arguments:
@@ -2587,7 +2617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!225 &1799552061
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3136,7 +3166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be801131f9898014f9fd24e270c88d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paused: 1
+  speed: 1
+  paused: 0
 --- !u!1001 &3780611377842707144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3301,5 +3332,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 1789885051}
+  - {fileID: 1592506968}
   - {fileID: 1799552066}
   - {fileID: 2007338075}
