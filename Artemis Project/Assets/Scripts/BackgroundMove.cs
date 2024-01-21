@@ -5,7 +5,9 @@ using UnityEngine;
 public class BackgroundMove : MonoBehaviour
 {
     public float speed = 1f; 
-    public bool paused = false;
+
+    [SerializeField] 
+    public bool paused = true;
 
     void Update( )
     {
