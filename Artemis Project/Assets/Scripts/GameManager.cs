@@ -8,7 +8,7 @@ using UnityEngine.UI;
  /*
     File: GameManager.cs
     Description: Manages the core functions of the trivia game.
-    Last Modified: January 21, 2024
+    Last Modified: January 22, 2024
     Last Modified By: Colby Bailey
  */
 
@@ -46,12 +46,22 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// A TextMeshProUGUI component that will be filled with an answer to the question.
     /// </summary>
-    private TextMeshProUGUI answer1T, answer2T, answer3T, answer4T;
+    private TextMeshProUGUI answer1T, answer2T, answer3T, answer4T, numberCorrect;
+
+    /// <summary>
+    /// The selected button.
+    /// </summary>
+    GameObject selectedButton;
 
     /// <summary>
     /// An instance of the Question class.
     /// </summary>
     private Question questionScript = new Question( );
+
+    /// <summary>
+    /// Tracks the current stage number.
+    /// </summary>
+    private int currentStageNumber = 0;
 
     /// <summary>
     /// Start is called before the first frame update. Initializes TextMeshProUGUI components and first stage of game.
@@ -63,7 +73,26 @@ public class GameManager : MonoBehaviour
         answer2T = GameObject.Find( "Answer2Text" ).GetComponent< TextMeshProUGUI >( );
         answer3T = GameObject.Find( "Answer3Text" ).GetComponent< TextMeshProUGUI >( );
         answer4T = GameObject.Find( "Answer4Text" ).GetComponent< TextMeshProUGUI >( );
-        HandleStage( stageNumber: 0 );
+        numberCorrect = GameObject.Find( "NumberCorrect" ).GetComponent< TextMeshProUGUI >( );
+        HandleStage( stageNumber: currentStageNumber );
+    }
+
+    /// <summary>
+    /// Update is called once per frame. Checks correct questions are met before moving to next stage.
+    /// Updates the number of correct answers on UI.
+    /// </summary>
+    void Update( )
+    {
+        numberCorrect.text = numberOfQuestionsRight.ToString( );
+
+        if( numberOfQuestionsRight == 5 )
+        {
+            Debug.Log( "Answered 5 questions correctly." );
+            ResetTrivia( );
+            currentStageNumber++;
+            numberOfQuestionsRight = 0;
+            HandleStage( stageNumber: currentStageNumber );
+        }
     }
 
     /// <summary>
@@ -75,8 +104,12 @@ public class GameManager : MonoBehaviour
         switch( stageNumber )
         {
             case 0: 
-                ReadCSVAndStore( csvToRead: "./Assets/Questions/PreLaunchQuestions.csv" );
-                // PrintStageQuestions( );
+                ReadCSVAndStore( csvToRead: "./Assets/Questions/Stage0.csv" );
+                AskQuestion( );
+                break;
+            case 1: 
+                Debug.Log( "Now on stage 2!" );
+                ReadCSVAndStore( csvToRead: "./Assets/Questions/Stage1.csv" );
                 AskQuestion( );
                 break;
             default:
@@ -104,7 +137,7 @@ public class GameManager : MonoBehaviour
         //loop through questions and answers in csv and store in List
         while( ( lineRead = reader.ReadLine( ) ) != "//.end.//" )
         {
-            string[] values = lineRead.Split( ',' );
+            string[] values = lineRead.Split( '^' );
             Question q = new Question( );
             q.SetQuestionText( values[ 0 ] );
             q.SetCorrectAnswer( values[ 1 ] );
@@ -139,20 +172,21 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="incomingAnswerText">The text of the answer selected to be compared with the text of the correct Answer.</param>
     public void CheckAnswer( string incomingAnswerText )
-    {
+    {   
+        selectedButton = GameObject.Find( incomingAnswerText );
         if( questions.Count > 0 )
         {
-            if( questions[ randomQuestionNumber ].GetCorrectAnswer( ).text == GameObject.Find( incomingAnswerText ).GetComponent< TextMeshProUGUI >( ).text )
+            if( questions[ randomQuestionNumber ].GetCorrectAnswer( ).text == selectedButton.GetComponent< TextMeshProUGUI >( ).text )
             {
                 Debug.Log( "Found correct answer!" );
                 numberOfQuestionsRight++;
-                //displaycolor()
+                DisplayTrue( );
                 //managepoints()  
             }
             else
             {
                 Debug.Log( "Incorrect answer!" );
-                //displaycolor()
+                DisplayFalse( );
                 //managepoints()
             }
             RemoveQuestion( );
@@ -165,15 +199,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void RemoveQuestion( )
     {
-        ResetTrivia( );
         questions.Remove( questions[ randomQuestionNumber ] );
     }
 
     /// <summary>
-    /// Resets the TextMeshProUGUI components to the default values.
+    /// Resets the TextMeshProUGUI components to the default values and clears questions in List.
     /// </summary>
     private void ResetTrivia( )
     {
+        questions.Clear( );
         questionT.text = "This will be the question";
         answer1T.text = "Default answer";
         answer2T.text = "Default answer";
@@ -190,5 +224,37 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log( "Question: " + questions[ i ].GetQuestionText( ) + "\n" );
         }
+    }
+
+    /// <summary>
+    /// Displays the visuals for selecting a true answer.
+    /// </summary>
+    private void DisplayTrue( )
+    {
+        selectedButton.GetComponentInParent< Image >( ).color = Color.green;
+        numberCorrect.color = Color.green;
+        StartCoroutine( WaitForColor( timeInSeconds: 0.2f ) );
+    }
+
+    /// <summary>
+    /// Displays the visuals for selecting a false answer.
+    /// </summary>
+    private void DisplayFalse( )
+    {
+        selectedButton.GetComponentInParent< Image >( ).color = Color.red;
+        numberCorrect.color = Color.red;
+        StartCoroutine( WaitForColor( timeInSeconds: 0.2f ) );
+    }
+
+    /// <summary>
+    /// Waits for an alloted time before switching button color back to its original color.
+    /// </summary>
+    /// <param name="timeInSeconds">The time button will wait before returning to original color.</param>
+    /// <returns></returns>
+    IEnumerator WaitForColor( float timeInSeconds )
+    {
+        yield return new WaitForSeconds( timeInSeconds );
+        selectedButton.GetComponentInParent< Image >( ).color = Color.white;
+        numberCorrect.color = new Color( 108f, 126f, 162f );
     }
 }
