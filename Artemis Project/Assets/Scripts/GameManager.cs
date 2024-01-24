@@ -8,7 +8,7 @@ using UnityEngine.UI;
  /*
     File: GameManager.cs
     Description: Manages the core functions of the trivia game.
-    Last Modified: January 22, 2024
+    Last Modified: January 24, 2024
     Last Modified By: Colby Bailey
  */
 
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     /// <summary>
     /// Update is called once per frame. Checks correct questions are met before moving to next stage.
-    /// Updates the number of correct answers on UI.
+    /// Updates the number of correct answers on UI. Checks to see if lost game.
     /// </summary>
     void Update( )
     {
@@ -92,6 +92,10 @@ public class GameManager : MonoBehaviour
             currentStageNumber++;
             numberOfQuestionsRight = 0;
             HandleStage( stageNumber: currentStageNumber );
+        }
+        else if( numberOfQuestionsRight < 5 && questions.Count == 0 )
+        {
+            Debug.Log( "Lost game at stage " + currentStageNumber + " !" );
         }
     }
 
@@ -108,13 +112,12 @@ public class GameManager : MonoBehaviour
                 AskQuestion( );
                 break;
             case 1: 
-                Debug.Log( "Now on stage 2!" );
+                Debug.Log( "Now on stage 1!" );
                 ReadCSVAndStore( csvToRead: "./Assets/Questions/Stage1.csv" );
                 AskQuestion( );
                 break;
             default:
                 Debug.Log( "Please enter valid stage number!" );
-                Application.Quit( );
                 break;
         }
     }
