@@ -9,26 +9,17 @@ public class PlayerController : MonoBehaviour
 
     void Start( )
     {
-        try 
+        // int count = 0;
+        foreach ( Transform child in transform )
         {
-            // int count = 0;
-            foreach ( Transform child in transform )
-            {
-                // count++;
-                orionObjectsList.Add( child.gameObject );
-            }
-            // Debug.Log( "Number of children = " + count );
-            // Debug.Log( "List of children = " );
-            // foreach( var item in orionObjectsList )
-            // {
-            //     Debug.Log( item.name );
-            // }
+            // count++;
+            orionObjectsList.Add( item: child.gameObject );
         }
-        catch( Exception e )
-        {
-            Debug.LogException( e );
-            Debug.Log( "Exiting application." );
-            Application.Quit( );
-        }
+        // Debug.Log( "Number of children = " + count );
+        // Debug.Log( "List of children = " );
+        // foreach( var item in orionObjectsList )
+        // {
+        //     Debug.Log( item.name );
+        // }
     }
 }

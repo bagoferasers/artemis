@@ -6,20 +6,11 @@ using System;
 public class Fade : MonoBehaviour
 {
     private CanvasGroup fade;
-    public bool fadeIn = true;
-    private float fadeTime = 0.1f;
+    [ SerializeField ] private bool fadeIn = true;
+    [ SerializeField ] private float fadeTime = 0.1f;
     void Start( )
     {
-        try 
-        {
-            fade = GetComponent< CanvasGroup >( );
-        }
-        catch( Exception e )
-        {
-            Debug.LogException( e );
-            Debug.Log( "Exiting application." );
-            Application.Quit( );
-        }
+        fade = GetComponent< CanvasGroup >( );
     }
 
     void Update( )
@@ -27,11 +18,11 @@ public class Fade : MonoBehaviour
         // Debug.Log( "fading" );
         if( fadeIn )
         {
-            fade.alpha = Mathf.MoveTowards( fade.alpha, 0f, fadeTime * Time.fixedDeltaTime );
+            fade.alpha = Mathf.MoveTowards( current: fade.alpha, target: 0f, maxDelta: fadeTime * Time.fixedDeltaTime );
         }
         else
         {
-            fade.alpha = Mathf.MoveTowards( fade.alpha, 1f, fadeTime * Time.fixedDeltaTime );
+            fade.alpha = Mathf.MoveTowards( current: fade.alpha, target: 1f, maxDelta: fadeTime * Time.fixedDeltaTime );
         }
         // Debug.Log( fade.alpha );
     }

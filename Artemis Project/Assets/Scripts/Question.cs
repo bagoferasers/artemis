@@ -19,18 +19,18 @@ public class Question
     /// <summary>
     /// The text of the question.
     /// </summary>
-    public string questionText;
+    private string questionText;
 
     /// <summary>
     /// The correct answer for the question.
     /// </summary>
-    public Answer correctAnswer;
+    private Answer correctAnswer;
 
     /// <summary>
     /// The list of answers for the question.
     /// </summary>
     /// <typeparam name="Answer">An instance of the Answer class.</typeparam>
-    public List< Answer > allAnswers = new List< Answer >( );
+    private List< Answer > allAnswers = new List< Answer >( );
 
     /// <summary>
     /// Represents a pseudo-random number generator.
@@ -46,7 +46,7 @@ public class Question
         /// <summary>
         /// The text of the answer.
         /// </summary>
-        public string text;
+        private string text;
 
         /// <summary>
         /// Initializes a new instance of the Answer class.
@@ -55,6 +55,15 @@ public class Question
         public Answer( string text )
         {
             this.text = text;
+        }
+
+        /// <summary>
+        /// Gets the text of the Answer.
+        /// </summary>
+        /// <returns>The text of the Answer.</returns>
+        public string GetAnswerText( )
+        {
+            return text;
         }
     }
 
@@ -100,7 +109,7 @@ public class Question
     /// <returns>An answer.</returns>
     public Answer GetAnswer( int i )
     {
-        return allAnswers[ i ];
+        return allAnswers[ index: i ];
     }
 
     /// <summary>
@@ -110,7 +119,7 @@ public class Question
     public void AddAnswer( string text )
     {
         Answer thisAnswer = new Answer( text );
-        allAnswers.Add( thisAnswer );
+        allAnswers.Add( item: thisAnswer );
     }
 
     /// <summary>
@@ -122,10 +131,10 @@ public class Question
         int n = 4;
         while ( n > 1 )
         {
-            int k = rnd.Next( n-- );
-            Answer temp = q.allAnswers[ n ];
-            q.allAnswers[ n ] = q.allAnswers[ k ];
-            q.allAnswers[ k ] = temp;
+            int k = rnd.Next( maxValue: n-- );
+            Answer temp = q.allAnswers[ index: n ];
+            q.allAnswers[ index: n ] = q.allAnswers[ index: k ];
+            q.allAnswers[ index: k ] = temp;
         }
     }
 }

@@ -2429,6 +2429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2767b75911e36243a71ab72ed0e85db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStageNumber: 0
 --- !u!4 &1592506968
 Transform:
   m_ObjectHideFlags: 0
@@ -3042,6 +3043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeIn: 1
+  fadeTime: 0.1
 --- !u!1 &1832651150
 GameObject:
   m_ObjectHideFlags: 0
