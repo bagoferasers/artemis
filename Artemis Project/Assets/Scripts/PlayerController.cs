@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/*
+   File: PlayerController.cs
+   Description: Represents the player (Spacecraft and launch vehicle ).
+   Last Modified: January 25, 2024
+   Last Modified By: Colby Bailey
+*/
+
 public class PlayerController : MonoBehaviour
 {
     private List< GameObject > orionObjectsList = new List< GameObject >( );

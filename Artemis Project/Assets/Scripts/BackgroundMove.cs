@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+   File: BackgroundMove.cs
+   Description: Represents the class that moves the backdrop of the game.
+   Last Modified: January 25, 2024
+   Last Modified By: Colby Bailey
+*/
+
 public class BackgroundMove : MonoBehaviour
 {
     [ SerializeField ] private float speed = 1f; 

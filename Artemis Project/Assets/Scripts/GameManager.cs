@@ -8,7 +8,7 @@ using UnityEngine.UI;
  /*
     File: GameManager.cs
     Description: Manages the core functions of the trivia game.
-    Last Modified: January 24, 2024
+    Last Modified: January 25, 2024
     Last Modified By: Colby Bailey
  */
 

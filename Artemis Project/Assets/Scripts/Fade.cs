@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/*
+   File: Fade.cs
+   Description: Represents the fading in and out of a transition.
+   Last Modified: January 25, 2024
+   Last Modified By: Colby Bailey
+*/
+
 public class Fade : MonoBehaviour
 {
     private CanvasGroup fade;
