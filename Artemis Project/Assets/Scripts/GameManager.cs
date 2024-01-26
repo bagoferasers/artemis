@@ -8,7 +8,7 @@ using UnityEngine.UI;
  /*
     File: GameManager.cs
     Description: Manages the core functions of the trivia game.
-    Last Modified: January 25, 2024
+    Last Modified: January 26, 2024
     Last Modified By: Colby Bailey
  */
 
@@ -227,7 +227,6 @@ public class GameManager : MonoBehaviour
         if( questions.Count > 0 )
         {
             randomQuestionNumber = rnd.Next( minValue: 0, maxValue: questions.Count );
-            // Debug.Log( questions.Count + " questions left!" );
             questionT.text = questions[ index: randomQuestionNumber ].GetQuestionText( );
             questionScript.RandomizeAnswers( q: questions[ index: randomQuestionNumber ] );
             answer1T.text = questions[ index: randomQuestionNumber ].GetAnswer( i: 0 ).GetAnswerText( );
@@ -257,13 +256,11 @@ public class GameManager : MonoBehaviour
                 Debug.Log( message: "Found correct answer!" );
                 numberOfQuestionsRight++;
                 DisplayTrue( );
-                //managepoints()  
             }
             else
             {
                 Debug.Log( message: "Incorrect answer!" );
                 DisplayFalse( );
-                //managepoints()
             }
             RemoveQuestion( );
             AskQuestion( );            
@@ -292,17 +289,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Used for testing. Prints the questions within the current stage or level.
-    /// </summary>
-    private void PrintStageQuestions( )
-    {
-        for ( int i = 0; i < questions.Count; i++ ) 
-        {
-            Debug.Log( message: "Question: " + questions[ index: i ].GetQuestionText( ) + "\n" );
-        }
-    }
-
-    /// <summary>
     /// Displays the visuals for selecting a true answer.
     /// </summary>
     private void DisplayTrue( )
@@ -327,7 +313,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="timeInSeconds">The time button will wait before returning to original color.</param>
     /// <returns></returns>
-    IEnumerator WaitForColor( float timeInSeconds )
+    private IEnumerator WaitForColor( float timeInSeconds )
     {
         yield return new WaitForSeconds( seconds: timeInSeconds );
         selectedButton.GetComponentInParent< Image >( ).color = Color.white;
