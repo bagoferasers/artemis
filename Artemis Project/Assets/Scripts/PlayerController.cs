@@ -1,34 +1,36 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+
+/*
+   File: PlayerController.cs
+   Description: Represents the player (Spacecraft and launch vehicle ).
+   Last Modified: January 26, 2024
+   Last Modified By: Colby Bailey
+*/
 
 public class PlayerController : MonoBehaviour
 {
-    private List< GameObject > orionObjectsList = new List< GameObject >( );
+    /// <summary>
+    /// List of GameObjects from the SLS and Orion spacecraft.
+    /// </summary>
+    [ SerializeField ] private List< GameObject > orionObjectsList = new List< GameObject >( );
 
+    /// <summary>
+    /// Start is called before the first frame update. Adds SLS and Orion GameObjects into List.
+    /// </summary>
     void Start( )
     {
-        try 
+        foreach ( Transform child in transform )
         {
-            // int count = 0;
-            foreach ( Transform child in transform )
+            if( 
+                child.gameObject.name != "Border" &&
+                child.gameObject.name != "Main Camera" &&
+                child.gameObject.name != "TriviaHolder" &&
+                child.gameObject.name != "TimelineHolder"
+                )
             {
-                // count++;
-                orionObjectsList.Add( child.gameObject );
+                orionObjectsList.Add( item: child.gameObject );
             }
-            // Debug.Log( "Number of children = " + count );
-            // Debug.Log( "List of children = " );
-            // foreach( var item in orionObjectsList )
-            // {
-            //     Debug.Log( item.name );
-            // }
-        }
-        catch( Exception e )
-        {
-            Debug.LogException( e );
-            Debug.Log( "Exiting application." );
-            Application.Quit( );
         }
     }
 }

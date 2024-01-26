@@ -8,7 +8,7 @@ using UnityEngine.UI;
  /*
     File: GameManager.cs
     Description: Manages the core functions of the trivia game.
-    Last Modified: January 21, 2024
+    Last Modified: January 26, 2024
     Last Modified By: Colby Bailey
  */
 
@@ -39,14 +39,40 @@ public class GameManager : MonoBehaviour
     private System.Random rnd = new System.Random( );
 
     /// <summary>
-    /// A TextMeshProUGUI component that will be filled with the question to be answered.
+    /// The question GameObject in Heirarchy.
+    /// </summary>
+    private GameObject questionTGO;
+
+    /// <summary>
+    /// A TextMeshProUGUI component from the question GameObject in Heirarchy that will be filled with the question to be answered.
     /// </summary>
     private TextMeshProUGUI questionT;
 
     /// <summary>
-    /// A TextMeshProUGUI component that will be filled with an answer to the question.
+    /// The answer GameObjects in Heirarchy.
+    /// </summary>
+    private GameObject answer1GO, answer2GO, answer3GO, answer4GO;
+
+    /// <summary>
+    /// A TextMeshProUGUI component from the anser GameObjects in Heirarchy that will be filled with an answer to the question.
     /// </summary>
     private TextMeshProUGUI answer1T, answer2T, answer3T, answer4T;
+
+    /// <summary>
+    /// The number of correct answers GameObject in Heriarchy.
+    /// </summary>
+    private GameObject numberCorrectGO;
+
+    /// <summary>
+    /// The TextMeshProUGUI component from the number of correct answers GameObject in Heirarchy that will be filled
+    /// with the number of correct answers in stage.
+    /// </summary>
+    private TextMeshProUGUI numberCorrect;
+
+    /// <summary>
+    /// The selected button.
+    /// </summary>
+    private GameObject selectedButton;
 
     /// <summary>
     /// An instance of the Question class.
@@ -54,16 +80,90 @@ public class GameManager : MonoBehaviour
     private Question questionScript = new Question( );
 
     /// <summary>
+    /// Tracks the current stage number.
+    /// </summary>
+    [ SerializeField ] private int currentStageNumber = 0;
+
+    /// <summary>
     /// Start is called before the first frame update. Initializes TextMeshProUGUI components and first stage of game.
     /// </summary>
     void Start( )
     {
-        questionT = GameObject.Find( "QuestionText" ).GetComponent< TextMeshProUGUI >( );
-        answer1T = GameObject.Find( "Answer1Text" ).GetComponent< TextMeshProUGUI >( );
-        answer2T = GameObject.Find( "Answer2Text" ).GetComponent< TextMeshProUGUI >( );
-        answer3T = GameObject.Find( "Answer3Text" ).GetComponent< TextMeshProUGUI >( );
-        answer4T = GameObject.Find( "Answer4Text" ).GetComponent< TextMeshProUGUI >( );
-        HandleStage( stageNumber: 0 );
+        //Grab GameObjects and check if null
+        questionTGO = GameObject.Find( name: "QuestionText" );
+        if( questionTGO == null )
+        {
+            Debug.LogWarning( message: "questionTGO variable in GameManager.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
+
+        answer1GO = GameObject.Find( name: "Answer1Text" );
+        if( answer1GO == null )
+        {
+            Debug.LogWarning( message: "answer1GO variable in GameManager.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
+
+        answer2GO = GameObject.Find( name: "Answer2Text" );
+        if( answer2GO == null )
+        {
+            Debug.LogWarning( message: "answer2GO variable in GameManager.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
+
+        answer3GO = GameObject.Find( name: "Answer3Text" );
+        if( answer3GO == null )
+        {
+            Debug.LogWarning( message: "answer3GO variable in GameManager.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
+
+        answer4GO = GameObject.Find( name: "Answer4Text" );
+        if( answer4GO == null )
+        {
+            Debug.LogWarning( message: "answer4GO variable in GameManager.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
+
+        numberCorrectGO = GameObject.Find( name: "NumberCorrect" );
+        if( numberCorrectGO == null )
+        {
+            Debug.LogWarning( message: "numberCorrectGO variable in GameManager.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
+
+        //Grab TextMeshProUGUI components
+        questionT = questionTGO.GetComponent< TextMeshProUGUI >( );
+        answer1T = answer1GO.GetComponent< TextMeshProUGUI >( );
+        answer2T = answer2GO.GetComponent< TextMeshProUGUI >( );
+        answer3T = answer3GO.GetComponent< TextMeshProUGUI >( );
+        answer4T = answer4GO.GetComponent< TextMeshProUGUI >( );
+        numberCorrect = numberCorrectGO.GetComponent< TextMeshProUGUI >( );
+        
+        //Begin game by handling stage
+        HandleStage( stageNumber: currentStageNumber );
+    }
+
+    /// <summary>
+    /// Update is called once per frame. Checks correct questions are met before moving to next stage.
+    /// Updates the number of correct answers on UI. Checks to see if lost game.
+    /// </summary>
+    void Update( )
+    {
+        numberCorrect.text = numberOfQuestionsRight.ToString( );
+
+        if( numberOfQuestionsRight == 5 )
+        {
+            Debug.Log( message: "Answered 5 questions correctly." );
+            ResetTrivia( );
+            currentStageNumber++;
+            numberOfQuestionsRight = 0;
+            HandleStage( stageNumber: currentStageNumber );
+        }
+        else if( numberOfQuestionsRight < 5 && questions.Count == 0 )
+        {
+            Debug.Log( message: "Lost game at stage " + currentStageNumber + " !" );
+        }
     }
 
     /// <summary>
@@ -72,16 +172,19 @@ public class GameManager : MonoBehaviour
     /// <param name="stageNumber">The stage or level number to be handled.</param>
     private void HandleStage( int stageNumber )
     {
+        Debug.Log( message: "Now on stage " + stageNumber + "!" );
         switch( stageNumber )
         {
             case 0: 
-                ReadCSVAndStore( csvToRead: "./Assets/Questions/PreLaunchQuestions.csv" );
-                // PrintStageQuestions( );
+                ReadCSVAndStore( csvToRead: "./Assets/Questions/Stage0.csv" );
+                AskQuestion( );
+                break;
+            case 1: 
+                ReadCSVAndStore( csvToRead: "./Assets/Questions/Stage1.csv" );
                 AskQuestion( );
                 break;
             default:
-                Debug.Log( "Please enter valid stage number!" );
-                Application.Quit( );
+                Debug.Log( message: "Please enter valid stage number!" );
                 break;
         }
     }
@@ -93,7 +196,7 @@ public class GameManager : MonoBehaviour
     private void ReadCSVAndStore( string csvToRead )
     {
         //initialize reader
-        StreamReader reader = new StreamReader( csvToRead );
+        StreamReader reader = new StreamReader( path: csvToRead );
 
         //clear previous questions from List
         questions.Clear( );
@@ -104,15 +207,15 @@ public class GameManager : MonoBehaviour
         //loop through questions and answers in csv and store in List
         while( ( lineRead = reader.ReadLine( ) ) != "//.end.//" )
         {
-            string[] values = lineRead.Split( ',' );
+            string[] values = lineRead.Split( separator: '^' );
             Question q = new Question( );
-            q.SetQuestionText( values[ 0 ] );
-            q.SetCorrectAnswer( values[ 1 ] );
+            q.SetQuestionText( text: values[ 0 ] );
+            q.SetCorrectAnswer( text: values[ 1 ] );
             for( int i = 1; i < 5; i++ )
             {
-                q.AddAnswer( values[ i ] );
+                q.AddAnswer( text: values[ i ] );
             }
-            questions.Add( q );
+            questions.Add( item: q );
         }
     }
 
@@ -123,14 +226,13 @@ public class GameManager : MonoBehaviour
     {
         if( questions.Count > 0 )
         {
-            randomQuestionNumber = rnd.Next( 0, questions.Count );
-            // Debug.Log( questions.Count + " questions left!" );
-            questionT.text = questions[ randomQuestionNumber ].GetQuestionText( );
-            questionScript.RandomizeAnswers( questions[ randomQuestionNumber ] );
-            answer1T.text = questions[ randomQuestionNumber ].GetAnswer( 0 ).text;
-            answer2T.text = questions[ randomQuestionNumber ].GetAnswer( 1 ).text;
-            answer3T.text = questions[ randomQuestionNumber ].GetAnswer( 2 ).text;
-            answer4T.text = questions[ randomQuestionNumber ].GetAnswer( 3 ).text;
+            randomQuestionNumber = rnd.Next( minValue: 0, maxValue: questions.Count );
+            questionT.text = questions[ index: randomQuestionNumber ].GetQuestionText( );
+            questionScript.RandomizeAnswers( q: questions[ index: randomQuestionNumber ] );
+            answer1T.text = questions[ index: randomQuestionNumber ].GetAnswer( i: 0 ).GetAnswerText( );
+            answer2T.text = questions[ index: randomQuestionNumber ].GetAnswer( i: 1 ).GetAnswerText( );
+            answer3T.text = questions[ index: randomQuestionNumber ].GetAnswer( i: 2 ).GetAnswerText( );
+            answer4T.text = questions[ index: randomQuestionNumber ].GetAnswer( i: 3 ).GetAnswerText( );
         } 
     }
 
@@ -139,21 +241,26 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="incomingAnswerText">The text of the answer selected to be compared with the text of the correct Answer.</param>
     public void CheckAnswer( string incomingAnswerText )
-    {
+    {   
+        selectedButton = GameObject.Find( name: incomingAnswerText );
+        if( selectedButton == null )
+        {
+            Debug.LogWarning( message: "selectedButton variable in GameManager.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
+
         if( questions.Count > 0 )
         {
-            if( questions[ randomQuestionNumber ].GetCorrectAnswer( ).text == GameObject.Find( incomingAnswerText ).GetComponent< TextMeshProUGUI >( ).text )
+            if( questions[ index: randomQuestionNumber ].GetCorrectAnswer( ).GetAnswerText( ) == selectedButton.GetComponent< TextMeshProUGUI >( ).text )
             {
-                Debug.Log( "Found correct answer!" );
+                Debug.Log( message: "Found correct answer!" );
                 numberOfQuestionsRight++;
-                //displaycolor()
-                //managepoints()  
+                DisplayTrue( );
             }
             else
             {
-                Debug.Log( "Incorrect answer!" );
-                //displaycolor()
-                //managepoints()
+                Debug.Log( message: "Incorrect answer!" );
+                DisplayFalse( );
             }
             RemoveQuestion( );
             AskQuestion( );            
@@ -165,15 +272,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void RemoveQuestion( )
     {
-        ResetTrivia( );
-        questions.Remove( questions[ randomQuestionNumber ] );
+        questions.Remove( item: questions[ index: randomQuestionNumber ] );
     }
 
     /// <summary>
-    /// Resets the TextMeshProUGUI components to the default values.
+    /// Resets the TextMeshProUGUI components to the default values and clears questions in List.
     /// </summary>
     private void ResetTrivia( )
     {
+        questions.Clear( );
         questionT.text = "This will be the question";
         answer1T.text = "Default answer";
         answer2T.text = "Default answer";
@@ -182,13 +289,34 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Prints the questions within the current stage or level.
+    /// Displays the visuals for selecting a true answer.
     /// </summary>
-    private void PrintStageQuestions( )
+    private void DisplayTrue( )
     {
-        for ( int i = 0; i < questions.Count; i++ ) 
-        {
-            Debug.Log( "Question: " + questions[ i ].GetQuestionText( ) + "\n" );
-        }
+        selectedButton.GetComponentInParent< Image >( ).color = Color.green;
+        numberCorrect.color = Color.green;
+        StartCoroutine( routine: WaitForColor( timeInSeconds: 0.2f ) );
+    }
+
+    /// <summary>
+    /// Displays the visuals for selecting a false answer.
+    /// </summary>
+    private void DisplayFalse( )
+    {
+        selectedButton.GetComponentInParent< Image >( ).color = Color.red;
+        numberCorrect.color = Color.red;
+        StartCoroutine( routine: WaitForColor( timeInSeconds: 0.2f ) );
+    }
+
+    /// <summary>
+    /// Waits for an alloted time before switching button color back to its original color.
+    /// </summary>
+    /// <param name="timeInSeconds">The time button will wait before returning to original color.</param>
+    /// <returns></returns>
+    private IEnumerator WaitForColor( float timeInSeconds )
+    {
+        yield return new WaitForSeconds( seconds: timeInSeconds );
+        selectedButton.GetComponentInParent< Image >( ).color = Color.white;
+        numberCorrect.color = new Color( r: 108f, g: 126f, b: 162f );
     }
 }
