@@ -176,11 +176,11 @@ public class GameManager : MonoBehaviour
         switch( stageNumber )
         {
             case 0: 
-                ReadCSVAndStore( csvToRead: "./Assets/Questions/Stage0.csv" );
+                ReadCSVAndStore( csvToRead: Application.dataPath + "/Questions/Stage0.csv" );
                 AskQuestion( );
                 break;
             case 1: 
-                ReadCSVAndStore( csvToRead: "./Assets/Questions/Stage1.csv" );
+                ReadCSVAndStore( csvToRead: Application.dataPath + "/Questions/Stage1.csv" );
                 AskQuestion( );
                 break;
             default:
@@ -261,9 +261,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log( message: "Incorrect answer!" );
                 DisplayFalse( );
-            }
-            RemoveQuestion( );
-            AskQuestion( );            
+            }          
         }
     }
 
@@ -318,5 +316,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds( seconds: timeInSeconds );
         selectedButton.GetComponentInParent< Image >( ).color = Color.white;
         numberCorrect.color = new Color( r: 108f, g: 126f, b: 162f );
+        RemoveQuestion( );
+        AskQuestion( );  
     }
 }
