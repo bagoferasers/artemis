@@ -2,9 +2,12 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - BackgroundMove
+    - CreditsScene
     - Fade
     - GameManager
+    - MenuScene
     - PlayerController
+    - SettingsScene
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Animation.Runtime.dll:
@@ -93,6 +96,8 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
+    Unity.Timeline.Editor.dll:
+    - TimelineProjectSettings
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -184,17 +189,14 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle/ToggleEvent
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: CheckAnswer
+    fullTypeName: MenuScene
+    methodName: Credits
   - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: CheckAnswer
+    fullTypeName: MenuScene
+    methodName: Settings
   - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: CheckAnswer
-  - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: CheckAnswer
+    fullTypeName: MenuScene
+    methodName: Play
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: OnScrollbarClicked
@@ -234,7 +236,96 @@ ScriptsOnlyBuild:
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: ResetDebugManager
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: CheckAnswer
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: CheckAnswer
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: CheckAnswer
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: CheckAnswer
+  - assembly: Assembly-CSharp
+    fullTypeName: CreditsScene
+    methodName: Back
+  - assembly: Assembly-CSharp
+    fullTypeName: SettingsScene
+    methodName: Back
   sceneClasses:
+    Assets/Scenes/Credits.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1848}
+    - Class: 114
+      Script: {instanceID: 1850}
+    - Class: 114
+      Script: {instanceID: 1900}
+    - Class: 114
+      Script: {instanceID: 6326}
+    - Class: 114
+      Script: {instanceID: 6756}
+    - Class: 114
+      Script: {instanceID: 7476}
+    - Class: 114
+      Script: {instanceID: 7506}
+    - Class: 114
+      Script: {instanceID: 7926}
+    - Class: 114
+      Script: {instanceID: 10290}
+    - Class: 114
+      Script: {instanceID: 10508}
+    - Class: 114
+      Script: {instanceID: 10950}
+    - Class: 114
+      Script: {instanceID: 11556}
+    - Class: 114
+      Script: {instanceID: 12972}
+    - Class: 114
+      Script: {instanceID: 13110}
+    - Class: 114
+      Script: {instanceID: 15500}
+    - Class: 114
+      Script: {instanceID: 38914}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 210
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
+      Script: {instanceID: 0}
     Assets/Scenes/Main.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -293,8 +384,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5896}
     - Class: 114
-      Script: {instanceID: 5956}
-    - Class: 114
       Script: {instanceID: 6120}
     - Class: 114
       Script: {instanceID: 6142}
@@ -318,8 +407,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7506}
     - Class: 114
       Script: {instanceID: 7560}
-    - Class: 114
-      Script: {instanceID: 7926}
     - Class: 114
       Script: {instanceID: 8596}
     - Class: 114
@@ -353,10 +440,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12972}
     - Class: 114
-      Script: {instanceID: 12990}
-    - Class: 114
-      Script: {instanceID: 13022}
-    - Class: 114
       Script: {instanceID: 13048}
     - Class: 114
       Script: {instanceID: 13110}
@@ -382,6 +465,154 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15500}
     - Class: 114
       Script: {instanceID: 16104}
+    - Class: 114
+      Script: {instanceID: 34096}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 210
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
+      Script: {instanceID: 0}
+    Assets/Scenes/Play1.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1848}
+    - Class: 114
+      Script: {instanceID: 1850}
+    - Class: 114
+      Script: {instanceID: 1900}
+    - Class: 114
+      Script: {instanceID: 5956}
+    - Class: 114
+      Script: {instanceID: 6326}
+    - Class: 114
+      Script: {instanceID: 6756}
+    - Class: 114
+      Script: {instanceID: 7476}
+    - Class: 114
+      Script: {instanceID: 7506}
+    - Class: 114
+      Script: {instanceID: 7926}
+    - Class: 114
+      Script: {instanceID: 10290}
+    - Class: 114
+      Script: {instanceID: 10508}
+    - Class: 114
+      Script: {instanceID: 10950}
+    - Class: 114
+      Script: {instanceID: 11556}
+    - Class: 114
+      Script: {instanceID: 12972}
+    - Class: 114
+      Script: {instanceID: 12990}
+    - Class: 114
+      Script: {instanceID: 13022}
+    - Class: 114
+      Script: {instanceID: 13110}
+    - Class: 114
+      Script: {instanceID: 15500}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 210
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
+      Script: {instanceID: 0}
+    Assets/Scenes/Settings.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1848}
+    - Class: 114
+      Script: {instanceID: 1850}
+    - Class: 114
+      Script: {instanceID: 1900}
+    - Class: 114
+      Script: {instanceID: 6326}
+    - Class: 114
+      Script: {instanceID: 6756}
+    - Class: 114
+      Script: {instanceID: 7476}
+    - Class: 114
+      Script: {instanceID: 7506}
+    - Class: 114
+      Script: {instanceID: 7926}
+    - Class: 114
+      Script: {instanceID: 10290}
+    - Class: 114
+      Script: {instanceID: 10508}
+    - Class: 114
+      Script: {instanceID: 10950}
+    - Class: 114
+      Script: {instanceID: 11556}
+    - Class: 114
+      Script: {instanceID: 12972}
+    - Class: 114
+      Script: {instanceID: 13110}
+    - Class: 114
+      Script: {instanceID: 15500}
+    - Class: 114
+      Script: {instanceID: 40140}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2871,7 +3102,28 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 1d4f75c7b6905a77210f19900f271190
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MenuScene
+  - hash:
+      serializedVersion: 2
+      Hash: 65c9b65a1c180567b24bba2c7acf5ddc
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CreditsScene
+  - hash:
+      serializedVersion: 2
+      Hash: 1e781af828195d066ae71ec9fd8ae4b3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SettingsScene
   platform: 19
   scenePathNames:
   - Assets/Scenes/Main.unity
-  playerPath: E:/GitHubProjects/artemis/Artemis Project/Releases/Artemis.exe
+  - Assets/Scenes/Play1.unity
+  - Assets/Scenes/Credits.unity
+  - Assets/Scenes/Settings.unity
+  playerPath: E:/GitHubProjects/artemis/Artemis Project/Releases/Update0.1/Artemis.exe

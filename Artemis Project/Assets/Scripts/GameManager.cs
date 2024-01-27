@@ -5,12 +5,12 @@ using System.IO;
 using TMPro;
 using UnityEngine.UI;
 
- /*
-    File: GameManager.cs
-    Description: Manages the core functions of the trivia game.
-    Last Modified: January 26, 2024
-    Last Modified By: Colby Bailey
- */
+/*
+   File: GameManager.cs
+   Description: Manages the core functions of the trivia game.
+   Last Modified: January 27, 2024
+   Last Modified By: Colby Bailey
+*/
 
 /// <summary>
 /// The class represents the game manager.
@@ -18,10 +18,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     /// <summary>
-    /// The list of questions for the current stage.
+    /// The list of questions for stage.
     /// </summary>
-    /// <typeparam name="Question">An instance of the Question class.</typeparam>
-    private List< Question > questions = new List< Question >( );
+    // /// <typeparam name="Questions">An instance of the Questions class.</typeparam>
+    private List< Questions > questions = new List< Questions >( );
 
     /// <summary>
     /// The random question to be answered.
@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     /// <summary>
     /// Start is called before the first frame update. Initializes TextMeshProUGUI components and first stage of game.
+    /// Loads all questions from .csv files for each Stage of game.
     /// </summary>
     void Start( )
     {
@@ -139,6 +140,9 @@ public class GameManager : MonoBehaviour
         answer3T = answer3GO.GetComponent< TextMeshProUGUI >( );
         answer4T = answer4GO.GetComponent< TextMeshProUGUI >( );
         numberCorrect = numberCorrectGO.GetComponent< TextMeshProUGUI >( );
+
+        //Load Questions
+        LoadQuestions( );
         
         //Begin game by handling stage
         HandleStage( stageNumber: currentStageNumber );
@@ -160,9 +164,10 @@ public class GameManager : MonoBehaviour
             numberOfQuestionsRight = 0;
             HandleStage( stageNumber: currentStageNumber );
         }
-        else if( numberOfQuestionsRight < 5 && questions.Count == 0 )
+        else if( numberOfQuestionsRight < 5 && questions[ index: currentStageNumber ].stageQuestions.Count == 0 )
         {
             Debug.Log( message: "Lost game at stage " + currentStageNumber + " !" );
+            new SceneTransitions.Scene( nameOfScene: "Main" ).ChangeScene( );
         }
     }
 
@@ -172,34 +177,58 @@ public class GameManager : MonoBehaviour
     /// <param name="stageNumber">The stage or level number to be handled.</param>
     private void HandleStage( int stageNumber )
     {
-        Debug.Log( message: "Now on stage " + stageNumber + "!" );
         switch( stageNumber )
         {
             case 0: 
-                ReadCSVAndStore( csvToRead: Application.dataPath + "/Questions/Stage0.csv" );
-                AskQuestion( );
+                if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
+                {
+                    AskQuestion( );
+                }
                 break;
             case 1: 
-                ReadCSVAndStore( csvToRead: Application.dataPath + "/Questions/Stage1.csv" );
-                AskQuestion( );
+                if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
+                {
+                    AskQuestion( );
+                }
                 break;
             default:
                 Debug.Log( message: "Please enter valid stage number!" );
+                new SceneTransitions.Scene( nameOfScene: "Main" ).ChangeScene( );
                 break;
         }
     }
 
     /// <summary>
-    /// Reads the incoming csv and adds the questions to the stage or level.
+    /// Finds the path to each .csv and then adds a Questions object to questions List for each.
     /// </summary>
-    /// <param name="csvToRead">The csv of the current stage or level.</param>
-    private void ReadCSVAndStore( string csvToRead )
+    private void LoadQuestions( )
+    {
+        string basePath;
+        if( Application.isEditor )
+        {
+            basePath = Path.Combine( Application.dataPath, "Questions" );
+        }
+        else
+        {
+            basePath = Path.Combine( Application.streamingAssetsPath, "Questions" );
+        }
+        Questions q0 = new Questions( );
+        questions.Add( item: q0 );
+        Questions q1 = new Questions( );
+        questions.Add( item: q1 );
+        ReadCSVAndStore( csvPath: Path.Combine( basePath, "Stage0.csv" ), csv: "Stage0.csv" );
+        ReadCSVAndStore( csvPath: Path.Combine( basePath, "Stage1.csv" ), csv: "Stage1.csv" );
+    }
+
+    /// <summary>
+    /// Reads a .csv and stores it into a Stage for the game.
+    /// </summary>
+    /// <param name="csvPath">Path to where .csv files are located in game directory.</param>
+    /// <param name="csv">The name of the .csv file to read</param>
+    private void ReadCSVAndStore( string csvPath, string csv )
     {
         //initialize reader
-        StreamReader reader = new StreamReader( path: csvToRead );
-
-        //clear previous questions from List
-        questions.Clear( );
+        StreamReader reader = new StreamReader( path: csvPath );
 
         //discard header
         string lineRead = reader.ReadLine( );
@@ -215,7 +244,17 @@ public class GameManager : MonoBehaviour
             {
                 q.AddAnswer( text: values[ i ] );
             }
-            questions.Add( item: q );
+            switch( csv )
+            {
+                case "Stage0.csv":
+                    questions[ index: 0 ].stageQuestions.Add( item: q );
+                    break;
+                case "Stage1.csv":
+                    questions[ index: 1 ].stageQuestions.Add( item: q );
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -224,15 +263,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void AskQuestion( )
     {
-        if( questions.Count > 0 )
+        if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
         {
-            randomQuestionNumber = rnd.Next( minValue: 0, maxValue: questions.Count );
-            questionT.text = questions[ index: randomQuestionNumber ].GetQuestionText( );
-            questionScript.RandomizeAnswers( q: questions[ index: randomQuestionNumber ] );
-            answer1T.text = questions[ index: randomQuestionNumber ].GetAnswer( i: 0 ).GetAnswerText( );
-            answer2T.text = questions[ index: randomQuestionNumber ].GetAnswer( i: 1 ).GetAnswerText( );
-            answer3T.text = questions[ index: randomQuestionNumber ].GetAnswer( i: 2 ).GetAnswerText( );
-            answer4T.text = questions[ index: randomQuestionNumber ].GetAnswer( i: 3 ).GetAnswerText( );
+            randomQuestionNumber = rnd.Next( minValue: 0, maxValue: questions.Count - 1 );
+            questionT.text = questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ].GetQuestionText( );
+            questionScript.RandomizeAnswers( q: questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ] );
+            answer1T.text = questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ].GetAnswer( i: 0 ).GetAnswerText( );
+            answer2T.text = questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ].GetAnswer( i: 1 ).GetAnswerText( );
+            answer3T.text = questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ].GetAnswer( i: 2 ).GetAnswerText( );
+            answer4T.text = questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ].GetAnswer( i: 3 ).GetAnswerText( );
         } 
     }
 
@@ -249,9 +288,9 @@ public class GameManager : MonoBehaviour
             Application.Quit( );
         }
 
-        if( questions.Count > 0 )
+        if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
         {
-            if( questions[ index: randomQuestionNumber ].GetCorrectAnswer( ).GetAnswerText( ) == selectedButton.GetComponent< TextMeshProUGUI >( ).text )
+            if( questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ].GetCorrectAnswer( ).GetAnswerText( ) == selectedButton.GetComponent< TextMeshProUGUI >( ).text )
             {
                 Debug.Log( message: "Found correct answer!" );
                 numberOfQuestionsRight++;
@@ -270,7 +309,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void RemoveQuestion( )
     {
-        questions.Remove( item: questions[ index: randomQuestionNumber ] );
+        questions[ index: currentStageNumber ].stageQuestions.Remove( item: questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ] );
     }
 
     /// <summary>
@@ -278,7 +317,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void ResetTrivia( )
     {
-        questions.Clear( );
         questionT.text = "This will be the question";
         answer1T.text = "Default answer";
         answer2T.text = "Default answer";
@@ -317,6 +355,9 @@ public class GameManager : MonoBehaviour
         selectedButton.GetComponentInParent< Image >( ).color = Color.white;
         numberCorrect.color = new Color( r: 108f, g: 126f, b: 162f );
         RemoveQuestion( );
-        AskQuestion( );  
+        if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
+        {
+            AskQuestion( );
+        }
     }
 }
