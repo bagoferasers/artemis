@@ -3,7 +3,7 @@ using UnityEngine;
 /*
    File: MenuScene.cs
    Description: Script to handle the Main Menu Scene.
-   Last Modified: January 27, 2024
+   Last Modified: January 28, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -56,4 +56,13 @@ public class MenuScene : MonoBehaviour
     {
         credits.ChangeScene( );
     }    
+
+    /// <summary>
+    /// The method that exits the game and quits the application.
+    /// </summary>
+    public void ExitGame( )
+    {
+        Debug.Log( "Exiting Game!" );
+        Application.Quit( );
+    }
 }

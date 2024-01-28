@@ -429,6 +429,7 @@
 "Assets/Scripts/Fade.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/MenuScene.cs"
+"Assets/Scripts/Play1Scene.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/Question.cs"
 "Assets/Scripts/Questions.cs"
