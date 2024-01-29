@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /*
    File: GameManager.cs
    Description: Manages the core functions of the trivia game.
-   Last Modified: January 27, 2024
+   Last Modified: January 29, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -85,11 +85,33 @@ public class GameManager : MonoBehaviour
     [ SerializeField ] private int currentStageNumber = 0;
 
     /// <summary>
+    /// Will be used to control the player.
+    /// </summary>
+    private PlayerController playerController;
+
+    /// <summary>
+    /// Will represent the GameObject that will be used to control the player.
+    /// </summary>
+    private GameObject playerControllerGO;
+
+    /// <summary>
     /// Start is called before the first frame update. Initializes TextMeshProUGUI components and first stage of game.
     /// Loads all questions from .csv files for each Stage of game.
     /// </summary>
     void Start( )
     {
+        //Reset the last Player's score to 0.
+        PlayerPrefs.SetInt( key: "LastPlayerScore", value: 0 );
+
+        //Grab the PlayerController from the Scene and check if null
+        playerControllerGO = GameObject.Find (name: "Player" );
+        if( playerControllerGO == null )
+        {
+            Debug.LogWarning( message: "playerControllerGO variable in GameManager.cs is null", context: gameObject );
+            Application.Quit( );
+        }
+        playerController = playerControllerGO.GetComponent< PlayerController >( );
+
         //Grab GameObjects and check if null
         questionTGO = GameObject.Find( name: "QuestionText" );
         if( questionTGO == null )
@@ -150,7 +172,8 @@ public class GameManager : MonoBehaviour
 
     /// <summary>
     /// Update is called once per frame. Checks correct questions are met before moving to next stage.
-    /// Updates the number of correct answers on UI. Checks to see if lost game.
+    /// Updates the number of correct answers on UI. Checks to see if lost game. Sets TopPlayerScore
+    /// if current score is greater. Changes Scene to LostGame accordingly.
     /// </summary>
     void Update( )
     {
@@ -167,7 +190,12 @@ public class GameManager : MonoBehaviour
         else if( numberOfQuestionsRight < 5 && questions[ index: currentStageNumber ].stageQuestions.Count == 0 )
         {
             Debug.Log( message: "Lost game at stage " + currentStageNumber + " !" );
-            new SceneTransitions.Scene( nameOfScene: "Main" ).ChangeScene( );
+            PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
+            if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( "TopPlayerScore" ) )
+            {
+                PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
+            }
+            new SceneTransitions.Scene( nameOfScene: "LostGame" ).ChangeScene( );
         }
     }
 
@@ -276,7 +304,8 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks to see if the answer selected is the correct answer from the current Question. Then, it removes the question and asks a new one.
+    /// Checks to see if the answer selected is the correct answer from the current Question. Then, it removes the 
+    /// question and asks a new one. Updates current player score accordingly.
     /// </summary>
     /// <param name="incomingAnswerText">The text of the answer selected to be compared with the text of the correct Answer.</param>
     public void CheckAnswer( string incomingAnswerText )
@@ -295,11 +324,15 @@ public class GameManager : MonoBehaviour
                 Debug.Log( message: "Found correct answer!" );
                 numberOfQuestionsRight++;
                 DisplayTrue( );
+                int currentScore = playerController.player.GetScore( );
+                playerController.player.SetScore( currentScore += 5 );
             }
             else
             {
                 Debug.Log( message: "Incorrect answer!" );
                 DisplayFalse( );
+                int currentScore = playerController.player.GetScore( );
+                playerController.player.SetScore( currentScore -= 5 );
             }          
         }
     }

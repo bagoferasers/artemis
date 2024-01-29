@@ -1,9 +1,9 @@
 using UnityEngine;
-
+using TMPro;
 /*
    File: MenuScene.cs
    Description: Script to handle the Main Menu Scene.
-   Last Modified: January 28, 2024
+   Last Modified: January 29, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -23,11 +23,24 @@ public class MenuScene : MonoBehaviour
     private SceneTransitions.Scene play, settings, credits;
 
     /// <summary>
+    /// Represents the GameObject that will hold the top player score.
+    /// </summary>
+    private GameObject topPlayerScoreText;
+
+    /// <summary>
+    /// Holds the top player score.
+    /// </summary>
+    private TextMeshProUGUI topPlayerScore;
+
+    /// <summary>
     /// Start is called before the first frame update. Initializes the Scene objects for the Play, Settings, and
-    /// Credit Buttons with the proper paths.
+    /// Credit Buttons with the proper paths. Initializes top player score to UI.
     /// </summary>    
     void Start( )
     {
+        topPlayerScoreText = GameObject.Find( name: "TopPlayerScore" );
+        topPlayerScore = topPlayerScoreText.GetComponent< TextMeshProUGUI >( );
+        topPlayerScore.text = PlayerPrefs.GetInt( key: "TopPlayerScore" ).ToString( );
         play = new SceneTransitions.Scene( nameOfScene: "Play1" );
         settings = new SceneTransitions.Scene( nameOfScene: "Settings" );
         credits = new SceneTransitions.Scene( nameOfScene: "Credits" );
