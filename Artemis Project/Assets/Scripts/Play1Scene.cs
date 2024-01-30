@@ -4,7 +4,7 @@ using UnityEngine.UI;
 /*
    File: Play1Scene.cs
    Description: Script to handle the Play1 Scene.
-   Last Modified: January 28, 2024
+   Last Modified: January 30, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -13,16 +13,6 @@ using UnityEngine.UI;
 /// </summary>
 public class Play1Scene : MonoBehaviour
 {
-    /// <summary>
-    /// SceneTransitions class that will help change the Scene.
-    /// </summary>
-    private SceneTransitions sceneTransitions = new SceneTransitions( );
-    
-    /// <summary>
-    /// Represents Scene objects for the Buttons.
-    /// </summary>
-    private SceneTransitions.Scene mainMenu;
-
     /// <summary>
     /// GameObject that will be toggled for the Settings menu.
     /// </summary>
@@ -48,9 +38,6 @@ public class Play1Scene : MonoBehaviour
     /// </summary>    
     void Start( )
     {
-        //Grab SceneTransitions.Scene and proper path to Main Scene.
-        mainMenu = new SceneTransitions.Scene( nameOfScene: "Main" );
-
         //Grab the GameObjects that will hold the interactable buttons and check for null. Then gets the
         //component for the Button.
         a1GO = GameObject.Find( name: "Answer1" );
@@ -167,7 +154,7 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     public void MainMenu( )
     {
-        mainMenu.ChangeScene( );
+        new SceneTransitions.Scene( nameOfScene: "Main" ).ChangeScene( );
     }
 
     /// <summary>

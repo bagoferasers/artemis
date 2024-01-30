@@ -3,7 +3,7 @@ using TMPro;
 /*
    File: MenuScene.cs
    Description: Script to handle the Main Menu Scene.
-   Last Modified: January 29, 2024
+   Last Modified: January 30, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -12,16 +12,6 @@ using TMPro;
 /// </summary>
 public class MenuScene : MonoBehaviour
 {
-    /// <summary>
-    /// SceneTransitions class that will help change the Scene.
-    /// </summary>
-    private SceneTransitions sceneTransitions = new SceneTransitions( );
-    
-    /// <summary>
-    /// Represents Scene objects for the Play, Settings, and Credit Buttons.
-    /// </summary>
-    private SceneTransitions.Scene play, settings, credits;
-
     /// <summary>
     /// Represents the GameObject that will hold the top player score.
     /// </summary>
@@ -38,12 +28,18 @@ public class MenuScene : MonoBehaviour
     /// </summary>    
     void Start( )
     {
+        //Grab the GameObject that will hold the top player score on the UI and check for null. Then gets the
+        //component for the text.
         topPlayerScoreText = GameObject.Find( name: "TopPlayerScore" );
+        if( topPlayerScoreText == null )
+        {
+            Debug.LogWarning( message: "topPlayerScoreText variable in MenuScene.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
         topPlayerScore = topPlayerScoreText.GetComponent< TextMeshProUGUI >( );
+
+        //Sets the text on the UI to the top player's score.
         topPlayerScore.text = PlayerPrefs.GetInt( key: "TopPlayerScore" ).ToString( );
-        play = new SceneTransitions.Scene( nameOfScene: "Play1" );
-        settings = new SceneTransitions.Scene( nameOfScene: "Settings" );
-        credits = new SceneTransitions.Scene( nameOfScene: "Credits" );
     }
 
     /// <summary>
@@ -51,7 +47,7 @@ public class MenuScene : MonoBehaviour
     /// </summary>
     public void Play( )
     {
-        play.ChangeScene( );
+        new SceneTransitions.Scene( nameOfScene: "Play1" ).ChangeScene( );
     }
 
     /// <summary>
@@ -59,7 +55,7 @@ public class MenuScene : MonoBehaviour
     /// </summary>
     public void Settings( )
     {
-        settings.ChangeScene( );
+        new SceneTransitions.Scene( nameOfScene: "Settings" ).ChangeScene( );
     }
 
     /// <summary>
@@ -67,7 +63,7 @@ public class MenuScene : MonoBehaviour
     /// </summary>
     public void Credits( )
     {
-        credits.ChangeScene( );
+        new SceneTransitions.Scene( nameOfScene: "Credits" ).ChangeScene( );
     }    
 
     /// <summary>

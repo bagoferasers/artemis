@@ -5,7 +5,7 @@ using UnityEngine;
 /*
    File: PlayerController.cs
    Description: Represents the player controller.
-   Last Modified: January 29, 2024
+   Last Modified: January 30, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -50,15 +50,29 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start( )
     {
+        //Grab the GameObject that will hold the player's name and check for null. Then gets the
+        //component for the text and sets it.
         playerNameGO = GameObject.Find( name: "PlayerName" );
-        playerScoreGO = GameObject.Find( name: "PlayerScore" );
-
+        if( playerNameGO == null )
+        {
+            Debug.LogWarning( message: "playerNameGO variable in MenuScene.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
         playerNameText = playerNameGO.GetComponent< TextMeshProUGUI >( );
-        playerScoreText = playerScoreGO.GetComponent< TextMeshProUGUI >( );
-
         playerNameText.text = player.GetPlayerName( );
-        playerScoreText.text = player.GetScore( ).ToString( );
 
+        //Grab the GameObject that will hold the player's current score and check for null. Then gets the
+        //component for the text and sets it.
+        playerScoreGO = GameObject.Find( name: "PlayerScore" );
+        if( playerScoreGO == null )
+        {
+            Debug.LogWarning( message: "playerScoreGO variable in MenuScene.cs is null!" , context: gameObject );
+            Application.Quit( );
+        }
+        playerScoreText = playerScoreGO.GetComponent< TextMeshProUGUI >( );
+        playerScoreText.text = player.GetScore( ).ToString( );
+        
+        //Grab all GameObjects of spacecraft.
         foreach ( Transform child in transform )
         {
             if( 

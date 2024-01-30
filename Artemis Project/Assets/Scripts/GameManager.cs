@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /*
    File: GameManager.cs
    Description: Manages the core functions of the trivia game.
-   Last Modified: January 29, 2024
+   Last Modified: January 30, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -181,21 +181,12 @@ public class GameManager : MonoBehaviour
 
         if( numberOfQuestionsRight == 5 )
         {
-            Debug.Log( message: "Answered 5 questions correctly." );
-            ResetTrivia( );
-            currentStageNumber++;
             numberOfQuestionsRight = 0;
-            HandleStage( stageNumber: currentStageNumber );
+            HandleStage( stageNumber: ++currentStageNumber );
         }
         else if( numberOfQuestionsRight < 5 && questions[ index: currentStageNumber ].stageQuestions.Count == 0 )
         {
-            Debug.Log( message: "Lost game at stage " + currentStageNumber + " !" );
-            PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
-            if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( "TopPlayerScore" ) )
-            {
-                PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
-            }
-            new SceneTransitions.Scene( nameOfScene: "LostGame" ).ChangeScene( );
+            HandleStage( stageNumber: -1 );
         }
     }
 
@@ -207,17 +198,32 @@ public class GameManager : MonoBehaviour
     {
         switch( stageNumber )
         {
+            case -1:
+                //Current lost game
+                Debug.Log( message: "Lost game at stage " + currentStageNumber + " !" );
+                PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
+                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( "TopPlayerScore" ) )
+                {
+                    PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
+                }
+                new SceneTransitions.Scene( nameOfScene: "LostGame" ).ChangeScene( );
+                break;
             case 0: 
+                //Stage 0
                 if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
                 {
                     AskQuestion( );
                 }
                 break;
-            case 1: 
-                if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
+            case 1:
+                //Current won game. Update case # to always be the last before default.
+                Debug.Log( message: "Won game at stage " + currentStageNumber + " !" );
+                PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
+                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( "TopPlayerScore" ) )
                 {
-                    AskQuestion( );
+                    PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
                 }
+                new SceneTransitions.Scene( nameOfScene: "WonGame" ).ChangeScene( );
                 break;
             default:
                 Debug.Log( message: "Please enter valid stage number!" );
@@ -343,18 +349,6 @@ public class GameManager : MonoBehaviour
     private void RemoveQuestion( )
     {
         questions[ index: currentStageNumber ].stageQuestions.Remove( item: questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ] );
-    }
-
-    /// <summary>
-    /// Resets the TextMeshProUGUI components to the default values and clears questions in List.
-    /// </summary>
-    private void ResetTrivia( )
-    {
-        questionT.text = "This will be the question";
-        answer1T.text = "Default answer";
-        answer2T.text = "Default answer";
-        answer3T.text = "Default answer";
-        answer4T.text = "Default answer";      
     }
 
     /// <summary>
