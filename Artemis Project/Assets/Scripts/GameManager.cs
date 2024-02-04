@@ -81,7 +81,9 @@ public class GameManager : MonoBehaviour
     void Start( )
     {
         //Reset the last Player's score to 0.
-        PlayerPrefs.SetInt( key: "LastPlayerScore", value: 0 );
+        // PlayerPrefs.SetInt( key: "LastPlayerScore", value: 0 );
+        SaveSystem.SetInt( name: "LastPlayerScore", val: 0 );
+        SaveSystem.SaveToDisk( );
 
         //Grab the PlayerController from the Scene and check if null
         playerController = FindAndInit.InitializeGameObject( gameObjectName: "Player", sceneName: "GameManager.cs" ).GetComponent< PlayerController >( );
@@ -135,7 +137,10 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
                 if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
                 {
-                    PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
+                    // PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
+                    // PlayerPrefs.Save( );
+                    SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
+                    SaveSystem.SaveToDisk( );
                 }
                 new SceneTransitions.Scene( nameOfScene: "LostGame" ).ChangeScene( );
                 break;
@@ -152,7 +157,10 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
                 if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
                 {
-                    PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
+                    // PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
+                    // PlayerPrefs.Save( );
+                    SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
+                    SaveSystem.SaveToDisk( );
                 }
                 new SceneTransitions.Scene( nameOfScene: "WonGame" ).ChangeScene( );
                 break;

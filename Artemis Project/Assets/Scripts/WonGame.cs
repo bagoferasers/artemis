@@ -31,7 +31,8 @@ public class WonGame : MonoBehaviour
     void Start( )
     {
         lastPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "FinalScore", sceneName: "WonGame.cs" );
-        lastPlayerScoreText.text = PlayerPrefs.GetInt( key: "LastPlayerScore" ).ToString( );
+        // lastPlayerScoreText.text = PlayerPrefs.GetInt( key: "LastPlayerScore" ).ToString( );
+        lastPlayerScoreText.text = SaveSystem.GetInt( name: "LastPlayerScore" ).ToString( );
         StartCoroutine( routine: WaitForCredits( ) );
     }
 
@@ -40,7 +41,9 @@ public class WonGame : MonoBehaviour
     /// </summary>
     public void Next( )
     {
-        PlayerPrefs.SetInt( key: "LastPlayerScore", value: 0 );
+        // PlayerPrefs.SetInt( key: "LastPlayerScore", value: 0 );
+        SaveSystem.SetInt( name: "LastPlayerScore", val: 0 );
+        SaveSystem.SaveToDisk( );
         new SceneTransitions.Scene( nameOfScene: "Credits" ).ChangeScene( );
     }
 

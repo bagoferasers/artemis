@@ -40,7 +40,10 @@ public class Player
     public void SetScore( int score )
     {
         this.score = score;
-        PlayerPrefs.SetInt( key: "LastPlayerScore", value: score );
+        // PlayerPrefs.SetInt( key: "LastPlayerScore", value: score );
+        // PlayerPrefs.Save( );
+        SaveSystem.SetInt( name: "LastPlayerScore", val: score );
+        SaveSystem.SaveToDisk( );
     }
     
     /// <summary>
@@ -58,7 +61,10 @@ public class Player
     public void SetPlayerName( string playerName )
     {
         this.playerName = playerName;
-        PlayerPrefs.SetString( key: "PlayerName", value: playerName );
+        // PlayerPrefs.SetString( key: "PlayerName", value: playerName );
+        // PlayerPrefs.Save( );
+        SaveSystem.SetString( name: "PlayerName", val: playerName );
+        SaveSystem.SaveToDisk( );
     }
 
     /// <summary>
