@@ -7,6 +7,21 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Main.unity
+    guid: 0a0e6f787298f9b4c84f3122a39a3467
+  - enabled: 1
+    path: Assets/Scenes/Play1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 607b5e179441c6c429afdba310aeddcf
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: ffc7a9ba80a814f49a1ba169c3c702df
+  - enabled: 1
+    path: Assets/Scenes/LostGame.unity
+    guid: e948bc6af11303d4c87646071719ef40
+  - enabled: 1
+    path: Assets/Scenes/WonGame.unity
+    guid: a80ba9647deb355479cd99e0171ce168
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 41920d63fa017124e9428f89a6a64bc3, type: 2}

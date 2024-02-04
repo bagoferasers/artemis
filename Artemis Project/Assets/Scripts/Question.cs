@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /*
    File: Question.cs
    Description: Represents a trivia question with correct and incorrect answers.
-   Last Modified: January 25, 2024
+   Last Modified: January 27, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -33,7 +33,7 @@ public class Question
     /// <summary>
     /// Represents a pseudo-random number generator.
     /// </summary>
-    private System.Random rnd = new System.Random( );
+    private Random rnd = new Random( );
 
     /// <summary>
     /// Represents an answer to a trivia question.
