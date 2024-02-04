@@ -3,7 +3,7 @@ using TMPro;
 /*
    File: MenuScene.cs
    Description: Script to handle the Main Menu Scene.
-   Last Modified: January 30, 2024
+   Last Modified: February 4, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -13,33 +13,17 @@ using TMPro;
 public class MenuScene : MonoBehaviour
 {
     /// <summary>
-    /// Represents the GameObject that will hold the top player score.
+    /// The TextMeshProUGUI component that will hold the top player's score.
     /// </summary>
-    private GameObject topPlayerScoreText;
+    private TextMeshProUGUI topPlayerScoreText;
 
     /// <summary>
-    /// Holds the top player score.
-    /// </summary>
-    private TextMeshProUGUI topPlayerScore;
-
-    /// <summary>
-    /// Start is called before the first frame update. Initializes the Scene objects for the Play, Settings, and
-    /// Credit Buttons with the proper paths. Initializes top player score to UI.
+    /// Initializes top player score to UI.
     /// </summary>    
     void Start( )
     {
-        //Grab the GameObject that will hold the top player score on the UI and check for null. Then gets the
-        //component for the text.
-        topPlayerScoreText = GameObject.Find( name: "TopPlayerScore" );
-        if( topPlayerScoreText == null )
-        {
-            Debug.LogWarning( message: "topPlayerScoreText variable in MenuScene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        topPlayerScore = topPlayerScoreText.GetComponent< TextMeshProUGUI >( );
-
-        //Sets the text on the UI to the top player's score.
-        topPlayerScore.text = PlayerPrefs.GetInt( key: "TopPlayerScore" ).ToString( );
+        topPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerScore", sceneName: "MenuScene.cs" );
+        topPlayerScoreText.text = PlayerPrefs.GetInt( key: "TopPlayerScore" ).ToString( );
     }
 
     /// <summary>
@@ -71,7 +55,7 @@ public class MenuScene : MonoBehaviour
     /// </summary>
     public void ExitGame( )
     {
-        Debug.Log( "Exiting Game!" );
+        Debug.Log( message: "Exiting Game!" );
         Application.Quit( );
     }
 }

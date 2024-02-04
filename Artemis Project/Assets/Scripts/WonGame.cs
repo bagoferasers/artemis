@@ -5,7 +5,7 @@ using UnityEngine;
 /*
    File: WonGame.cs
    Description: Script to handle the WonGame Scene.
-   Last Modified: January 30, 2024
+   Last Modified: February 4, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -15,35 +15,23 @@ using UnityEngine;
 public class WonGame : MonoBehaviour
 {
     /// <summary>
-    /// SceneTransitions class that will help change the Scene.
-    /// </summary>
-    private SceneTransitions sceneTransitions = new SceneTransitions( );
-    
-    /// <summary>
-    /// Represents the GameObject that will hold the final player score.
-    /// </summary>
-    private GameObject finalScoreGO;
-
-    /// <summary>
-    /// The component that will hold the final player score.
-    /// </summary>
-    private TextMeshProUGUI finalScoreText;
-
-    /// <summary>
     /// The time to wait till moving to the Credits Scene.
     /// </summary>
     [ SerializeField ] private float waitTime = 10;
 
     /// <summary>
-    /// Start is called before the first frame update. Initializes the Scene object for the Back Button 
-    /// and sets the name of the Scene object to "Main" to return to the main menu. Sets the final
-    /// player score.
+    /// The TextMeshProUGUI component to hold the final score.
+    /// </summary>
+    private TextMeshProUGUI lastPlayerScoreText;
+
+    /// <summary>
+    /// Start is called before the first frame update. Sets the final player score and starts timer to wait
+    /// until moving to the credits scene.
     /// </summary>
     void Start( )
     {
-        finalScoreGO = GameObject.Find( name: "FinalScore" );
-        finalScoreText = finalScoreGO.GetComponent< TextMeshProUGUI >( );
-        finalScoreText.text = PlayerPrefs.GetInt( key: "LastPlayerScore" ).ToString( );
+        lastPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "FinalScore", sceneName: "WonGame.cs" );
+        lastPlayerScoreText.text = PlayerPrefs.GetInt( key: "LastPlayerScore" ).ToString( );
         StartCoroutine( routine: WaitForCredits( ) );
     }
 

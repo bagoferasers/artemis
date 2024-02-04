@@ -5,7 +5,7 @@ using UnityEngine;
 /*
    File: LostGame.cs
    Description: Script to handle the LostGame Scene.
-   Last Modified: January 30, 2024
+   Last Modified: February 4, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -15,34 +15,21 @@ using UnityEngine;
 public class LostGame : MonoBehaviour
 {
     /// <summary>
-    /// SceneTransitions class that will help change the Scene.
-    /// </summary>
-    private SceneTransitions sceneTransitions = new SceneTransitions( );
-    
-    /// <summary>
-    /// Represents the GameObject that will hold the final player score.
-    /// </summary>
-    private GameObject finalScoreGO;
-
-    /// <summary>
-    /// The component that will hold the final player score.
-    /// </summary>
-    private TextMeshProUGUI finalScoreText;
-
-    /// <summary>
     /// The time to wait till moving to the Credits Scene.
     /// </summary>
     [ SerializeField ] private float waitTime = 10;
 
     /// <summary>
-    /// Start is called before the first frame update. Initializes the Scene object for the Back Button 
-    /// and sets the name of the Scene object to "Main" to return to the main menu. Sets the final
-    /// player score.
+    /// The TextMeshProUGUI component that will hold the player's final score.
+    /// </summary>
+    private TextMeshProUGUI finalScoreText;
+
+    /// <summary>
+    /// Sets the final player score to UI and waits a certain amount of time before switching to the Credits Scene.
     /// </summary>
     void Start( )
     {
-        finalScoreGO = GameObject.Find( name: "FinalScore" );
-        finalScoreText = finalScoreGO.GetComponent< TextMeshProUGUI >( );
+        finalScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "FinalScore", sceneName: "LostGameScene.cs" );
         finalScoreText.text = PlayerPrefs.GetInt( key: "LastPlayerScore" ).ToString( );
         StartCoroutine( routine: WaitForCredits( ) );
     }

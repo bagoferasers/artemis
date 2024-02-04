@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /*
    File: GameManager.cs
    Description: Manages the core functions of the trivia game.
-   Last Modified: January 30, 2024
+   Last Modified: February 4, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -39,29 +39,14 @@ public class GameManager : MonoBehaviour
     private System.Random rnd = new System.Random( );
 
     /// <summary>
-    /// The question GameObject in Heirarchy.
-    /// </summary>
-    private GameObject questionTGO;
-
-    /// <summary>
     /// A TextMeshProUGUI component from the question GameObject in Heirarchy that will be filled with the question to be answered.
     /// </summary>
     private TextMeshProUGUI questionT;
 
     /// <summary>
-    /// The answer GameObjects in Heirarchy.
-    /// </summary>
-    private GameObject answer1GO, answer2GO, answer3GO, answer4GO;
-
-    /// <summary>
     /// A TextMeshProUGUI component from the anser GameObjects in Heirarchy that will be filled with an answer to the question.
     /// </summary>
     private TextMeshProUGUI answer1T, answer2T, answer3T, answer4T;
-
-    /// <summary>
-    /// The number of correct answers GameObject in Heriarchy.
-    /// </summary>
-    private GameObject numberCorrectGO;
 
     /// <summary>
     /// The TextMeshProUGUI component from the number of correct answers GameObject in Heirarchy that will be filled
@@ -90,11 +75,6 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
 
     /// <summary>
-    /// Will represent the GameObject that will be used to control the player.
-    /// </summary>
-    private GameObject playerControllerGO;
-
-    /// <summary>
     /// Start is called before the first frame update. Initializes TextMeshProUGUI components and first stage of game.
     /// Loads all questions from .csv files for each Stage of game.
     /// </summary>
@@ -104,64 +84,15 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt( key: "LastPlayerScore", value: 0 );
 
         //Grab the PlayerController from the Scene and check if null
-        playerControllerGO = GameObject.Find (name: "Player" );
-        if( playerControllerGO == null )
-        {
-            Debug.LogWarning( message: "playerControllerGO variable in GameManager.cs is null", context: gameObject );
-            Application.Quit( );
-        }
-        playerController = playerControllerGO.GetComponent< PlayerController >( );
+        playerController = FindAndInit.InitializeGameObject( gameObjectName: "Player", sceneName: "GameManager.cs" ).GetComponent< PlayerController >( );
 
-        //Grab GameObjects and check if null
-        questionTGO = GameObject.Find( name: "QuestionText" );
-        if( questionTGO == null )
-        {
-            Debug.LogWarning( message: "questionTGO variable in GameManager.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-
-        answer1GO = GameObject.Find( name: "Answer1Text" );
-        if( answer1GO == null )
-        {
-            Debug.LogWarning( message: "answer1GO variable in GameManager.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-
-        answer2GO = GameObject.Find( name: "Answer2Text" );
-        if( answer2GO == null )
-        {
-            Debug.LogWarning( message: "answer2GO variable in GameManager.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-
-        answer3GO = GameObject.Find( name: "Answer3Text" );
-        if( answer3GO == null )
-        {
-            Debug.LogWarning( message: "answer3GO variable in GameManager.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-
-        answer4GO = GameObject.Find( name: "Answer4Text" );
-        if( answer4GO == null )
-        {
-            Debug.LogWarning( message: "answer4GO variable in GameManager.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-
-        numberCorrectGO = GameObject.Find( name: "NumberCorrect" );
-        if( numberCorrectGO == null )
-        {
-            Debug.LogWarning( message: "numberCorrectGO variable in GameManager.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-
-        //Grab TextMeshProUGUI components
-        questionT = questionTGO.GetComponent< TextMeshProUGUI >( );
-        answer1T = answer1GO.GetComponent< TextMeshProUGUI >( );
-        answer2T = answer2GO.GetComponent< TextMeshProUGUI >( );
-        answer3T = answer3GO.GetComponent< TextMeshProUGUI >( );
-        answer4T = answer4GO.GetComponent< TextMeshProUGUI >( );
-        numberCorrect = numberCorrectGO.GetComponent< TextMeshProUGUI >( );
+        //Initialize TextMeshProUGUI components
+        questionT = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "QuestionText", sceneName: "GameManager.cs" );
+        answer1T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer1Text", sceneName: "GameManager.cs" );
+        answer2T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer2Text", sceneName: "GameManager.cs" );
+        answer3T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer3Text", sceneName: "GameManager.cs" );
+        answer4T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer4Text", sceneName: "GameManager.cs" );
+        numberCorrect = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "NumberCorrect", sceneName: "GameManager.cs" );
 
         //Load Questions
         LoadQuestions( );
@@ -202,7 +133,7 @@ public class GameManager : MonoBehaviour
                 //Current lost game
                 Debug.Log( message: "Lost game at stage " + currentStageNumber + " !" );
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
-                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( "TopPlayerScore" ) )
+                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
                 {
                     PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
                 }
@@ -219,7 +150,7 @@ public class GameManager : MonoBehaviour
                 //Current won game. Update case # to always be the last before default.
                 Debug.Log( message: "Won game at stage " + currentStageNumber + " !" );
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
-                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( "TopPlayerScore" ) )
+                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
                 {
                     PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
                 }

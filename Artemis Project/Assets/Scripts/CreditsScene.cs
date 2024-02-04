@@ -6,7 +6,7 @@ using TMPro;
 /*
    File: CreditsScene.cs
    Description: Script to handle the Credits Scene.
-   Last Modified: February 1, 2024
+   Last Modified: February 4, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -27,13 +27,13 @@ public class CreditsScene : MonoBehaviour
     private TextMeshProUGUI sourcesText;
 
     /// <summary>
-    /// Start is called before the first frame update. initializes sourcesText
-    /// TextMeshProUGUI component, loads the sources to the sourcesList and displays
+    /// Start is called before the first frame update. Initializes
+    /// TextMeshProUGUI component, loads the sources to the sourcesList, and displays
     /// sources to the UI.
     /// </summary>
     void Start( )
     {
-        sourcesText = GameObject.Find( "SourcesText" ).GetComponent< TextMeshProUGUI >( );
+        sourcesText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "SourcesText", sceneName: "CreditsScene.cs" );
         LoadCredits( );
         DisplaySources( );
     }
@@ -77,7 +77,7 @@ public class CreditsScene : MonoBehaviour
         //loop through sources and store in list.
         while( ( lineRead = reader.ReadLine( ) ) != "//.end.//" )
         {
-            sourcesList.Add( lineRead );
+            sourcesList.Add( item: lineRead );
             sourcesList.Add( item: "\n" );
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 /*
    File: PlayerController.cs
    Description: Represents the player controller.
-   Last Modified: January 30, 2024
+   Last Modified: February 4, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -20,29 +20,20 @@ public class PlayerController : MonoBehaviour
     [ SerializeField ] private List< GameObject > orionObjectsList = new List< GameObject >( );
 
     /// <summary>
-    /// Represents the GameObjects that will hold the player name.
-    /// </summary>
-    private GameObject playerNameGO;
-
-    /// <summary>
-    /// Represents the GameObjects that will hold the current score.
-    /// </summary>
-    private GameObject playerScoreGO;
-
-    /// <summary>
-    /// Will hold the current player namne.
-    /// </summary>
-    private TextMeshProUGUI playerNameText;
-    
-    /// <summary>
     /// Will hold the current player score.
     /// </summary>
     private TextMeshProUGUI playerScoreText;
 
     /// <summary>
+    /// Will hold the current player name.
+    /// </summary>
+    private TextMeshProUGUI playerNameText;
+
+    /// <summary>
     /// Represents a Player object that will represent the current player.
     /// </summary>
     public Player player = new Player( score: 0, playerName: "Colby Bailey" );
+
 
     /// <summary>
     /// Start is called before the first frame update. Adds SLS and Orion GameObjects into List.
@@ -50,26 +41,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        //Grab the GameObject that will hold the player's name and check for null. Then gets the
-        //component for the text and sets it.
-        playerNameGO = GameObject.Find( name: "PlayerName" );
-        if( playerNameGO == null )
-        {
-            Debug.LogWarning( message: "playerNameGO variable in MenuScene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        playerNameText = playerNameGO.GetComponent< TextMeshProUGUI >( );
-        playerNameText.text = player.GetPlayerName( );
-
-        //Grab the GameObject that will hold the player's current score and check for null. Then gets the
-        //component for the text and sets it.
-        playerScoreGO = GameObject.Find( name: "PlayerScore" );
-        if( playerScoreGO == null )
-        {
-            Debug.LogWarning( message: "playerScoreGO variable in MenuScene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        playerScoreText = playerScoreGO.GetComponent< TextMeshProUGUI >( );
+        playerNameText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerName", sceneName: "PlayerController.cs" );
+        playerNameText.text  = player.GetPlayerName( );
+        playerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerScore", sceneName: "PlayerController.cs" );
         playerScoreText.text = player.GetScore( ).ToString( );
         
         //Grab all GameObjects of spacecraft.

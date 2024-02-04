@@ -4,7 +4,7 @@ using UnityEngine.UI;
 /*
    File: Play1Scene.cs
    Description: Script to handle the Play1 Scene.
-   Last Modified: January 30, 2024
+   Last Modified: February 4, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -14,141 +14,51 @@ using UnityEngine.UI;
 public class Play1Scene : MonoBehaviour
 {
     /// <summary>
-    /// GameObject that will be toggled for the Settings menu.
+    /// GameObject that will be toggled.
     /// </summary>
-    private GameObject backButton, haze, b1, b2, masterVolume, musicVolume; 
+    private GameObject backButton, haze, b1, b2, masterVolume, musicVolume, effectsVolume;
 
     /// <summary>
     /// GameObject that will hold interactable Buttons.
     /// </summary>
-    private GameObject a1GO, a2GO, a3GO, a4GO, exitMissionGO;
+    private GameObject yes, no, areYouSureText;
 
     /// <summary>
     /// A Button that will be necessary to toggle as interactable during Settings menu overlay.
     /// </summary>
-    private Button a1, a2, a3, a4, exitMission;
+    private Button a1, a2, a3, a4, exitMission, settings;
 
     /// <summary>
     /// A BackGroundMove object that will be used to toggle as paused.
     /// </summary>
     public BackgroundMove backgroundMove;
-    
+
     /// <summary>
     /// Start is called before the first frame update. Initializes the Scene, GameObjects, and Buttons.
     /// </summary>    
     void Start( )
     {
-        //Grab the GameObjects that will hold the interactable buttons and check for null. Then gets the
-        //component for the Button.
-        a1GO = GameObject.Find( name: "Answer1" );
-        if( a1GO == null )
-        {
-            Debug.LogWarning( message: "a1 variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        a1 = a1GO.GetComponent< Button >( );
+        //Initialize Buttons.
+        a1 = FindAndInit.InitializeButton( gameObjectName: "Answer1", sceneName: "Play1Scene.cs" );
+        a2 = FindAndInit.InitializeButton( gameObjectName: "Answer2", sceneName: "Play1Scene.cs" );
+        a3 = FindAndInit.InitializeButton( gameObjectName: "Answer3", sceneName: "Play1Scene.cs" );
+        a4 = FindAndInit.InitializeButton( gameObjectName: "Answer4", sceneName: "Play1Scene.cs" );
+        exitMission = FindAndInit.InitializeButton( gameObjectName: "ExitMission", sceneName: "Play1Scene.cs" );
+        settings = FindAndInit.InitializeButton( gameObjectName: "Settings", sceneName: "Play1Scene.cs" );
 
-        a2GO = GameObject.Find( name: "Answer2" );
-        if( a2GO == null )
-        {
-            Debug.LogWarning( message: "a2 variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        a2 = a2GO.GetComponent< Button >( );
-
-        a3GO = GameObject.Find( name: "Answer3" );
-        if( a3GO == null )
-        {
-            Debug.LogWarning( message: "a3 variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        a3 = a3GO.GetComponent< Button >( );
-
-        a4GO = GameObject.Find( name: "Answer4" );
-        if( a4GO == null )
-        {
-            Debug.LogWarning( message: "a4 variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        a4 = a4GO.GetComponent< Button >( );
-
-        exitMissionGO = GameObject.Find( name: "ExitMission" );
-        if( exitMissionGO == null )
-        {
-            Debug.LogWarning( message: "exitMission variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        exitMission = exitMissionGO.GetComponent< Button >( );
-
-        //Grabs the GameObjects that will hold the Settings menu Buttons and checks for null. Then sets them
-        //as inactive.
-        backButton = GameObject.Find( name: "Back" );
-        if( backButton == null )
-        {
-            Debug.LogWarning( message: "backButton variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        else
-        {
-            backButton.SetActive( value: false );
-        }
-        
-        haze = GameObject.Find( name: "Haze" );
-        if( haze == null )
-        {
-            Debug.LogWarning( message: "haze variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        else
-        {
-            haze.SetActive( value: false );
-        }
-
-        b1 = GameObject.Find( name: "Button1" );
-        if( b1 == null )
-        {
-            Debug.LogWarning( message: "b1 variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        else
-        {
-            b1.SetActive( value: false );
-        }
-
-        b2 = GameObject.Find( name: "Button2" );
-        if( b2 == null )
-        {
-            Debug.LogWarning( message: "b2 variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        else
-        {
-            b2.SetActive( value: false );
-        }        
-
-        masterVolume = GameObject.Find( name: "MasterVolume" );
-        if( masterVolume == null )
-        {
-            Debug.LogWarning( message: "masterVolume variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        else
-        {
-            masterVolume.SetActive( value: false );
-        }    
-
-        musicVolume = GameObject.Find( name: "MusicVolume" );
-        if( musicVolume == null )
-        {
-            Debug.LogWarning( message: "musicVolume variable in Play1Scene.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
-        else
-        {
-            musicVolume.SetActive( value: false );
-        }    
+        //Initialize and deactivate GameObjects
+        backButton = FindAndInit.FindAndDeactivate( gameObjectName: "Back", sceneName: "Play1Scene.cs" );
+        haze = FindAndInit.FindAndDeactivate( gameObjectName: "Haze", sceneName: "Play1Scene.cs" );
+        b1 = FindAndInit.FindAndDeactivate( gameObjectName: "Button1", sceneName: "Play1Scene.cs" );
+        b2 = FindAndInit.FindAndDeactivate( gameObjectName: "Button2", sceneName: "Play1Scene.cs" );
+        masterVolume = FindAndInit.FindAndDeactivate( gameObjectName: "MasterVolume", sceneName: "Play1Scene.cs" );
+        musicVolume = FindAndInit.FindAndDeactivate( gameObjectName: "MusicVolume", sceneName: "Play1Scene.cs" );
+        effectsVolume = FindAndInit.FindAndDeactivate( gameObjectName: "EffectsVolume", sceneName: "Play1Scene.cs" );
+        yes = FindAndInit.FindAndDeactivate( gameObjectName: "Yes", sceneName: "Play1Scene.cs" );
+        no = FindAndInit.FindAndDeactivate( gameObjectName: "No", sceneName: "Play1Scene.cs" );
+        areYouSureText = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSureText", sceneName: "Play1Scene.cs" );
     }
-
+    
     /// <summary>
     /// The method that transitions the Scene to the main menu.
     /// </summary>
@@ -158,22 +68,39 @@ public class Play1Scene : MonoBehaviour
     }
 
     /// <summary>
+    /// Shows the AreYouSure? menu. Toggles Buttons on and game buttons interactable to false.
+    /// </summary>
+    public void ShowAreYouSure( )
+    {
+        areYouSureText.SetActive( value: true );
+        yes.SetActive( value: true );
+        no.SetActive( value: true );
+        Show( );
+    }
+
+    /// <summary>
+    /// Shows the AreYouSure? menu. Toggles Buttons on and game buttons interactable to false.
+    /// </summary>
+    public void HideAreYouSure( )
+    {
+        areYouSureText.SetActive( value: false );
+        yes.SetActive( value: false );
+        no.SetActive( value: false );
+        Hide( );
+    }
+
+    /// <summary>
     /// Shows the settings menu. Toggles Settings Buttons on and game buttons interactable to false.
     /// </summary>
     public void ShowSettings( )
     {
-        backgroundMove.paused = true;
         backButton.SetActive( value: true );
-        haze.SetActive( value: true );
         b1.SetActive( value: true );
         b2.SetActive( value: true );
         masterVolume.SetActive( value: true );
         musicVolume.SetActive( value: true );
-        a1.interactable = false;
-        a2.interactable = false;
-        a3.interactable = false;
-        a4.interactable = false;
-        exitMission.interactable = false;
+        effectsVolume.SetActive( value: true );
+        Show( );
     }
 
     /// <summary>
@@ -181,17 +108,44 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     public void HideSettings( )
     {
-        backgroundMove.paused = false;
         backButton.SetActive( value: false );
-        haze.SetActive( value: false );
         b1.SetActive( value: false );
         b2.SetActive( value: false );
         masterVolume.SetActive( value: false );
+        effectsVolume.SetActive( value: false );
         musicVolume.SetActive( value: false );
+        Hide( );
+    }
+
+    /// <summary>
+    /// Sets certain objects active, some interactables to false, and pauses the background. To be
+    /// used for showing settings and the AreYouSure? overlays.
+    /// </summary>
+    public void Show( )
+    {
+        backgroundMove.paused = true;
+        haze.SetActive( value: true );
+        exitMission.interactable = false;
+        a1.interactable = false;
+        a2.interactable = false;
+        a3.interactable = false;
+        a4.interactable = false;
+        settings.interactable = false;
+    }
+
+    /// <summary>
+    /// Sets certain objects inactive, some interactables to true, and un-pauses the background. To be
+    /// used for hiding settings and the AreYouSure? overlays.
+    /// </summary>
+    public void Hide( )
+    {
+        haze.SetActive( value: false );
+        backgroundMove.paused = false;
+        exitMission.interactable = true;
         a1.interactable = true;
         a2.interactable = true;
         a3.interactable = true;
         a4.interactable = true;
-        exitMission.interactable = true;
+        settings.interactable = true;
     }
 }

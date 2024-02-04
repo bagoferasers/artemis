@@ -15,7 +15,7 @@ public class BackgroundMove : MonoBehaviour
     /// <summary>
     /// The speed that the background will move.
     /// </summary>
-    [ SerializeField ] private float speed = 1f; 
+    public float speed = 1f; 
 
     /// <summary>
     /// Will be used to control when the background should move.
@@ -25,18 +25,18 @@ public class BackgroundMove : MonoBehaviour
     /// <summary>
     /// Will be used to control the increase of speed over time.
     /// </summary>
-    [ SerializeField ] private float speedIncrement = 0.00001f;
+    // [ SerializeField ] private float speedIncrement = 0.00001f;
 
     /// <summary>
     /// Update is called once per frame. Moves the background and increases speed over time.
     /// </summary>
-    void Update( )
+    void FixedUpdate( )
     {
         if( paused == false )
         {
             Vector3 target = new Vector3( x: transform.position.x, y: -5000f, z: transform.position.z );
             transform.position = Vector3.MoveTowards( current: transform.position, target, maxDistanceDelta: speed * Time.fixedDeltaTime );
-            speed += speedIncrement;            
+            // speed += speedIncrement;            
         }
     }
 }
