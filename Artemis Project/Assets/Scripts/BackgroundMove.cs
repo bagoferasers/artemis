@@ -5,6 +5,7 @@ using UnityEngine;
    Description: Represents the class that moves the backdrop of the game.
    Last Modified: January 28, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>

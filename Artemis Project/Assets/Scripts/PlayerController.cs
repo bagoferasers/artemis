@@ -7,6 +7,7 @@ using UnityEngine;
    Description: Represents the player controller.
    Last Modified: February 4, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>

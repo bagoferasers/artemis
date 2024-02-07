@@ -5,6 +5,7 @@ using UnityEngine;
    Description: Represents a player.
    Last Modified: January 29, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>
