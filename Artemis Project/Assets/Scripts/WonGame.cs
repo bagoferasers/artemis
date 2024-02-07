@@ -5,7 +5,7 @@ using UnityEngine;
 /*
    File: WonGame.cs
    Description: Script to handle the WonGame Scene.
-   Last Modified: February 4, 2024
+   Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -31,28 +31,24 @@ public class WonGame : MonoBehaviour
     void Start( )
     {
         lastPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "FinalScore", sceneName: "WonGame.cs" );
-        // lastPlayerScoreText.text = PlayerPrefs.GetInt( key: "LastPlayerScore" ).ToString( );
         lastPlayerScoreText.text = SaveSystem.GetInt( name: "LastPlayerScore" ).ToString( );
-        StartCoroutine( routine: WaitForCredits( ) );
+        WaitForCredits( );
     }
 
     /// <summary>
-    /// The method that transitions the Scene to the main menu. Saves last player score.
+    /// Method that starts a coroutine for the IENumerator to wait a set time before moving to the Credits Scene.
     /// </summary>
-    public void Next( )
+    private void WaitForCredits( )
     {
-        // PlayerPrefs.SetInt( key: "LastPlayerScore", value: 0 );
-        SaveSystem.SetInt( name: "LastPlayerScore", val: 0 );
-        SaveSystem.SaveToDisk( );
-        new SceneTransitions.Scene( nameOfScene: "Credits" ).ChangeScene( );
+        StartCoroutine( routine: WaitForCreditsNumerator( ) );
     }
 
     /// <summary>
     /// Waits for a set time before moving to the Credits Scene.
     /// </summary>
-    private IEnumerator WaitForCredits( )
+    private IEnumerator WaitForCreditsNumerator( )
     {
         yield return new WaitForSeconds( seconds: waitTime );
-        new SceneTransitions.Scene( nameOfScene: "Credits" ).ChangeScene( );
+        SceneTransitions.CreditsScene( );
     }
 }

@@ -6,7 +6,7 @@ using TMPro;
 /*
    File: CreditsScene.cs
    Description: Script to handle the Credits Scene.
-   Last Modified: February 4, 2024
+   Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -36,14 +36,6 @@ public class CreditsScene : MonoBehaviour
         sourcesText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "SourcesText", sceneName: "CreditsScene.cs" );
         LoadCredits( );
         DisplaySources( );
-    }
-
-    /// <summary>
-    /// The method that transitions the Scene to the main menu.
-    /// </summary>
-    public void Back( )
-    {
-        new SceneTransitions.Scene( nameOfScene: "Main" ).ChangeScene( );
     }
 
     /// <summary>

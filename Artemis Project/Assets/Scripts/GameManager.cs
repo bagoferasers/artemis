@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /*
    File: GameManager.cs
    Description: Manages the core functions of the trivia game.
-   Last Modified: February 4, 2024
+   Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
 */
 
@@ -81,7 +81,6 @@ public class GameManager : MonoBehaviour
     void Start( )
     {
         //Reset the last Player's score to 0.
-        // PlayerPrefs.SetInt( key: "LastPlayerScore", value: 0 );
         SaveSystem.SetInt( name: "LastPlayerScore", val: 0 );
         SaveSystem.SaveToDisk( );
 
@@ -137,12 +136,10 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
                 if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
                 {
-                    // PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
-                    // PlayerPrefs.Save( );
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
                     SaveSystem.SaveToDisk( );
                 }
-                new SceneTransitions.Scene( nameOfScene: "LostGame" ).ChangeScene( );
+                SceneTransitions.LostGameScene( );
                 break;
             case 0: 
                 //Stage 0
@@ -157,16 +154,14 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
                 if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
                 {
-                    // PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
-                    // PlayerPrefs.Save( );
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
                     SaveSystem.SaveToDisk( );
                 }
-                new SceneTransitions.Scene( nameOfScene: "WonGame" ).ChangeScene( );
+                SceneTransitions.WonGameScene( );
                 break;
             default:
                 Debug.Log( message: "Please enter valid stage number!" );
-                new SceneTransitions.Scene( nameOfScene: "Main" ).ChangeScene( );
+                SceneTransitions.MainMenuScene( );
                 break;
         }
     }
@@ -264,19 +259,20 @@ public class GameManager : MonoBehaviour
 
         if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
         {
+            int currentScore;
             if( questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ].GetCorrectAnswer( ).GetAnswerText( ) == selectedButton.GetComponent< TextMeshProUGUI >( ).text )
             {
                 Debug.Log( message: "Found correct answer!" );
                 numberOfQuestionsRight++;
                 DisplayTrue( );
-                int currentScore = playerController.player.GetScore( );
+                currentScore = playerController.player.GetScore( );
                 playerController.player.SetScore( currentScore += 5 );
             }
             else
             {
                 Debug.Log( message: "Incorrect answer!" );
                 DisplayFalse( );
-                int currentScore = playerController.player.GetScore( );
+                currentScore = playerController.player.GetScore( );
                 playerController.player.SetScore( currentScore -= 5 );
             }          
         }
