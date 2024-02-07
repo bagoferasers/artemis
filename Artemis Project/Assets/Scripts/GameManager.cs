@@ -10,6 +10,7 @@ using UnityEngine.UI;
    Description: Manages the core functions of the trivia game.
    Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>

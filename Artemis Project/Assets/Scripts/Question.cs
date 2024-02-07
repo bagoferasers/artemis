@@ -6,6 +6,7 @@ using System.Collections.Generic;
    Description: Represents a trivia question with correct and incorrect answers.
    Last Modified: January 27, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>

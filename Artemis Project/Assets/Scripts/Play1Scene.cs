@@ -6,6 +6,7 @@ using UnityEngine.UI;
    Description: Script to handle the Play1 Scene.
    Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>

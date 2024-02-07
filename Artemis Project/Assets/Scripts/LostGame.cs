@@ -7,6 +7,7 @@ using UnityEngine;
    Description: Script to handle the LostGame Scene.
    Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>

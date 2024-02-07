@@ -5,6 +5,7 @@ using TMPro;
    Description: Script to handle the Main Menu Scene.
    Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey 
 */
 
 /// <summary>

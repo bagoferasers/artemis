@@ -6,6 +6,7 @@ using UnityEngine;
    Description: Script to handle scene transitions.
    Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>

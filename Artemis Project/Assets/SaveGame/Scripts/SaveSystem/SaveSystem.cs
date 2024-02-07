@@ -1,6 +1,13 @@
 using UnityEngine;
-using System.Collections;
 using System.IO;
+
+/*
+   File: SaveSystem.cs
+   Description: Script to handle saving game data.
+   Last Modified: February 7, 2024
+   Last Modified By: Colby Bailey
+   Authors: Amice Company, Colby Bailey
+*/
 
 public static class SaveSystem {
 	
@@ -27,6 +34,25 @@ public static class SaveSystem {
 	{
 		data = SerializatorBinary.LoadBinary(GetPath());
 		Debug.Log("[SaveGame] --> Loading the save file: " + GetPath());
+	}
+
+	/// <summary>
+	/// A method that completely resets all game data.
+	/// </summary>
+	public static void ResetAllData( )
+	{
+		string path = GetPath( );
+		if( File.Exists( path ) )
+		{
+			File.Delete( path );
+			Debug.Log( message: "[SaveGame] --> All saved data reset." );
+
+			//Re-initialize data object to avoid null references after deletion
+			data = new DataState( );
+
+			//Set loaded to true to prevent re-loading from a non-existent file.
+			loaded = true;
+		}
 	}
 
 	static void ReplaceItem(string name, string item)

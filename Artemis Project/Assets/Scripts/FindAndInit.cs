@@ -7,6 +7,7 @@ using UnityEngine.UI;
    Description: Script to handle finding and initializing different GameObjects or their components.
    Last Modified: February 4, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 public class FindAndInit : MonoBehaviour
