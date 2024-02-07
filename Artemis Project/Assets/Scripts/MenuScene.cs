@@ -25,13 +25,9 @@ public class MenuScene : MonoBehaviour
         topPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerScore", sceneName: "MenuScene.cs" );
         if( PlayerPrefs.GetString( key: "FirstTime" ) != "yes" )
         {
-            // PlayerPrefs.DeleteAll( );
-            // PlayerPrefs.SetString( key: "FirstTime", value: "yes" );
-            // PlayerPrefs.Save( );
             SaveSystem.SetString( name: "FirstTime", val: "yes" );
             SaveSystem.SaveToDisk( );
         }
-        // topPlayerScoreText.text = PlayerPrefs.GetInt( key: "TopPlayerScore" ).ToString( );
         topPlayerScoreText.text = SaveSystem.GetInt( "TopPlayerScore" ).ToString( );
     }
 
