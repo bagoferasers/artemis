@@ -4,7 +4,7 @@ using UnityEngine;
 /*
    File: SceneTransitions.cs
    Description: Script to handle scene transitions.
-   Last Modified: February 7, 2024
+   Last Modified: February 9, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -23,19 +23,19 @@ public class SceneTransitions : MonoBehaviour
     }
 
     /// <summary>
-    /// The method that transitions the Scene to LostGame.
+    /// The method that transitions the Scene to EndGame.
     /// </summary>
-    public static void LostGameScene( )
+    public static void EndGameScene( bool won )
     {
-        SceneManager.LoadScene( sceneName: "LostGame" );
-    }
-
-    /// <summary>
-    /// The method that transitions the Scene to WonGame.
-    /// </summary>
-    public static void WonGameScene( )
-    {
-        SceneManager.LoadScene( sceneName: "WonGame" );
+        if( won == true )
+        {
+            SaveSystem.SetBool( name: "Won", val: true );
+        }
+        else
+        {
+            SaveSystem.SetBool( name: "Won", val: false );
+        }
+        SceneManager.LoadScene( sceneName: "EndGame" );
     }
 
     /// <summary>
