@@ -438,7 +438,6 @@
 "Assets/Scripts/Play1Scene.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/PlayerController.cs"
-"Assets/Scripts/Question.cs"
 "Assets/Scripts/Questions.cs"
 "Assets/Scripts/SceneTransitions.cs"
 "Assets/Scripts/SettingsScene.cs"
