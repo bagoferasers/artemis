@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// An instance of the Question class.
     /// </summary>
-    private Question questionScript = new Question( );
+    private Questions.Question questionScript = new Questions.Question( );
 
     /// <summary>
     /// Tracks the current stage number.
@@ -187,6 +187,7 @@ public class GameManager : MonoBehaviour
         questions.Add( item: q1 );
         ReadCSVAndStore( csvPath: Path.Combine( basePath, "Stage0.csv" ), csv: "Stage0.csv" );
         ReadCSVAndStore( csvPath: Path.Combine( basePath, "Stage1.csv" ), csv: "Stage1.csv" );
+        new Questions( ).RandomizeQuestions( questionsList: questions );
     }
 
     /// <summary>
@@ -206,7 +207,7 @@ public class GameManager : MonoBehaviour
         while( ( lineRead = reader.ReadLine( ) ) != "//.end.//" )
         {
             string[] values = lineRead.Split( separator: '^' );
-            Question q = new Question( );
+            Questions.Question q = new Questions.Question( );
             q.SetQuestionText( text: values[ 0 ] );
             q.SetCorrectAnswer( text: values[ 1 ] );
             for( int i = 1; i < 5; i++ )
