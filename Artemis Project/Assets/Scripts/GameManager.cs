@@ -81,8 +81,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        //Reset the last Player's score to 0.
+        //Reset the last Player's score to 0 and Stage Finishes to false.
         SaveSystem.SetInt( name: "LastPlayerScore", val: 0 );
+        SaveSystem.SetBool( name: "Stage0Finish", val: false );
         SaveSystem.SaveToDisk( );
 
         //Grab the PlayerController from the Scene and check if null
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
             numberOfQuestionsRight = 0;
             HandleStage( stageNumber: ++currentStageNumber );
         }
-        else if( numberOfQuestionsRight < 5 && questions[ index: currentStageNumber ].stageQuestions.Count == 0 )
+        else if( ( numberOfQuestionsRight < 5 && questions[ index: currentStageNumber ].stageQuestions.Count == 0 ) || SaveSystem.GetBool( name: "Stage0Finish" ) == true )
         {
             HandleStage( stageNumber: -1 );
         }
