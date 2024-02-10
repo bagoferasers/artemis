@@ -5,6 +5,7 @@ using UnityEngine;
    Description: Represents the fading in and out of a transition.
    Last Modified: January 26, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>

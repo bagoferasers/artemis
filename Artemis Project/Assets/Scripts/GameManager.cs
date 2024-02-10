@@ -8,8 +8,9 @@ using UnityEngine.UI;
 /*
    File: GameManager.cs
    Description: Manages the core functions of the trivia game.
-   Last Modified: February 4, 2024
+   Last Modified: February 9, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// An instance of the Question class.
     /// </summary>
-    private Question questionScript = new Question( );
+    private Questions.Question questionScript = new Questions.Question( );
 
     /// <summary>
     /// Tracks the current stage number.
@@ -80,9 +81,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        //Reset the last Player's score to 0.
-        // PlayerPrefs.SetInt( key: "LastPlayerScore", value: 0 );
+        //Reset the last Player's score to 0 and Stage Finishes to false.
         SaveSystem.SetInt( name: "LastPlayerScore", val: 0 );
+        SaveSystem.SetBool( name: "Stage0Finish", val: false );
         SaveSystem.SaveToDisk( );
 
         //Grab the PlayerController from the Scene and check if null
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
             numberOfQuestionsRight = 0;
             HandleStage( stageNumber: ++currentStageNumber );
         }
-        else if( numberOfQuestionsRight < 5 && questions[ index: currentStageNumber ].stageQuestions.Count == 0 )
+        else if( ( numberOfQuestionsRight < 5 && questions[ index: currentStageNumber ].stageQuestions.Count == 0 ) || SaveSystem.GetBool( name: "Stage0Finish" ) == true )
         {
             HandleStage( stageNumber: -1 );
         }
@@ -137,12 +138,10 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
                 if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
                 {
-                    // PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
-                    // PlayerPrefs.Save( );
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
                     SaveSystem.SaveToDisk( );
                 }
-                new SceneTransitions.Scene( nameOfScene: "LostGame" ).ChangeScene( );
+                SceneTransitions.EndGameScene( won: false );
                 break;
             case 0: 
                 //Stage 0
@@ -157,16 +156,14 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
                 if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
                 {
-                    // PlayerPrefs.SetInt( key: "TopPlayerScore", value: playerController.player.GetScore( ) );
-                    // PlayerPrefs.Save( );
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
                     SaveSystem.SaveToDisk( );
                 }
-                new SceneTransitions.Scene( nameOfScene: "WonGame" ).ChangeScene( );
+                SceneTransitions.EndGameScene( won: true );
                 break;
             default:
                 Debug.Log( message: "Please enter valid stage number!" );
-                new SceneTransitions.Scene( nameOfScene: "Main" ).ChangeScene( );
+                SceneTransitions.MainMenuScene( );
                 break;
         }
     }
@@ -191,6 +188,7 @@ public class GameManager : MonoBehaviour
         questions.Add( item: q1 );
         ReadCSVAndStore( csvPath: Path.Combine( basePath, "Stage0.csv" ), csv: "Stage0.csv" );
         ReadCSVAndStore( csvPath: Path.Combine( basePath, "Stage1.csv" ), csv: "Stage1.csv" );
+        new Questions( ).RandomizeQuestions( questionsList: questions );
     }
 
     /// <summary>
@@ -210,7 +208,7 @@ public class GameManager : MonoBehaviour
         while( ( lineRead = reader.ReadLine( ) ) != "//.end.//" )
         {
             string[] values = lineRead.Split( separator: '^' );
-            Question q = new Question( );
+            Questions.Question q = new Questions.Question( );
             q.SetQuestionText( text: values[ 0 ] );
             q.SetCorrectAnswer( text: values[ 1 ] );
             for( int i = 1; i < 5; i++ )
@@ -264,19 +262,20 @@ public class GameManager : MonoBehaviour
 
         if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
         {
+            int currentScore;
             if( questions[ index: currentStageNumber ].stageQuestions[ index: randomQuestionNumber ].GetCorrectAnswer( ).GetAnswerText( ) == selectedButton.GetComponent< TextMeshProUGUI >( ).text )
             {
                 Debug.Log( message: "Found correct answer!" );
                 numberOfQuestionsRight++;
                 DisplayTrue( );
-                int currentScore = playerController.player.GetScore( );
+                currentScore = playerController.player.GetScore( );
                 playerController.player.SetScore( currentScore += 5 );
             }
             else
             {
                 Debug.Log( message: "Incorrect answer!" );
                 DisplayFalse( );
-                int currentScore = playerController.player.GetScore( );
+                currentScore = playerController.player.GetScore( );
                 playerController.player.SetScore( currentScore -= 5 );
             }          
         }

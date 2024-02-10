@@ -3,8 +3,9 @@ using TMPro;
 /*
    File: MenuScene.cs
    Description: Script to handle the Main Menu Scene.
-   Last Modified: February 4, 2024
+   Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey 
 */
 
 /// <summary>
@@ -25,46 +26,9 @@ public class MenuScene : MonoBehaviour
         topPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerScore", sceneName: "MenuScene.cs" );
         if( PlayerPrefs.GetString( key: "FirstTime" ) != "yes" )
         {
-            // PlayerPrefs.DeleteAll( );
-            // PlayerPrefs.SetString( key: "FirstTime", value: "yes" );
-            // PlayerPrefs.Save( );
             SaveSystem.SetString( name: "FirstTime", val: "yes" );
             SaveSystem.SaveToDisk( );
         }
-        // topPlayerScoreText.text = PlayerPrefs.GetInt( key: "TopPlayerScore" ).ToString( );
-        topPlayerScoreText.text = SaveSystem.GetInt( "TopPlayerScore" ).ToString( );
-    }
-
-    /// <summary>
-    /// The method that transitions the Scene to the main game.
-    /// </summary>
-    public void Play( )
-    {
-        new SceneTransitions.Scene( nameOfScene: "Play1" ).ChangeScene( );
-    }
-
-    /// <summary>
-    /// The method that transitions the Scene to settings.
-    /// </summary>
-    public void Settings( )
-    {
-        new SceneTransitions.Scene( nameOfScene: "Settings" ).ChangeScene( );
-    }
-
-    /// <summary>
-    /// The method that transitions the Scene to credits.
-    /// </summary>
-    public void Credits( )
-    {
-        new SceneTransitions.Scene( nameOfScene: "Credits" ).ChangeScene( );
-    }    
-
-    /// <summary>
-    /// The method that exits the game and quits the application.
-    /// </summary>
-    public void ExitGame( )
-    {
-        Debug.Log( message: "Exiting Game!" );
-        Application.Quit( );
+        topPlayerScoreText.text = SaveSystem.GetInt( name: "TopPlayerScore" ).ToString( );
     }
 }

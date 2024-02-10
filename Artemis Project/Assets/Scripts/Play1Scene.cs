@@ -4,8 +4,9 @@ using UnityEngine.UI;
 /*
    File: Play1Scene.cs
    Description: Script to handle the Play1 Scene.
-   Last Modified: February 4, 2024
+   Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>
@@ -57,14 +58,6 @@ public class Play1Scene : MonoBehaviour
         yes = FindAndInit.FindAndDeactivate( gameObjectName: "Yes", sceneName: "Play1Scene.cs" );
         no = FindAndInit.FindAndDeactivate( gameObjectName: "No", sceneName: "Play1Scene.cs" );
         areYouSureText = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSureText", sceneName: "Play1Scene.cs" );
-    }
-    
-    /// <summary>
-    /// The method that transitions the Scene to the main menu.
-    /// </summary>
-    public void MainMenu( )
-    {
-        new SceneTransitions.Scene( nameOfScene: "Main" ).ChangeScene( );
     }
 
     /// <summary>

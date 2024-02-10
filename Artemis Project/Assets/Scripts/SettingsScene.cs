@@ -3,8 +3,9 @@ using UnityEngine;
 /*
    File: SettingsScene.cs
    Description: Script to handle the Settings Scene.
-   Last Modified: January 30, 2024
+   Last Modified: February 7, 2024
    Last Modified By: Colby Bailey
+   Authors: Colby Bailey
 */
 
 /// <summary>
@@ -13,10 +14,56 @@ using UnityEngine;
 public class SettingsScene : MonoBehaviour
 {
     /// <summary>
-    /// The method that transitions the Scene to the main menu.
+    /// The successfulResetOverlay GameObject overlay that will be toggled.
     /// </summary>
-    public void Back( )
+    private GameObject successfulResetOverlay;
+
+    /// <summary>
+    /// The SettingsButtons GameObject that will be toggled.
+    /// </summary>
+    private GameObject settingsButtons;
+
+    /// <summary>
+    /// The hazy dark background for the overlay.
+    /// </summary>
+    private GameObject haze;
+
+    /// <summary>
+    /// Start is called before the first frame update. Initializes the Scene, GameObjects, and Buttons.
+    /// </summary>
+    void Start( )
     {
-        new SceneTransitions.Scene( nameOfScene: "Main" ).ChangeScene( );
+        successfulResetOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "SuccessfulReset", sceneName: "SettingsScene.cs" );
+        settingsButtons = FindAndInit.InitializeGameObject( gameObjectName: "SettingsButtons", sceneName: "SettingsScene.cs" );
+        haze = FindAndInit.FindAndDeactivate( gameObjectName: "Haze", sceneName: "Play1Scene.cs" );
+    }
+
+    /// <summary>
+    /// Resets all game data and player information then notifies of successful deletion.
+    /// </summary>
+    public void ResetAllGameData( )
+    {
+        SaveSystem.ResetAllData( );
+        ShowsuccessfulResetOverlay( );
+    }
+
+    /// <summary>
+    /// Shows the successful reset overlay.
+    /// </summary>
+    public void ShowsuccessfulResetOverlay( )
+    {
+        successfulResetOverlay.SetActive( value: true );
+        settingsButtons.SetActive( value: false );
+        haze.SetActive( value: true );
+    }
+
+    /// <summary>
+    /// Hides the successful reset overlay.
+    /// </summary>
+    public void HidesuccessfulResetOverlay( )
+    {
+        successfulResetOverlay.SetActive( value: false );
+        settingsButtons.SetActive( value: true );
+        haze.SetActive( value: false );
     }
 }
