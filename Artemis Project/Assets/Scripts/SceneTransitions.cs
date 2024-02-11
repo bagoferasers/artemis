@@ -14,6 +14,15 @@ using UnityEngine;
 /// </summary>
 public class SceneTransitions : MonoBehaviour
 {   
+
+    /// <summary>
+    /// Start is called before the first frame update. Checks for SaveSystem file before continuing Scene.
+    /// </summary>
+    public void Start( )
+    {
+        SaveSystem.CheckForSaveSystem( );
+    }
+
     /// <summary>
     /// The method that transitions the Scene to the main menu.
     /// </summary>

@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 /*
    File: SaveSystem.cs
    Description: Script to handle saving game data.
-   Last Modified: February 10, 2024
+   Last Modified: February 11, 2024
    Last Modified By: Colby Bailey
    Authors: Amice Company, Colby Bailey
 */
@@ -35,6 +36,17 @@ public static class SaveSystem {
 		data = SerializatorBinary.LoadBinary(GetPath());
 		Debug.Log("[SaveGame] --> Loading the save file: " + GetPath());
 	}
+
+     public static void CheckForSaveSystem( )
+     {
+		string path = GetPath( );
+		if( !File.Exists( path ) )
+		{
+            Debug.LogWarning( message: $"SaveSystem file in " + SceneManager.GetActiveScene( ).name + ".unity Scene is null!" );
+            SaveToDisk( );
+            Application.Quit( );
+		}
+     }
 
 	/// <summary>
 	/// A method that completely resets all game data.
