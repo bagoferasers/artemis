@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /*
    File: GameManager.cs
    Description: Manages the core functions of the trivia game.
-   Last Modified: February 9, 2024
+   Last Modified: February 10, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
         //Reset the last Player's score to 0 and Stage Finishes to false.
         SaveSystem.SetInt( name: "LastPlayerScore", val: 0 );
         SaveSystem.SetBool( name: "Stage0Finish", val: false );
-        SaveSystem.SaveToDisk( );
 
         //Grab the PlayerController from the Scene and check if null
         playerController = FindAndInit.InitializeGameObject( gameObjectName: "Player", sceneName: "GameManager.cs" ).GetComponent< PlayerController >( );
@@ -136,10 +135,12 @@ public class GameManager : MonoBehaviour
                 //Current lost game
                 Debug.Log( message: "Lost game at stage " + currentStageNumber + " !" );
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
-                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
+                if(    ( playerController.player.GetScore( ) <= 0 && PlayerPrefs.GetInt( key: "TopPlayerScore" ) == 0 )
+                    || ( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) ) 
+                )
                 {
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
-                    SaveSystem.SaveToDisk( );
+                    SaveSystem.SetString( name: "TopPlayerName", val: playerController.player.GetPlayerName( ) );
                 }
                 SceneTransitions.EndGameScene( won: false );
                 break;
@@ -154,10 +155,10 @@ public class GameManager : MonoBehaviour
                 //Current won game. Update case # to always be the last before default.
                 Debug.Log( message: "Won game at stage " + currentStageNumber + " !" );
                 PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
-                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
-                {
+                if(    ( playerController.player.GetScore( ) <= 0 && PlayerPrefs.GetInt( key: "TopPlayerScore" ) == 0 )
+                    || ( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) ) 
+                )                {
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
-                    SaveSystem.SaveToDisk( );
                 }
                 SceneTransitions.EndGameScene( won: true );
                 break;

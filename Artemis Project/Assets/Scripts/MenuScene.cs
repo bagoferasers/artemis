@@ -3,7 +3,7 @@ using TMPro;
 /*
    File: MenuScene.cs
    Description: Script to handle the Main Menu Scene.
-   Last Modified: February 7, 2024
+   Last Modified: February 10, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey 
 */
@@ -27,7 +27,6 @@ public class MenuScene : MonoBehaviour
         if( PlayerPrefs.GetString( key: "FirstTime" ) != "yes" )
         {
             SaveSystem.SetString( name: "FirstTime", val: "yes" );
-            SaveSystem.SaveToDisk( );
         }
         topPlayerScoreText.text = SaveSystem.GetInt( name: "TopPlayerScore" ).ToString( );
     }
