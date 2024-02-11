@@ -19,6 +19,7 @@ public class Stage : MonoBehaviour
     /// <param name="collision">The Collider2D that ... collides with Stage0 Finish Line.</param>
     private void OnTriggerEnter2D( Collider2D collision )
     {
+        //future switch statement?
         if ( gameObject.tag == "Stage0" && collision.gameObject.tag == "Player" )
         {
             Debug.Log( message: "Collision detected in Stage0" );
