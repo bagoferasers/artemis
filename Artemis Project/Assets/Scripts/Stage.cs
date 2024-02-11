@@ -3,7 +3,7 @@ using UnityEngine;
 /*
    File: Stages.cs
    Description: Handles Stage collisions.
-   Last Modified: February 10, 2024
+   Last Modified: February 11, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -24,7 +24,6 @@ public class Stage : MonoBehaviour
         {
             Debug.Log( message: "Collision detected in Stage0" );
             SaveSystem.SetBool( name: "Stage0Finish", val: true );
-            SaveSystem.SaveToDisk( );
         }
     }
 }
