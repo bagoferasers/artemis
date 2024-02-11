@@ -37,14 +37,16 @@ public static class SaveSystem {
 		Debug.Log("[SaveGame] --> Loading the save file: " + GetPath());
 	}
 
+	/// <summary>
+	/// Checks for SaveSystem file before continuing. If null, it resets all data.
+	/// </summary>
      public static void CheckForSaveSystem( )
      {
 		string path = GetPath( );
 		if( !File.Exists( path ) )
 		{
-            Debug.LogWarning( message: $"SaveSystem file in " + SceneManager.GetActiveScene( ).name + ".unity Scene is null!" );
-            SaveToDisk( );
-            Application.Quit( );
+			Debug.LogWarning( message: $"SaveSystem file in " + SceneManager.GetActiveScene( ).name + ".unity Scene is null!" );
+			ResetAllData( );
 		}
      }
 
