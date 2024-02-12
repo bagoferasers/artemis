@@ -18,7 +18,7 @@ public class SceneTransitions : MonoBehaviour
     /// <summary>
     /// Start is called before the first frame update. Checks for SaveSystem file before continuing Scene.
     /// </summary>
-    private void Initialize( )
+    public void Initialize( )
     {
         SaveSystem.CheckForSaveSystem( );
     }

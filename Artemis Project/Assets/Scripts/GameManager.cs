@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /*
    File: GameManager.cs
    Description: Manages the core functions of the trivia game.
-   Last Modified: February 11, 2024
+   Last Modified: February 12, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Tracks the current stage number.
     /// </summary>
-    [ SerializeField ] private int currentStageNumber = 0;
+    public static int currentStageNumber = 0;
 
     /// <summary>
     /// Will be used to control the player.
@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
                     SaveSystem.SetString( name: "TopPlayerName", val: playerController.player.GetPlayerName( ) );
                 }
+                currentStageNumber = 0;
                 SceneTransitions.EndGameScene( won: false );
                 break;
             case 0: 
@@ -160,6 +161,7 @@ public class GameManager : MonoBehaviour
                 )                {
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
                 }
+                currentStageNumber = 0;
                 SceneTransitions.EndGameScene( won: true );
                 break;
             default:
