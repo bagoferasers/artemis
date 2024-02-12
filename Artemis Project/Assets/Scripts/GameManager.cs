@@ -134,9 +134,9 @@ public class GameManager : MonoBehaviour
             case -1:
                 //Current lost game
                 Debug.Log( message: "Lost game at stage " + currentStageNumber + " !" );
-                PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
-                if(    ( playerController.player.GetScore( ) <= 0 && PlayerPrefs.GetInt( key: "TopPlayerScore" ) == 0 )
-                    || ( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) ) 
+                SaveSystem.SetInt( "LastPlayerScore", playerController.player.GetScore( ) );
+                if( ( playerController.player.GetScore( ) <= 0 && SaveSystem.GetInt( "TopPlayerScore" ) == 0 )
+                    || ( playerController.player.GetScore( ) > SaveSystem.GetInt( "TopPlayerScore" ) ) 
                 )
                 {
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
@@ -155,10 +155,11 @@ public class GameManager : MonoBehaviour
             case 1:
                 //Current won game. Update case # to always be the last before default.
                 Debug.Log( message: "Won game at stage " + currentStageNumber + " !" );
-                PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
-                if(    ( playerController.player.GetScore( ) <= 0 && PlayerPrefs.GetInt( key: "TopPlayerScore" ) == 0 )
-                    || ( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) ) 
-                )                {
+                SaveSystem.SetInt( "LastPlayerScore", playerController.player.GetScore( ) );
+                if( ( playerController.player.GetScore( ) <= 0 && SaveSystem.GetInt( "TopPlayerScore" ) == 0 )
+                    || ( playerController.player.GetScore( ) > SaveSystem.GetInt( "TopPlayerScore" ) ) 
+                )              
+                {
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
                 }
                 currentStageNumber = 0;
