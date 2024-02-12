@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 /*
    File: PlayerController.cs
@@ -15,37 +13,65 @@ using UnityEngine.UI;
 /// <summary>
 /// Handles the progress bar in game.
 /// </summary>
-public class ProgressBar
+public class ProgressBar : MonoBehaviour
 {
     /// <summary>
-    /// Makes progress bar green.
+    /// Slider Component on gameObject.
     /// </summary>
-    public static void DisplayGreen( )
+    private Slider slider;
+
+    /// <summary>
+    /// Fill Image Component of Slider.
+    /// </summary>
+    private Image fillImage;
+
+    /// <summary>
+    /// Start is called before the first frame update. Grabs Slider and Image Components and 
+    /// starts a Coroutine to update the Slider value based on a target percentatge and 
+    /// duration in seconds.
+    /// </summary>
+    void Start( )
     {
-        FindAndInit.InitializeGameObject( gameObjectName: "ProgressBarFill", sceneName: "ProgressBar.cs" ).GetComponent< Image >( ).color = Color.green;
+        slider = gameObject.GetComponent< Slider >( );
+        fillImage = gameObject.GetComponentInChildren< Image >( );
+        StartCoroutine( routine: UpdateSliderValue( targetPercentage: 100, duration: 30 ) ); // move to 100% over 30 seconds
     }
 
     /// <summary>
-    /// Makes progress bar yellow.
+    /// Updates Slider Component value over time based on a target percentage and
+    /// duration in seconds.
     /// </summary>
-    public static void DisplayYellow( )
+    /// <param name="targetPercentage">The target percentage for the Slider to move to.</param>
+    /// <param name="duration">The duration that it should take for the Slider to move.</param>
+    /// <returns></returns>
+    IEnumerator UpdateSliderValue( float targetPercentage, float duration )
     {
-        FindAndInit.InitializeGameObject( gameObjectName: "ProgressBarFill", sceneName: "ProgressBar.cs" ).GetComponent< Image >( ).color = Color.yellow;
+        float elapsedTime = 0;
+        float startValue = slider.value;
+        float endValue = targetPercentage * slider.maxValue / 100f;
+        
+        while ( elapsedTime < duration )
+        {
+            slider.value = Mathf.Lerp( a: startValue, b: endValue, t: elapsedTime / duration);
+            ChangeSliderColorBasedOnValue( );
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        slider.value = endValue;
+        SaveSystem.SetBool( name: "Stage0Finish", val: true );
     }
 
     /// <summary>
-    /// Makes progress bar red.
+    /// Changes the Slider color based on what value the Slider is at.
     /// </summary>
-    public static void DisplayRed( )
+    private void ChangeSliderColorBasedOnValue( )
     {
-        FindAndInit.InitializeGameObject( gameObjectName: "ProgressBarFill", sceneName: "ProgressBar.cs" ).GetComponent< Image >( ).color = Color.red;
-    }
-
-    /// <summary>
-    /// Makes progress bar white.
-    /// </summary>
-    public static void DisplayWhite( )
-    {
-        FindAndInit.InitializeGameObject( gameObjectName: "ProgressBarFill", sceneName: "ProgressBar.cs" ).GetComponent< Image >( ).color = Color.white;
+        if ( slider.value <= slider.maxValue * 0.75f )
+            fillImage.color = Color.green;
+        else if ( slider.value <= slider.maxValue * 0.90f )
+            fillImage.color = Color.yellow;
+        else
+            fillImage.color = Color.red;
     }
 }
