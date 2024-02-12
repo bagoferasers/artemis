@@ -634,9 +634,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 846629703}
-  - component: {fileID: 846629706}
   - component: {fileID: 846629705}
   - component: {fileID: 846629704}
+  - component: {fileID: 846629706}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -712,8 +712,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be801131f9898014f9fd24e270c88d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -3
+  speed: -5
   paused: 0
+  credits: 1
+  playerPosition: {x: 0, y: 0}
 --- !u!1 &1264848815
 GameObject:
   m_ObjectHideFlags: 0

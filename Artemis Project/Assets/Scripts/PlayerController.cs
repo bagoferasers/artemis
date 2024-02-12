@@ -5,7 +5,7 @@ using UnityEngine;
 /*
    File: PlayerController.cs
    Description: Represents the player controller.
-   Last Modified: February 4, 2024
+   Last Modified: February 12, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     /// Represents a Player object that will represent the current player.
     /// </summary>
     public Player player = new Player( score: 0, playerName: "Colby Bailey" );
-
 
     /// <summary>
     /// Start is called before the first frame update. Adds SLS and Orion GameObjects into List.

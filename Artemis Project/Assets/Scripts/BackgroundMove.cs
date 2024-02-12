@@ -3,7 +3,7 @@ using UnityEngine;
 /*
    File: BackgroundMove.cs
    Description: Represents the class that moves the backdrop of the game.
-   Last Modified: January 28, 2024
+   Last Modified: February 12, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -21,12 +21,7 @@ public class BackgroundMove : MonoBehaviour
     /// <summary>
     /// Will be used to control when the background should move.
     /// </summary>
-    public bool paused = true;
-
-    /// <summary>
-    /// Will be used to control the increase of speed over time.
-    /// </summary>
-    // [ SerializeField ] private float speedIncrement = 0.00001f;
+    public bool paused;
 
     /// <summary>
     /// Update is called once per frame. Moves the background and increases speed over time.
@@ -37,7 +32,6 @@ public class BackgroundMove : MonoBehaviour
         {
             Vector3 target = new Vector3( x: transform.position.x, y: -5000f, z: transform.position.z );
             transform.position = Vector3.MoveTowards( current: transform.position, target, maxDistanceDelta: speed * Time.fixedDeltaTime );
-            // speed += speedIncrement;            
         }
     }
 }
