@@ -161,6 +161,7 @@ public class GameManager : MonoBehaviour
                 )              
                 {
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
+                    SaveSystem.SetString( name: "TopPlayerName", val: playerController.player.GetPlayerName( ) );
                 }
                 currentStageNumber = 0;
                 SceneTransitions.EndGameScene( won: true );
