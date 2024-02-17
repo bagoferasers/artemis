@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /*
    File: GameManager.cs
    Description: Manages the core functions of the trivia game.
-   Last Modified: February 12, 2024
+   Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -86,15 +86,15 @@ public class GameManager : MonoBehaviour
         SaveSystem.SetBool( name: "Stage0Finish", val: false );
 
         //Grab the PlayerController from the Scene and check if null
-        playerController = FindAndInit.InitializeGameObject( gameObjectName: "Player", sceneName: "GameManager.cs" ).GetComponent< PlayerController >( );
+        playerController = FindAndInit.InitializeGameObject( gameObjectName: "Player", scriptName: "GameManager.cs" ).GetComponent< PlayerController >( );
 
         //Initialize TextMeshProUGUI components
-        questionT = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "QuestionText", sceneName: "GameManager.cs" );
-        answer1T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer1Text", sceneName: "GameManager.cs" );
-        answer2T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer2Text", sceneName: "GameManager.cs" );
-        answer3T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer3Text", sceneName: "GameManager.cs" );
-        answer4T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer4Text", sceneName: "GameManager.cs" );
-        numberCorrect = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "NumberCorrect", sceneName: "GameManager.cs" );
+        questionT = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "QuestionText", scriptName: "GameManager.cs" );
+        answer1T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer1Text", scriptName: "GameManager.cs" );
+        answer2T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer2Text", scriptName: "GameManager.cs" );
+        answer3T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer3Text", scriptName: "GameManager.cs" );
+        answer4T = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "Answer4Text", scriptName: "GameManager.cs" );
+        numberCorrect = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "NumberCorrect", scriptName: "GameManager.cs" );
 
         //Load Questions
         LoadQuestions( );
@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
     /// <param name="incomingAnswerText">The text of the answer selected to be compared with the text of the correct Answer.</param>
     public void CheckAnswer( string incomingAnswerText )
     {   
-        selectedButton = FindAndInit.InitializeGameObject( gameObjectName: incomingAnswerText, sceneName: "GameManager.cs" );
+        selectedButton = FindAndInit.InitializeGameObject( gameObjectName: incomingAnswerText, scriptName: "GameManager.cs" );
 
         if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
         {

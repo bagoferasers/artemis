@@ -3,7 +3,7 @@ using UnityEngine;
 /*
    File: SettingsScene.cs
    Description: Script to handle the Settings Scene.
-   Last Modified: February 11, 2024
+   Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -38,10 +38,10 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        successfulResetOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "SuccessfulReset", sceneName: "SettingsScene.cs" );
-        areYouSureOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSure", sceneName: "SettingsScene.cs" );
-        settingsButtons = FindAndInit.InitializeGameObject( gameObjectName: "SettingsButtons", sceneName: "SettingsScene.cs" );
-        haze = FindAndInit.FindAndDeactivate( gameObjectName: "Haze", sceneName: "Play1Scene.cs" );
+        successfulResetOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "SuccessfulReset", scriptName: "SettingsScene.cs" );
+        areYouSureOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSure", scriptName: "SettingsScene.cs" );
+        settingsButtons = FindAndInit.InitializeGameObject( gameObjectName: "SettingsButtons", scriptName: "SettingsScene.cs" );
+        haze = FindAndInit.FindAndDeactivate( gameObjectName: "Haze", scriptName: "Play1Scene.cs" );
     }
 
     /// <summary>

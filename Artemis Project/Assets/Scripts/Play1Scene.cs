@@ -4,7 +4,7 @@ using UnityEngine.UI;
 /*
    File: Play1Scene.cs
    Description: Script to handle the Play1 Scene.
-   Last Modified: February 7, 2024
+   Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -40,24 +40,24 @@ public class Play1Scene : MonoBehaviour
     void Start( )
     {
         //Initialize Buttons.
-        a1 = FindAndInit.InitializeButton( gameObjectName: "Answer1", sceneName: "Play1Scene.cs" );
-        a2 = FindAndInit.InitializeButton( gameObjectName: "Answer2", sceneName: "Play1Scene.cs" );
-        a3 = FindAndInit.InitializeButton( gameObjectName: "Answer3", sceneName: "Play1Scene.cs" );
-        a4 = FindAndInit.InitializeButton( gameObjectName: "Answer4", sceneName: "Play1Scene.cs" );
-        exitMission = FindAndInit.InitializeButton( gameObjectName: "ExitMission", sceneName: "Play1Scene.cs" );
-        settings = FindAndInit.InitializeButton( gameObjectName: "Settings", sceneName: "Play1Scene.cs" );
+        a1 = FindAndInit.InitializeButton( gameObjectName: "Answer1", scriptName: "Play1Scene.cs" );
+        a2 = FindAndInit.InitializeButton( gameObjectName: "Answer2", scriptName: "Play1Scene.cs" );
+        a3 = FindAndInit.InitializeButton( gameObjectName: "Answer3", scriptName: "Play1Scene.cs" );
+        a4 = FindAndInit.InitializeButton( gameObjectName: "Answer4", scriptName: "Play1Scene.cs" );
+        exitMission = FindAndInit.InitializeButton( gameObjectName: "ExitMission", scriptName: "Play1Scene.cs" );
+        settings = FindAndInit.InitializeButton( gameObjectName: "Settings", scriptName: "Play1Scene.cs" );
 
         //Initialize and deactivate GameObjects
-        backButton = FindAndInit.FindAndDeactivate( gameObjectName: "Back", sceneName: "Play1Scene.cs" );
-        haze = FindAndInit.FindAndDeactivate( gameObjectName: "Haze", sceneName: "Play1Scene.cs" );
-        b1 = FindAndInit.FindAndDeactivate( gameObjectName: "Button1", sceneName: "Play1Scene.cs" );
-        b2 = FindAndInit.FindAndDeactivate( gameObjectName: "Button2", sceneName: "Play1Scene.cs" );
-        masterVolume = FindAndInit.FindAndDeactivate( gameObjectName: "MasterVolume", sceneName: "Play1Scene.cs" );
-        musicVolume = FindAndInit.FindAndDeactivate( gameObjectName: "MusicVolume", sceneName: "Play1Scene.cs" );
-        effectsVolume = FindAndInit.FindAndDeactivate( gameObjectName: "EffectsVolume", sceneName: "Play1Scene.cs" );
-        yes = FindAndInit.FindAndDeactivate( gameObjectName: "Yes", sceneName: "Play1Scene.cs" );
-        no = FindAndInit.FindAndDeactivate( gameObjectName: "No", sceneName: "Play1Scene.cs" );
-        areYouSureText = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSureText", sceneName: "Play1Scene.cs" );
+        backButton = FindAndInit.FindAndDeactivate( gameObjectName: "Back", scriptName: "Play1Scene.cs" );
+        haze = FindAndInit.FindAndDeactivate( gameObjectName: "Haze", scriptName: "Play1Scene.cs" );
+        b1 = FindAndInit.FindAndDeactivate( gameObjectName: "Button1", scriptName: "Play1Scene.cs" );
+        b2 = FindAndInit.FindAndDeactivate( gameObjectName: "Button2", scriptName: "Play1Scene.cs" );
+        masterVolume = FindAndInit.FindAndDeactivate( gameObjectName: "MasterVolume", scriptName: "Play1Scene.cs" );
+        musicVolume = FindAndInit.FindAndDeactivate( gameObjectName: "MusicVolume", scriptName: "Play1Scene.cs" );
+        effectsVolume = FindAndInit.FindAndDeactivate( gameObjectName: "EffectsVolume", scriptName: "Play1Scene.cs" );
+        yes = FindAndInit.FindAndDeactivate( gameObjectName: "Yes", scriptName: "Play1Scene.cs" );
+        no = FindAndInit.FindAndDeactivate( gameObjectName: "No", scriptName: "Play1Scene.cs" );
+        areYouSureText = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSureText", scriptName: "Play1Scene.cs" );
     }
 
     /// <summary>

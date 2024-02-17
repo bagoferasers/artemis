@@ -4,7 +4,7 @@ using TMPro;
 /*
    File: MenuScene.cs
    Description: Script to handle the Main Menu Scene.
-   Last Modified: February 14, 2024
+   Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey 
 */
@@ -45,22 +45,22 @@ public class MenuScene : MonoBehaviour
     void Start( )
     {
         //Find and initialize 
-        submitButton = FindAndInit.InitializeGameObject( gameObjectName: "Submit", sceneName: "MenuScene.cs" ).GetComponent< Button >( );
-        inputField = FindAndInit.InitializeGameObject( gameObjectName: "Field", sceneName: "MenuScene.cs" ).GetComponent< TMP_InputField >( );
-        enterName = FindAndInit.InitializeGameObject( gameObjectName: "EnterName", sceneName: "MenuScene.cs" );
-        topPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerScore", sceneName: "MenuScene.cs" );
-        topPlayerName = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerName", sceneName: "MenuScene.cs" );
+        submitButton = FindAndInit.InitializeGameObject( gameObjectName: "Submit", scriptName: "MenuScene.cs" ).GetComponent< Button >( );
+        inputField = FindAndInit.InitializeGameObject( gameObjectName: "Field", scriptName: "MenuScene.cs" ).GetComponent< TMP_InputField >( );
+        enterName = FindAndInit.InitializeGameObject( gameObjectName: "EnterName", scriptName: "MenuScene.cs" );
+        topPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerScore", scriptName: "MenuScene.cs" );
+        topPlayerName = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerName", scriptName: "MenuScene.cs" );
     
         //set score and Player name
         topPlayerScoreText.text = SaveSystem.GetInt( name: "TopPlayerScore" ).ToString( );
         topPlayerName.text = SaveSystem.GetString( name: "TopPlayerName" ).ToString( );
 
         //turn off unnecessary objects
-        enterName.SetActive( false );
+        enterName.SetActive( value: false );
 
         //listen for Player input
-        inputField.onEndEdit.AddListener( delegate { HandleNameInput( inputField ); } );
-        submitButton.onClick.AddListener( ( ) => HandleNameInput( inputField ) );
+        inputField.onEndEdit.AddListener( call: delegate { HandleNameInput( inputField ); } );
+        submitButton.onClick.AddListener( call: ( ) => HandleNameInput( inputField ) );
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public class MenuScene : MonoBehaviour
     /// </summary>
     public void ShowAskName( )
     {
-        enterName.SetActive( true );
+        enterName.SetActive( value: true );
     }
 
     /// <summary>
@@ -77,10 +77,10 @@ public class MenuScene : MonoBehaviour
     /// <param name="inputField">The InputField on the UI that the user will put their name into.</param>
     public void HandleNameInput( TMP_InputField inputField )
     {
-        if ( Input.GetKeyDown( KeyCode.Return ) || Input.GetKeyDown( KeyCode.KeypadEnter ) || submitButton.onClick != null )
+        if ( Input.GetKeyDown( key: KeyCode.Return ) || Input.GetKeyDown( key: KeyCode.KeypadEnter ) || submitButton.onClick != null )
         {
             string userInput = inputField.text;
-            SaveSystem.SetString( "PlayerName", userInput );
+            SaveSystem.SetString( name: "PlayerName", val: userInput );
             inputField.text = "Enter your name...";
         }
         SceneTransitions.Play1Scene( );

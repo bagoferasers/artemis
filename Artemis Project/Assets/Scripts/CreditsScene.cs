@@ -35,7 +35,7 @@ public class CreditsScene : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        sourcesText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "SourcesText", sceneName: "CreditsScene.cs" );
+        sourcesText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "SourcesText", scriptName: "CreditsScene.cs" );
         LoadCredits( );
         DisplaySources( );
     }
