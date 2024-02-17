@@ -994,7 +994,7 @@ GameObject:
   - component: {fileID: 983826284}
   - component: {fileID: 983826285}
   m_Layer: 0
-  m_Name: sky_1
+  m_Name: BackgroundImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 993309242}
   - component: {fileID: 993309241}
   m_Layer: 0
-  m_Name: Objects
+  m_Name: SettingsScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1298,7 +1298,7 @@ GameObject:
   - component: {fileID: 1110743697}
   - component: {fileID: 1110743696}
   m_Layer: 0
-  m_Name: Player
+  m_Name: SettingsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
