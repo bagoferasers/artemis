@@ -1,10 +1,11 @@
 using UnityEngine.SceneManagement;
+using System.Collections;
 using UnityEngine;
 
 /*
    File: SceneTransitions.cs
    Description: Script to handle scene transitions.
-   Last Modified: February 11, 2024
+   Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -117,6 +118,7 @@ public class SceneTransitions : MonoBehaviour
     public static void ExitGame( )
     {
         Debug.Log( message: "Exiting Game!" );
+        SaveSystem.SetBool( name: "FirstLaunch", val: false );
         SaveSystem.SaveToDisk( );
         Application.Quit( );
     }
