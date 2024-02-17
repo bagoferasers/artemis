@@ -1,10 +1,11 @@
 using UnityEngine.SceneManagement;
+using System.Collections;
 using UnityEngine;
 
 /*
    File: SceneTransitions.cs
    Description: Script to handle scene transitions.
-   Last Modified: February 9, 2024
+   Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -14,11 +15,46 @@ using UnityEngine;
 /// </summary>
 public class SceneTransitions : MonoBehaviour
 {   
+
+    /// <summary>
+    /// Start is called before the first frame update. Checks for SaveSystem file before continuing Scene.
+    /// </summary>
+    public void Initialize( )
+    {
+        SaveSystem.CheckForSaveSystem( );
+    }
+
+    /// <summary>
+    /// Checks to see if a Scene exists before continuing. Exits application if null.
+    /// </summary>
+    /// <param name="sceneName"></param>
+    private static void CheckIfSceneExists( string sceneName )
+    {
+        bool exists = false;
+        for( int i = 0; i < SceneManager.sceneCountInBuildSettings; i++ )
+        {
+            string path = SceneUtility.GetScenePathByBuildIndex( buildIndex: i );
+            string name = System.IO.Path.GetFileNameWithoutExtension( path );
+            if( name == sceneName )
+            {
+                exists = true;
+            }
+        }
+
+        if( exists == false )
+        {
+            Debug.LogWarning( message: $"sceneName Scene does not exist. Exiting application!" );
+            SaveSystem.SaveToDisk( );
+            Application.Quit( );
+        }
+    }
+
     /// <summary>
     /// The method that transitions the Scene to the main menu.
     /// </summary>
     public static void MainMenuScene( )
     {
+        CheckIfSceneExists( sceneName: "Main" );
         SceneManager.LoadScene( sceneName: "Main" );
     }
 
@@ -35,6 +71,7 @@ public class SceneTransitions : MonoBehaviour
         {
             SaveSystem.SetBool( name: "Won", val: false );
         }
+        CheckIfSceneExists( sceneName: "EndGame" );
         SceneManager.LoadScene( sceneName: "EndGame" );
     }
 
@@ -43,6 +80,7 @@ public class SceneTransitions : MonoBehaviour
     /// </summary>
     public static void CreditsScene( )
     {
+        CheckIfSceneExists( sceneName: "Credits" );
         SceneManager.LoadScene( sceneName: "Credits" );
     }
 
@@ -52,7 +90,7 @@ public class SceneTransitions : MonoBehaviour
     public static void EndGameCreditsScene( )
     {
         SaveSystem.SetInt( name: "LastPlayerScore", val: 0 );
-        SaveSystem.SaveToDisk( );
+        CheckIfSceneExists( sceneName: "Credits" );
         SceneManager.LoadScene( sceneName: "Credits" );
     }
 
@@ -61,6 +99,7 @@ public class SceneTransitions : MonoBehaviour
     /// </summary>
     public static void Play1Scene( )
     {
+        CheckIfSceneExists( sceneName: "Play1" );
         SceneManager.LoadScene( sceneName: "Play1" );
     }
 
@@ -69,6 +108,7 @@ public class SceneTransitions : MonoBehaviour
     /// </summary>
     public static void SettingsScene( )
     {
+        CheckIfSceneExists( sceneName: "Settings" );
         SceneManager.LoadScene( sceneName: "Settings" );
     }
 
@@ -78,6 +118,8 @@ public class SceneTransitions : MonoBehaviour
     public static void ExitGame( )
     {
         Debug.Log( message: "Exiting Game!" );
+        SaveSystem.SetBool( name: "FirstLaunch", val: false );
+        SaveSystem.SaveToDisk( );
         Application.Quit( );
     }
 }

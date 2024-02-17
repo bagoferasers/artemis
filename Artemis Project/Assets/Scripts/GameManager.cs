@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /*
    File: GameManager.cs
    Description: Manages the core functions of the trivia game.
-   Last Modified: February 9, 2024
+   Last Modified: February 12, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Tracks the current stage number.
     /// </summary>
-    [ SerializeField ] private int currentStageNumber = 0;
+    public static int currentStageNumber = 0;
 
     /// <summary>
     /// Will be used to control the player.
@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
         //Reset the last Player's score to 0 and Stage Finishes to false.
         SaveSystem.SetInt( name: "LastPlayerScore", val: 0 );
         SaveSystem.SetBool( name: "Stage0Finish", val: false );
-        SaveSystem.SaveToDisk( );
 
         //Grab the PlayerController from the Scene and check if null
         playerController = FindAndInit.InitializeGameObject( gameObjectName: "Player", sceneName: "GameManager.cs" ).GetComponent< PlayerController >( );
@@ -135,12 +134,15 @@ public class GameManager : MonoBehaviour
             case -1:
                 //Current lost game
                 Debug.Log( message: "Lost game at stage " + currentStageNumber + " !" );
-                PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
-                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
+                SaveSystem.SetInt( "LastPlayerScore", playerController.player.GetScore( ) );
+                if( ( playerController.player.GetScore( ) <= 0 && SaveSystem.GetInt( "TopPlayerScore" ) == 0 )
+                    || ( playerController.player.GetScore( ) > SaveSystem.GetInt( "TopPlayerScore" ) ) 
+                )
                 {
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
-                    SaveSystem.SaveToDisk( );
+                    SaveSystem.SetString( name: "TopPlayerName", val: playerController.player.GetPlayerName( ) );
                 }
+                currentStageNumber = 0;
                 SceneTransitions.EndGameScene( won: false );
                 break;
             case 0: 
@@ -153,12 +155,15 @@ public class GameManager : MonoBehaviour
             case 1:
                 //Current won game. Update case # to always be the last before default.
                 Debug.Log( message: "Won game at stage " + currentStageNumber + " !" );
-                PlayerPrefs.SetInt( key: "LastPlayerScore", value: playerController.player.GetScore( ) );
-                if( playerController.player.GetScore( ) > PlayerPrefs.GetInt( key: "TopPlayerScore" ) )
+                SaveSystem.SetInt( "LastPlayerScore", playerController.player.GetScore( ) );
+                if( ( playerController.player.GetScore( ) <= 0 && SaveSystem.GetInt( "TopPlayerScore" ) == 0 )
+                    || ( playerController.player.GetScore( ) > SaveSystem.GetInt( "TopPlayerScore" ) ) 
+                )              
                 {
                     SaveSystem.SetInt( name: "TopPlayerScore", val: playerController.player.GetScore( ) );
-                    SaveSystem.SaveToDisk( );
+                    SaveSystem.SetString( name: "TopPlayerName", val: playerController.player.GetPlayerName( ) );
                 }
+                currentStageNumber = 0;
                 SceneTransitions.EndGameScene( won: true );
                 break;
             default:
@@ -253,12 +258,7 @@ public class GameManager : MonoBehaviour
     /// <param name="incomingAnswerText">The text of the answer selected to be compared with the text of the correct Answer.</param>
     public void CheckAnswer( string incomingAnswerText )
     {   
-        selectedButton = GameObject.Find( name: incomingAnswerText );
-        if( selectedButton == null )
-        {
-            Debug.LogWarning( message: "selectedButton variable in GameManager.cs is null!" , context: gameObject );
-            Application.Quit( );
-        }
+        selectedButton = FindAndInit.InitializeGameObject( gameObjectName: incomingAnswerText, sceneName: "GameManager.cs" );
 
         if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
         {

@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 /*
    File: SaveSystem.cs
    Description: Script to handle saving game data.
-   Last Modified: February 7, 2024
+   Last Modified: February 11, 2024
    Last Modified By: Colby Bailey
    Authors: Amice Company, Colby Bailey
 */
@@ -35,6 +36,19 @@ public static class SaveSystem {
 		data = SerializatorBinary.LoadBinary(GetPath());
 		Debug.Log("[SaveGame] --> Loading the save file: " + GetPath());
 	}
+
+	/// <summary>
+	/// Checks for SaveSystem file before continuing. If null, it resets all data.
+	/// </summary>
+     public static void CheckForSaveSystem( )
+     {
+		string path = GetPath( );
+		if( !File.Exists( path ) )
+		{
+			Debug.LogWarning( message: $"SaveSystem file in " + SceneManager.GetActiveScene( ).name + ".unity Scene is null!" );
+			ResetAllData( );
+		}
+     }
 
 	/// <summary>
 	/// A method that completely resets all game data.
@@ -90,18 +104,21 @@ public static class SaveSystem {
 	{
 		if(string.IsNullOrEmpty(name)) return;
 		SetString(name, val.x + "|" + val.y + "|" + val.z);
+		SaveToDisk( );
 	}
 
 	public static void SetVector2(string name, Vector2 val)
 	{
 		if(string.IsNullOrEmpty(name)) return;
 		SetString(name, val.x + "|" + val.y);
+		SaveToDisk( );
 	}
 
 	public static void SetColor(string name, Color val)
 	{
 		if(string.IsNullOrEmpty(name)) return;
 		SetString(name, val.r + "|" + val.g + "|" + val.b + "|" + val.a);
+		SaveToDisk( );
 	}
 
 	public static void SetBool(string name, bool val) // set the key and value
@@ -110,24 +127,28 @@ public static class SaveSystem {
 		string tmp = string.Empty;
 		if(val) tmp = "1"; else tmp = "0";
 		ReplaceItem(name, tmp);
+		SaveToDisk( );
 	}
 
 	public static void SetFloat(string name, float val)
 	{
 		if(string.IsNullOrEmpty(name)) return;
 		ReplaceItem(name, val.ToString());
+		SaveToDisk( );
 	}
 
 	public static void SetInt(string name, int val)
 	{
 		if(string.IsNullOrEmpty(name)) return;
 		ReplaceItem(name, val.ToString());
+		SaveToDisk( );
 	}
 
 	public static void SetString(string name, string val)
 	{
 		if(string.IsNullOrEmpty(name)) return;
 		ReplaceItem(name, val);
+		SaveToDisk( );
 	}
 
 	public static void SaveToDisk() // write data to file
