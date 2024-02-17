@@ -3,10 +3,11 @@ using UnityEngine;
 using System.IO;
 using TMPro;
 
+
 /*
    File: CreditsScene.cs
    Description: Script to handle the Credits Scene.
-   Last Modified: February 7, 2024
+   Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -84,5 +85,14 @@ public class CreditsScene : MonoBehaviour
         {
             sourcesText.text += source;
         }
+    }
+
+    /// <summary>
+    /// Handles the end of Credits Scene and transitions back to MainMenu Scene.
+    /// </summary>
+    /// <param name="collider2D">The collider at the end of the Credits Scene.</param>
+    private void OnTriggerEnter2D( Collider2D collider2D )
+    {
+        SceneTransitions.MainMenuScene( );
     }
 }

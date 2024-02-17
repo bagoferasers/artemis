@@ -1375,7 +1375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &641467802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1388,8 +1388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73a6f67052223a45801e35817009772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeIn: 1
-  fadeTime: 0.1
+  fadeTime: 1
 --- !u!225 &641467803
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1422,7 +1421,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1532138605
+  m_SortingLayerID: -98380115
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!210 &641467805
