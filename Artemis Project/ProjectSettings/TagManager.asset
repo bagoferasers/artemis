@@ -48,6 +48,9 @@ TagManager:
   - name: Player
     uniqueID: 3186261693
     locked: 0
+  - name: ComputerBackground
+    uniqueID: 2191117891
+    locked: 0
   - name: UI
     uniqueID: 2762828691
     locked: 0

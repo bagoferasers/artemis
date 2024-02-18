@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 /*
    File: Fade.cs
    Description: Represents the fading in and out of a transition.
-   Last Modified: February 17, 2024
+   Last Modified: February 18, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -15,9 +16,9 @@ using UnityEngine;
 public class Fade : MonoBehaviour
 {
     /// <summary>
-    /// The CanvasGroup of the GameObject this script is attached to.
+    /// The Light2D that will be faded in and out.
     /// </summary>
-    public static CanvasGroup fade;
+    public static Light2D fade;
 
     /// <summary>
     /// The speed at which the fading will happen.
@@ -30,15 +31,15 @@ public class Fade : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        fade = GetComponent< CanvasGroup >( );
-        if( !SaveSystem.GetBool( name: "FirstLaunch" ) )
+        fade = GetComponent< Light2D >( );
+        if( SaveSystem.GetBool( name: "FirstLaunch" ) == false || !SaveSystem.GetBool( name: "FirstLaunch" ) )
         {
             StartCoroutine( routine: FadeIntoScene( ) );
             SaveSystem.SetBool( name: "FirstLaunch", val: true );
         }
         else
         {
-            fade.alpha = 0f;
+            fade.intensity = 1f;
         }
     }
 
@@ -47,14 +48,14 @@ public class Fade : MonoBehaviour
     /// </summary>
     private IEnumerator FadeIntoScene( )
     {
-        fade.alpha = 1f;
+        fade.intensity = 0f;
         float elapsedTime = 0f;
         while( elapsedTime < fadeTime )
         {
-            fade.alpha = 1f - ( elapsedTime / fadeTime );
+            fade.intensity = Mathf.Lerp( a: 0f, b: 1f, t: elapsedTime / fadeTime );
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        fade.alpha = 0f;
+        fade.intensity = 1f;
     }
 }
