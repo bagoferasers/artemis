@@ -223,7 +223,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.423
+  m_FalloffIntensity: 0.6
   m_Color: {r: 0.8018868, g: 0.78419036, b: 0.66193485, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 0.1
@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 0}
-    m_HighlightedColor: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 0.19607843}
+    m_HighlightedColor: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 0.09803922}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.09803922}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.09803922}
     m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
@@ -1597,7 +1597,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_fontColor: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 0.78431374}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

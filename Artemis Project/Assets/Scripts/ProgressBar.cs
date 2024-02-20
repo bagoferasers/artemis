@@ -5,7 +5,7 @@ using System.Collections;
 /*
    File: PlayerController.cs
    Description: Represents a progress bar in game.
-   Last Modified: February 12, 2024
+   Last Modified: February 20, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -26,14 +26,19 @@ public class ProgressBar : MonoBehaviour
     private Image fillImage;
 
     /// <summary>
+    /// Controls when to move slider.
+    /// </summary>
+    public static bool paused = false;
+
+    /// <summary>
     /// Start is called before the first frame update. Grabs Slider and Image Components and 
     /// starts a Coroutine to update the Slider value based on a target percentatge and 
     /// duration in seconds.
     /// </summary>
     void Start( )
     {
-        slider = gameObject.GetComponent< Slider >( );
-        fillImage = gameObject.GetComponentInChildren< Image >( );
+        slider = FindAndInit.InitializeGameObject( gameObjectName: "ProgressBar", scriptName: "ProgressBar.cs" ).GetComponent< Slider >( );
+        fillImage = FindAndInit.InitializeGameObject( gameObjectName: "ProgressBar", scriptName: "ProgressBar.cs" ).GetComponentInChildren< Image >( );
         StartCoroutine( routine: UpdateSliderValue( targetPercentage: 100, duration: 30 ) ); // move to 100% over 30 seconds
     }
 
@@ -52,9 +57,13 @@ public class ProgressBar : MonoBehaviour
         
         while ( elapsedTime < duration )
         {
-            slider.value = Mathf.Lerp( a: startValue, b: endValue, t: elapsedTime / duration);
-            ChangeSliderColorBasedOnValue( );
-            elapsedTime += Time.deltaTime;
+            while( !paused )
+            {
+                slider.value = Mathf.Lerp( a: startValue, b: endValue, t: elapsedTime / duration);
+                ChangeSliderColorBasedOnValue( );
+                elapsedTime += Time.deltaTime;
+                yield return null;                
+            }
             yield return null;
         }
         
