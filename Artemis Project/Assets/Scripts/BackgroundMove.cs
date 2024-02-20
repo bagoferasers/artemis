@@ -3,7 +3,7 @@ using UnityEngine;
 /*
    File: BackgroundMove.cs
    Description: Represents the class that moves the backdrop of the game.
-   Last Modified: February 12, 2024
+   Last Modified: February 20, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -21,7 +21,7 @@ public class BackgroundMove : MonoBehaviour
     /// <summary>
     /// Will be used to control when the background should move.
     /// </summary>
-    public bool paused;
+    public static bool paused;
 
     /// <summary>
     /// Update is called once per frame. Moves the background and increases speed over time.

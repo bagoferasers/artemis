@@ -17,7 +17,7 @@ public class Play1Scene : MonoBehaviour
     /// <summary>
     /// GameObject that will be toggled.
     /// </summary>
-    private GameObject settings, areYouSure, menuButtons, areYouSure1, triviaHolder, progressBar, successfulResetOverlay;
+    private GameObject settings, areYouSure, menuButtons, areYouSure1, triviaHolder, successfulResetOverlay;
 
     /// <summary>
     /// A BackGroundMove object that will be used to toggle as paused.
@@ -34,7 +34,6 @@ public class Play1Scene : MonoBehaviour
         menuButtons = FindAndInit.InitializeGameObject( gameObjectName: "MenuButtons", scriptName: "Play1Scene.cs" );
         areYouSure1 = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSure1", scriptName: "Play1Scene.cs" );
         triviaHolder = FindAndInit.InitializeGameObject( gameObjectName: "TriviaHolder", scriptName: "Play1Scene.cs" );
-        progressBar = FindAndInit.InitializeGameObject( gameObjectName: "ProgressBar", scriptName: "Play1Scene.cs" );
         successfulResetOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "SuccessfulReset", scriptName: "SettingsScene.cs" );
         ProgressBar.paused = false;
     }
@@ -45,12 +44,12 @@ public class Play1Scene : MonoBehaviour
     public void ShowAreYouSure( )
     {
         ProgressBar.paused = true;
+        BackgroundMove.paused = true;
         areYouSure.SetActive( value: true );
         settings.SetActive( value: false );
         menuButtons.SetActive( value: false );
         areYouSure1.SetActive( value: false );
         triviaHolder.SetActive( value: false );
-        progressBar.SetActive( value: false );
     }
 
     /// <summary>
@@ -59,12 +58,12 @@ public class Play1Scene : MonoBehaviour
     public void HideAreYouSure( )
     {
         ProgressBar.paused = false;
+        BackgroundMove.paused = false;
         areYouSure.SetActive( value: false );
         settings.SetActive( value: false );
         menuButtons.SetActive( value: true );
         areYouSure1.SetActive( value: false );
         triviaHolder.SetActive( value: true );
-        progressBar.SetActive( value: true );
     }
 
     /// <summary>
@@ -73,12 +72,12 @@ public class Play1Scene : MonoBehaviour
     public void ShowAreYouSure1( )
     {
         ProgressBar.paused = true;
+        BackgroundMove.paused = true;
         areYouSure.SetActive( value: false );
         settings.SetActive( value: false );
         menuButtons.SetActive( value: false );
         areYouSure1.SetActive( value: true );
         triviaHolder.SetActive( value: false );
-        progressBar.SetActive( value: false );
     }
 
     /// <summary>
@@ -87,12 +86,12 @@ public class Play1Scene : MonoBehaviour
     public void HideAreYouSure1( )
     {
         ProgressBar.paused = false;
+        BackgroundMove.paused = false;
         areYouSure.SetActive( value: false );
         settings.SetActive( value: false );
         menuButtons.SetActive( value: true );
         areYouSure1.SetActive( value: false );
         triviaHolder.SetActive( value: true );
-        progressBar.SetActive( value: true );
     }
 
     /// <summary>
@@ -101,12 +100,12 @@ public class Play1Scene : MonoBehaviour
     public void ShowSettings( )
     {
         ProgressBar.paused = true;
+        BackgroundMove.paused = true;
         areYouSure.SetActive( value: false );
         settings.SetActive( value: true );
         menuButtons.SetActive( value: false );
         areYouSure1.SetActive( value: false );
         triviaHolder.SetActive( value: false );
-        progressBar.SetActive( value: false );
     }
 
     /// <summary>
@@ -115,12 +114,12 @@ public class Play1Scene : MonoBehaviour
     public void HideSettings( )
     {
         ProgressBar.paused = false;
+        BackgroundMove.paused = false;
         areYouSure.SetActive( value: false );
         settings.SetActive( value: false );
         menuButtons.SetActive( value: true );
         areYouSure1.SetActive( value: false );
         triviaHolder.SetActive( value: true );
-        progressBar.SetActive( value: true );
     }
 
     /// <summary>

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 /*
    File: Fade.cs
@@ -46,6 +47,10 @@ public class Fade : MonoBehaviour
         {
             StartCoroutine(routine: FadeIntoScene( ) );
         }
+        else if( SceneManager.GetActiveScene( ).name == "Play1" )
+        {
+            StartCoroutine(routine: FadeIntoScene( ) );
+        }
         else
         {
             fade.intensity = fadeIntensity;
@@ -70,7 +75,7 @@ public class Fade : MonoBehaviour
             yield return null;
         }
         fade.intensity = fadeIntensity;
-        if (gameObject.name == "ComputerBacklight")
+        if( gameObject.name == "ComputerBacklight" )
             MenuScene.menuButtons.SetActive(value: true);
         SaveSystem.SetBool(name: "FirstLaunch", val: true);
     }

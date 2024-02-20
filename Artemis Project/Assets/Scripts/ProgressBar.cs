@@ -35,11 +35,11 @@ public class ProgressBar : MonoBehaviour
     /// starts a Coroutine to update the Slider value based on a target percentatge and 
     /// duration in seconds.
     /// </summary>
-    void Start( )
+    void Start()
     {
-        slider = FindAndInit.InitializeGameObject( gameObjectName: "ProgressBar", scriptName: "ProgressBar.cs" ).GetComponent< Slider >( );
-        fillImage = FindAndInit.InitializeGameObject( gameObjectName: "ProgressBar", scriptName: "ProgressBar.cs" ).GetComponentInChildren< Image >( );
-        StartCoroutine( routine: UpdateSliderValue( targetPercentage: 100, duration: 30 ) ); // move to 100% over 30 seconds
+        slider = FindAndInit.InitializeGameObject(gameObjectName: "ProgressBar", scriptName: "ProgressBar.cs").GetComponent<Slider>();
+        fillImage = FindAndInit.InitializeGameObject(gameObjectName: "ProgressBar", scriptName: "ProgressBar.cs").GetComponentInChildren<Image>();
+        StartCoroutine(routine: UpdateSliderValue(targetPercentage: 100, duration: 30)); // move to 100% over 30 seconds
     }
 
     /// <summary>
@@ -49,36 +49,44 @@ public class ProgressBar : MonoBehaviour
     /// <param name="targetPercentage">The target percentage for the Slider to move to.</param>
     /// <param name="duration">The duration that it should take for the Slider to move.</param>
     /// <returns></returns>
-    IEnumerator UpdateSliderValue( float targetPercentage, float duration )
+    IEnumerator UpdateSliderValue(float targetPercentage, float duration)
     {
         float elapsedTime = 0;
         float startValue = slider.value;
         float endValue = targetPercentage * slider.maxValue / 100f;
-        
-        while ( elapsedTime < duration )
+
+        while (elapsedTime < duration )
         {
-            while( !paused )
+            while (paused)
             {
-                slider.value = Mathf.Lerp( a: startValue, b: endValue, t: elapsedTime / duration);
-                ChangeSliderColorBasedOnValue( );
-                elapsedTime += Time.deltaTime;
-                yield return null;                
+                //Do nothing
+                yield return null;
             }
+            slider.value = Mathf.Lerp(a: startValue, b: endValue, t: elapsedTime / duration);
+            ChangeSliderColorBasedOnValue();
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
-        
+
+        // while ( elapsedTime < duration && !paused )
+        // {
+        //     slider.value = Mathf.Lerp(a: startValue, b: endValue, t: elapsedTime / duration);
+        //     ChangeSliderColorBasedOnValue();
+        //     elapsedTime += Time.deltaTime;
+        //     yield return null;
+        // }
         slider.value = endValue;
-        SaveSystem.SetBool( name: "Stage0Finish", val: true );
+        SaveSystem.SetBool(name: "Stage0Finish", val: true);
     }
 
     /// <summary>
     /// Changes the Slider color based on what value the Slider is at.
     /// </summary>
-    private void ChangeSliderColorBasedOnValue( )
+    private void ChangeSliderColorBasedOnValue()
     {
-        if ( slider.value <= slider.maxValue * 0.75f )
+        if (slider.value <= slider.maxValue * 0.75f)
             fillImage.color = Color.green;
-        else if ( slider.value <= slider.maxValue * 0.90f )
+        else if (slider.value <= slider.maxValue * 0.90f)
             fillImage.color = Color.yellow;
         else
             fillImage.color = Color.red;
