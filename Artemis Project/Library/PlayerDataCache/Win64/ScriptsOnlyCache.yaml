@@ -17,6 +17,7 @@ ScriptsOnlyBuild:
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Animation.Runtime.dll:
+    - UnityEngine.U2D.Animation.BufferManager
     - UnityEngine.U2D.Animation.SpriteSkinComposite
     - UnityEngine.U2D.Animation.SpriteSkinUpdateHelper
     Unity.2D.IK.Editor.dll:
@@ -122,10 +123,10 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.UI.Button
-    - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
+    - UnityEngine.UI.RawImage
     - UnityEngine.UI.RectMask2D
     - UnityEngine.UI.Slider
   serializedClasses:
@@ -196,16 +197,19 @@ ScriptsOnlyBuild:
     methodName: CreditsScene
   - assembly: Assembly-CSharp
     fullTypeName: SceneTransitions
-    methodName: ExitGame
+    methodName: SettingsScene
   - assembly: Assembly-CSharp
     fullTypeName: SceneTransitions
     methodName: Play1Scene
   - assembly: Assembly-CSharp
     fullTypeName: SceneTransitions
-    methodName: SettingsScene
+    methodName: MainMenuScene
   - assembly: Assembly-CSharp
     fullTypeName: MenuScene
     methodName: ShowAskName
+  - assembly: Assembly-CSharp
+    fullTypeName: SceneTransitions
+    methodName: ExitGame
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: OnScrollbarClicked
@@ -247,16 +251,10 @@ ScriptsOnlyBuild:
     methodName: ResetDebugManager
   - assembly: Assembly-CSharp
     fullTypeName: Play1Scene
-    methodName: HideSettings
+    methodName: ShowAreYouSure
   - assembly: Assembly-CSharp
-    fullTypeName: Play1Scene
-    methodName: HideSettings
-  - assembly: Assembly-CSharp
-    fullTypeName: Play1Scene
-    methodName: HideSettings
-  - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: CheckAnswer
+    fullTypeName: SceneTransitions
+    methodName: MainMenuScene
   - assembly: Assembly-CSharp
     fullTypeName: Play1Scene
     methodName: ShowSettings
@@ -264,17 +262,29 @@ ScriptsOnlyBuild:
     fullTypeName: GameManager
     methodName: CheckAnswer
   - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: CheckAnswer
+    fullTypeName: Play1Scene
+    methodName: HideSettings
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: CheckAnswer
   - assembly: Assembly-CSharp
     fullTypeName: Play1Scene
-    methodName: ShowAreYouSure
+    methodName: ShowAreYouSure1
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: CheckAnswer
   - assembly: Assembly-CSharp
     fullTypeName: SceneTransitions
     methodName: MainMenuScene
+  - assembly: Assembly-CSharp
+    fullTypeName: Play1Scene
+    methodName: HideAreYouSure1
+  - assembly: Assembly-CSharp
+    fullTypeName: Play1Scene
+    methodName: ResetAllGameData
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: CheckAnswer
   - assembly: Assembly-CSharp
     fullTypeName: Play1Scene
     methodName: HideAreYouSure
@@ -283,25 +293,16 @@ ScriptsOnlyBuild:
     methodName: MainMenuScene
   - assembly: Assembly-CSharp
     fullTypeName: SceneTransitions
-    methodName: MainMenuScene
+    methodName: SettingsScene
   - assembly: Assembly-CSharp
-    fullTypeName: SceneTransitions
-    methodName: MainMenuScene
-  - assembly: Assembly-CSharp
-    fullTypeName: SceneTransitions
-    methodName: MainMenuScene
+    fullTypeName: SettingsScene
+    methodName: ShowAreYouSureOverlay
   - assembly: Assembly-CSharp
     fullTypeName: SettingsScene
     methodName: HideAreYouSureOverlay
   - assembly: Assembly-CSharp
     fullTypeName: SettingsScene
-    methodName: HidesuccessfulResetOverlay
-  - assembly: Assembly-CSharp
-    fullTypeName: SettingsScene
     methodName: ResetAllGameData
-  - assembly: Assembly-CSharp
-    fullTypeName: SettingsScene
-    methodName: ShowAreYouSureOverlay
   - assembly: Assembly-CSharp
     fullTypeName: SceneTransitions
     methodName: CreditsScene
@@ -330,9 +331,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1852}
     - Class: 114
-      Script: {instanceID: 1854}
-    - Class: 114
       Script: {instanceID: 1904}
+    - Class: 114
+      Script: {instanceID: 4424}
     - Class: 114
       Script: {instanceID: 6338}
     - Class: 114
@@ -341,6 +342,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7522}
     - Class: 114
       Script: {instanceID: 7942}
+    - Class: 114
+      Script: {instanceID: 9958}
     - Class: 114
       Script: {instanceID: 10310}
     - Class: 114
@@ -366,6 +369,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 210
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -397,9 +402,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1852}
     - Class: 114
-      Script: {instanceID: 1854}
-    - Class: 114
       Script: {instanceID: 1904}
+    - Class: 114
+      Script: {instanceID: 4424}
     - Class: 114
       Script: {instanceID: 6338}
     - Class: 114
@@ -431,6 +436,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 210
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -637,9 +644,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1852}
     - Class: 114
-      Script: {instanceID: 1854}
-    - Class: 114
       Script: {instanceID: 1904}
+    - Class: 114
+      Script: {instanceID: 4424}
     - Class: 114
       Script: {instanceID: 5968}
     - Class: 114
@@ -651,9 +658,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7454}
     - Class: 114
+      Script: {instanceID: 7492}
+    - Class: 114
       Script: {instanceID: 7522}
     - Class: 114
       Script: {instanceID: 7942}
+    - Class: 114
+      Script: {instanceID: 9958}
     - Class: 114
       Script: {instanceID: 10310}
     - Class: 114
@@ -681,6 +692,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 210
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -712,11 +725,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1852}
     - Class: 114
-      Script: {instanceID: 1854}
-    - Class: 114
       Script: {instanceID: 1904}
     - Class: 114
       Script: {instanceID: 3400}
+    - Class: 114
+      Script: {instanceID: 4424}
     - Class: 114
       Script: {instanceID: 6338}
     - Class: 114
@@ -736,8 +749,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13000}
     - Class: 114
-      Script: {instanceID: 13048}
-    - Class: 114
       Script: {instanceID: 13136}
     - Class: 114
       Script: {instanceID: 15532}
@@ -748,6 +759,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 210
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -1242,7 +1255,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 8005f82c7c4ed5f2dcb83bd612f302ba
+      Hash: 914f2e42b9ca3884ae7257d1b5b4ce40
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: BlinkingLight
@@ -1770,7 +1783,7 @@ ScriptsOnlyBuild:
     className: UnityOnDragMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 57b7f4d74bdaab8de6412dac077642f0
+      Hash: cec7da66d0c07b0af090beed891b0354
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Fade
@@ -1872,7 +1885,7 @@ ScriptsOnlyBuild:
     className: SpriteLibrary
   - hash:
       serializedVersion: 2
-      Hash: 1fd159dfb918842cbeddd5ae218afa85
+      Hash: c3b40787a00ce8b6cd085df2448fae9f
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: BackgroundMove
@@ -3299,4 +3312,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Credits.unity
   - Assets/Scenes/Settings.unity
   - Assets/Scenes/EndGame.unity
-  playerPath: C:/Users/Colby/Desktop/Artemis/Artemis.exe
+  playerPath: C:/Users/Colby/Desktop/ArtemisBuild/Artemis.exe
