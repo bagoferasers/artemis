@@ -3,7 +3,7 @@ using UnityEngine;
 /*
    File: SettingsScene.cs
    Description: Script to handle the Settings Scene.
-   Last Modified: February 11, 2024
+   Last Modified: February 19, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -24,11 +24,6 @@ public class SettingsScene : MonoBehaviour
     private GameObject settingsButtons;
 
     /// <summary>
-    /// The hazy dark background for the overlay.
-    /// </summary>
-    private GameObject haze;
-
-    /// <summary>
     /// The areYouSureOverlay GameObject overlay that will be toggled.
     /// </summary>
     private GameObject areYouSureOverlay;
@@ -38,10 +33,9 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        successfulResetOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "SuccessfulReset", sceneName: "SettingsScene.cs" );
-        areYouSureOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSure", sceneName: "SettingsScene.cs" );
-        settingsButtons = FindAndInit.InitializeGameObject( gameObjectName: "SettingsButtons", sceneName: "SettingsScene.cs" );
-        haze = FindAndInit.FindAndDeactivate( gameObjectName: "Haze", sceneName: "Play1Scene.cs" );
+        successfulResetOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "SuccessfulReset", scriptName: "SettingsScene.cs" );
+        areYouSureOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSure", scriptName: "SettingsScene.cs" );
+        settingsButtons = FindAndInit.InitializeGameObject( gameObjectName: "SettingsButtons", scriptName: "SettingsScene.cs" );
     }
 
     /// <summary>
@@ -60,7 +54,6 @@ public class SettingsScene : MonoBehaviour
     {
         areYouSureOverlay.SetActive( value: true );
         successfulResetOverlay.SetActive( value: false );
-        haze.SetActive( value: true );
         settingsButtons.SetActive( value: false );
     }
 
@@ -71,7 +64,6 @@ public class SettingsScene : MonoBehaviour
     {
         areYouSureOverlay.SetActive( value: false );
         successfulResetOverlay.SetActive( value: false );
-        haze.SetActive( value: false );
         settingsButtons.SetActive( value: true );
     }
 
@@ -83,7 +75,6 @@ public class SettingsScene : MonoBehaviour
         successfulResetOverlay.SetActive( value: true );
         areYouSureOverlay.SetActive( value: false );
         settingsButtons.SetActive( value: false );
-        haze.SetActive( value: true );
     }
 
     /// <summary>
@@ -94,6 +85,5 @@ public class SettingsScene : MonoBehaviour
         successfulResetOverlay.SetActive( value: false );
         areYouSureOverlay.SetActive( value: false );
         settingsButtons.SetActive( value: true );
-        haze.SetActive( value: false );
     }
 }

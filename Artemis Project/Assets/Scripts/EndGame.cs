@@ -5,7 +5,7 @@ using UnityEngine;
 /*
    File: LostGame.cs
    Description: Script to handle the EndGame Scene.
-   Last Modified: February 9, 2024
+   Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -35,9 +35,9 @@ public class EndGame : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        finalScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "FinalScore", sceneName: "EndGame.cs" );
+        finalScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "FinalScore", scriptName: "EndGame.cs" );
         finalScoreText.text = SaveSystem.GetInt( name: "LastPlayerScore" ).ToString( );
-        WonLostText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "WonLostText", sceneName: "EndGame.cs" );
+        WonLostText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "WonLostText", scriptName: "EndGame.cs" );
         if( SaveSystem.GetBool( name: "Won" ) == true )
         {
             WonLostText.text = "Mission Success!";

@@ -5,7 +5,7 @@ using UnityEngine;
 /*
    File: PlayerController.cs
    Description: Represents the player controller.
-   Last Modified: February 14, 2024
+   Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -41,10 +41,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        player = new Player( SaveSystem.GetInt( "PlayerScore" ), SaveSystem.GetString( "PlayerName" ) );
-        playerNameText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerName", sceneName: "PlayerController.cs" );
+        player = new Player( score: SaveSystem.GetInt( name: "PlayerScore" ), playerName: SaveSystem.GetString( name: "PlayerName" ) );
+        playerNameText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerName", scriptName: "PlayerController.cs" );
         playerNameText.text  = player.GetPlayerName( );
-        playerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerScore", sceneName: "PlayerController.cs" );
+        playerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerScore", scriptName: "PlayerController.cs" );
         playerScoreText.text = player.GetScore( ).ToString( );
         
         //Grab all GameObjects of spacecraft.

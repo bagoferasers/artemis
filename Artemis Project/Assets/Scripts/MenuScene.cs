@@ -4,7 +4,7 @@ using TMPro;
 /*
    File: MenuScene.cs
    Description: Script to handle the Main Menu Scene.
-   Last Modified: February 14, 2024
+   Last Modified: February 19, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey 
 */
@@ -30,6 +30,11 @@ public class MenuScene : MonoBehaviour
     private GameObject enterName;
 
     /// <summary>
+    /// The GameObject to be toggled for the MenuButtons overlay.
+    /// </summary>
+    public static GameObject menuButtons;
+
+    /// <summary>
     /// The InputField on the UI that the player will use to input their name.
     /// </summary>
     private TMP_InputField inputField;
@@ -45,22 +50,33 @@ public class MenuScene : MonoBehaviour
     void Start( )
     {
         //Find and initialize 
-        submitButton = FindAndInit.InitializeGameObject( gameObjectName: "Submit", sceneName: "MenuScene.cs" ).GetComponent< Button >( );
-        inputField = FindAndInit.InitializeGameObject( gameObjectName: "Field", sceneName: "MenuScene.cs" ).GetComponent< TMP_InputField >( );
-        enterName = FindAndInit.InitializeGameObject( gameObjectName: "EnterName", sceneName: "MenuScene.cs" );
-        topPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerScore", sceneName: "MenuScene.cs" );
-        topPlayerName = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerName", sceneName: "MenuScene.cs" );
+        submitButton = FindAndInit.InitializeGameObject( gameObjectName: "Submit", scriptName: "MenuScene.cs" ).GetComponent< Button >( );
+        inputField = FindAndInit.InitializeGameObject( gameObjectName: "Field", scriptName: "MenuScene.cs" ).GetComponent< TMP_InputField >( );
+        enterName = FindAndInit.InitializeGameObject( gameObjectName: "EnterName", scriptName: "MenuScene.cs" );
+        menuButtons = FindAndInit.InitializeGameObject( gameObjectName: "MenuButtons", scriptName: "MenuScene.cs" );
+        topPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerScore", scriptName: "MenuScene.cs" );
+        topPlayerName = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerName", scriptName: "MenuScene.cs" );
     
         //set score and Player name
         topPlayerScoreText.text = SaveSystem.GetInt( name: "TopPlayerScore" ).ToString( );
         topPlayerName.text = SaveSystem.GetString( name: "TopPlayerName" ).ToString( );
 
-        //turn off unnecessary objects
-        enterName.SetActive( false );
+        //turn off/on unnecessary objects
+        enterName.SetActive( value: false );
+        menuButtons.SetActive( value: false );
 
         //listen for Player input
-        inputField.onEndEdit.AddListener( delegate { HandleNameInput( inputField ); } );
-        submitButton.onClick.AddListener( ( ) => HandleNameInput( inputField ) );
+        inputField.onEndEdit.AddListener
+        ( 
+            call: ( string value ) => 
+            {
+                if( Input.GetKeyDown( key: KeyCode.Return ) || Input.GetKeyDown( key: KeyCode.KeypadEnter ) )
+                {
+                    HandleNameInput( inputField: inputField.text );
+                }
+            }
+        );
+        submitButton.onClick.AddListener( call: ( ) => HandleNameInput( inputField: inputField.text ) );
     }
 
     /// <summary>
@@ -68,21 +84,22 @@ public class MenuScene : MonoBehaviour
     /// </summary>
     public void ShowAskName( )
     {
-        enterName.SetActive( true );
+        enterName.SetActive( value: true );
+        menuButtons.SetActive( value: false );
     }
 
     /// <summary>
     /// Handles the input of a Player name from an InputField.
     /// </summary>
-    /// <param name="inputField">The InputField on the UI that the user will put their name into.</param>
-    public void HandleNameInput( TMP_InputField inputField )
+    /// <param name="string">The InputField on the UI that the user will put their name into.</param>
+    public void HandleNameInput( string inputField )
     {
-        if ( Input.GetKeyDown( KeyCode.Return ) || Input.GetKeyDown( KeyCode.KeypadEnter ) || submitButton.onClick != null )
+        if( inputField != "Enter your name..." )
         {
-            string userInput = inputField.text;
-            SaveSystem.SetString( "PlayerName", userInput );
-            inputField.text = "Enter your name...";
+            SaveSystem.SetString( name: "PlayerName", val: inputField );
+            enterName.SetActive( value: false );
+            menuButtons.SetActive( value: false );
+            SceneTransitions.Play1Scene( );
         }
-        SceneTransitions.Play1Scene( );
     }
 }

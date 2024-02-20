@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 /*
    File: Fade.cs
    Description: Represents the fading in and out of a transition.
-   Last Modified: February 17, 2024
+   Last Modified: February 19, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -15,46 +17,66 @@ using UnityEngine;
 public class Fade : MonoBehaviour
 {
     /// <summary>
-    /// The CanvasGroup of the GameObject this script is attached to.
+    /// The Light2D that will be faded in and out.
     /// </summary>
-    public static CanvasGroup fade;
+    private Light2D fade;
 
     /// <summary>
     /// The speed at which the fading will happen.
     /// </summary>
-    [ SerializeField ] private float fadeTime = 0.1f;
+    [SerializeField] private float fadeTime = 2f;
+
+    /// <summary>
+    /// The intensity to set the light to.
+    /// </summary>
+    [SerializeField] private float fadeIntensity = 1f;
+
+    /// <summary>
+    /// The time to wait before turning light on.
+    /// </summary>
+    [SerializeField] private float waitTime = 0f;
 
     /// <summary>
     /// Start is called before the first frame update. Grabs the CanvasGroup of the GameObject this script
     /// is attached to.
     /// </summary>
-    void Start( )
+    void Start()
     {
-        fade = GetComponent< CanvasGroup >( );
-        if( !SaveSystem.GetBool( name: "FirstLaunch" ) )
+        fade = GetComponent<Light2D>();
+        if (SaveSystem.GetBool(name: "FirstLaunch") == false || !SaveSystem.GetBool(name: "FirstLaunch"))
         {
-            StartCoroutine( routine: FadeIntoScene( ) );
-            SaveSystem.SetBool( name: "FirstLaunch", val: true );
+            StartCoroutine(routine: FadeIntoScene( ) );
+        }
+        else if( SceneManager.GetActiveScene( ).name == "Play1" )
+        {
+            StartCoroutine(routine: FadeIntoScene( ) );
         }
         else
         {
-            fade.alpha = 0f;
+            fade.intensity = fadeIntensity;
+            MenuScene.menuButtons.SetActive(value: true);
         }
     }
 
     /// <summary>
-    /// Fades from black to scene.
+    /// Fades computer screen from black to scene.
     /// </summary>
-    private IEnumerator FadeIntoScene( )
+    private IEnumerator FadeIntoScene()
     {
-        fade.alpha = 1f;
+        fade.intensity = 0f;
         float elapsedTime = 0f;
-        while( elapsedTime < fadeTime )
+        if (gameObject.name == "ComputerBacklight")
+            MenuScene.menuButtons.SetActive(value: false);
+        yield return new WaitForSeconds( seconds: waitTime );
+        while (elapsedTime < fadeTime)
         {
-            fade.alpha = 1f - ( elapsedTime / fadeTime );
+            fade.intensity = Mathf.Lerp(a: 0f, b: fadeIntensity, t: elapsedTime / fadeTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        fade.alpha = 0f;
+        fade.intensity = fadeIntensity;
+        if( gameObject.name == "ComputerBacklight" )
+            MenuScene.menuButtons.SetActive(value: true);
+        SaveSystem.SetBool(name: "FirstLaunch", val: true);
     }
 }
