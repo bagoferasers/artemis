@@ -2,6 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+/*
+   File: BlinkingLight.cs
+   Description: Represents the blinking of a light.
+   Last Modified: February 19, 2024
+   Last Modified By: Colby Bailey
+   Authors: Colby Bailey
+*/
+
 /// <summary>
 /// Will handle blinking a computer light on and off.
 /// </summary>
@@ -23,6 +31,11 @@ public class BlinkingLight : MonoBehaviour
     [ SerializeField ] private float maxTime = 1f;
 
     /// <summary>
+    /// The time to wait before blinking light.
+    /// </summary>
+    [SerializeField] private float waitTime = 0f;
+
+    /// <summary>
     /// Start is called before the first frame update. Grabs the Light2D Component and then starts
     /// blinking the Light2D.
     /// </summary>
@@ -37,6 +50,8 @@ public class BlinkingLight : MonoBehaviour
     /// </summary>
     IEnumerator BlinkLight( )
     {
+        light2D.enabled = false;
+        yield return new WaitForSeconds( seconds: waitTime );
         while ( true )
         {
             // Wait for a random time
