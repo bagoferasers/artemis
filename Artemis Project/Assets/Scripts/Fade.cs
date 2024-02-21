@@ -29,7 +29,7 @@ public class Fade : MonoBehaviour
     /// <summary>
     /// The intensity to set the light to.
     /// </summary>
-    [SerializeField] private float fadeIntensity = 1f;
+    public float fadeIntensity = 1f;
 
     /// <summary>
     /// The time to wait before turning light on.
@@ -54,8 +54,8 @@ public class Fade : MonoBehaviour
         else
         {
             fade.intensity = fadeIntensity;
-            MenuScene.menuButtons.SetActive(value: true);
-        }
+            MenuScene.menuButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
+            MenuScene.menuButtons.GetComponent< CanvasGroup >( ).interactable = true;        }
     }
 
     /// <summary>
@@ -66,7 +66,10 @@ public class Fade : MonoBehaviour
         fade.intensity = 0f;
         float elapsedTime = 0f;
         if (gameObject.name == "ComputerBacklight")
-            MenuScene.menuButtons.SetActive(value: false);
+        {
+            MenuScene.menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+            MenuScene.menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
+        }
         yield return new WaitForSeconds( seconds: waitTime );
         while (elapsedTime < fadeTime)
         {
@@ -76,7 +79,10 @@ public class Fade : MonoBehaviour
         }
         fade.intensity = fadeIntensity;
         if( gameObject.name == "ComputerBacklight" )
-            MenuScene.menuButtons.SetActive(value: true);
+        {
+            MenuScene.menuButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
+            MenuScene.menuButtons.GetComponent< CanvasGroup >( ).interactable = true;
+        }
         SaveSystem.SetBool(name: "FirstLaunch", val: true);
     }
 }

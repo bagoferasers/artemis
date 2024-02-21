@@ -209,7 +209,7 @@ ScriptsOnlyBuild:
     methodName: ShowAskName
   - assembly: Assembly-CSharp
     fullTypeName: SceneTransitions
-    methodName: ExitGame
+    methodName: FadeOutAndExitGame
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: OnScrollbarClicked
@@ -292,17 +292,17 @@ ScriptsOnlyBuild:
     fullTypeName: SceneTransitions
     methodName: MainMenuScene
   - assembly: Assembly-CSharp
-    fullTypeName: SceneTransitions
-    methodName: SettingsScene
-  - assembly: Assembly-CSharp
-    fullTypeName: SettingsScene
-    methodName: ShowAreYouSureOverlay
-  - assembly: Assembly-CSharp
     fullTypeName: SettingsScene
     methodName: HideAreYouSureOverlay
   - assembly: Assembly-CSharp
     fullTypeName: SettingsScene
     methodName: ResetAllGameData
+  - assembly: Assembly-CSharp
+    fullTypeName: SettingsScene
+    methodName: ShowAreYouSureOverlay
+  - assembly: Assembly-CSharp
+    fullTypeName: SceneTransitions
+    methodName: SettingsScene
   - assembly: Assembly-CSharp
     fullTypeName: SceneTransitions
     methodName: CreditsScene
@@ -619,6 +619,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
       Script: {instanceID: 0}
     Assets/Scenes/Play1.unity:
     - Class: 1
@@ -2401,7 +2403,7 @@ ScriptsOnlyBuild:
     className: Benchmark04
   - hash:
       serializedVersion: 2
-      Hash: 2b094217f8663acc1e45a32548e07885
+      Hash: 6eb78567cad7fb67c1d798929eeb1ea6
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: SceneTransitions
