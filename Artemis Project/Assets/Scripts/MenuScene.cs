@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+using UnityEngine.SceneManagement;
 /*
    File: MenuScene.cs
    Description: Script to handle the Main Menu Scene.
-   Last Modified: February 19, 2024
+   Last Modified: February 20, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey 
 */
@@ -27,7 +29,7 @@ public class MenuScene : MonoBehaviour
     /// <summary>
     /// The GameObject to be toggled for the Enter your name... overlay.
     /// </summary>
-    private GameObject enterName;
+    public static GameObject enterName;
 
     /// <summary>
     /// The GameObject to be toggled for the MenuButtons overlay.
@@ -62,8 +64,9 @@ public class MenuScene : MonoBehaviour
         topPlayerName.text = SaveSystem.GetString( name: "TopPlayerName" ).ToString( );
 
         //turn off/on unnecessary objects
-        enterName.SetActive( value: false );
-        menuButtons.SetActive( value: false );
+        enterName.GetComponent< CanvasGroup >( ).alpha = 0f;
+        enterName.GetComponent< CanvasGroup >( ).interactable = false;
+        enterName.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
 
         //listen for Player input
         inputField.onEndEdit.AddListener
@@ -72,6 +75,8 @@ public class MenuScene : MonoBehaviour
             {
                 if( Input.GetKeyDown( key: KeyCode.Return ) || Input.GetKeyDown( key: KeyCode.KeypadEnter ) )
                 {
+                    if (submitButton.GetComponent< ButtonAudioEffects >( ).clickClip && ButtonAudioEffects.audioSource )
+                        ButtonAudioEffects.audioSource.PlayOneShot( clip: submitButton.GetComponent< ButtonAudioEffects >( ).clickClip );
                     HandleNameInput( inputField: inputField.text );
                 }
             }
@@ -84,8 +89,7 @@ public class MenuScene : MonoBehaviour
     /// </summary>
     public void ShowAskName( )
     {
-        enterName.SetActive( value: true );
-        menuButtons.SetActive( value: false );
+        StartCoroutine( routine: WaitForAudioSimple( ) );
     }
 
     /// <summary>
@@ -97,9 +101,36 @@ public class MenuScene : MonoBehaviour
         if( inputField != "Enter your name..." )
         {
             SaveSystem.SetString( name: "PlayerName", val: inputField );
-            enterName.SetActive( value: false );
-            menuButtons.SetActive( value: false );
-            SceneTransitions.Play1Scene( );
+            StartCoroutine( routine: WaitForAudio( ) );
         }
+    }
+
+    private IEnumerator WaitForAudio( )
+    {
+        while( ButtonAudioEffects.audioSource.isPlaying )
+        {
+            yield return null;
+        }
+        enterName.GetComponent< CanvasGroup >( ).alpha = 0f;
+        menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+        enterName.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        enterName.GetComponent< CanvasGroup >( ).interactable = false;
+        menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
+        SceneManager.LoadScene( sceneName: "Play1" );
+    }
+
+    private IEnumerator WaitForAudioSimple( )
+    {
+        while( ButtonAudioEffects.audioSource.isPlaying )
+        {
+            yield return null;
+        }
+        enterName.GetComponent< CanvasGroup >( ).alpha = 1f;
+        menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+        enterName.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        enterName.GetComponent< CanvasGroup >( ).interactable = true;
+        menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
     }
 }

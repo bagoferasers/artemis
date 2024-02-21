@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 /*
    File: SettingsScene.cs
    Description: Script to handle the Settings Scene.
-   Last Modified: February 19, 2024
+   Last Modified: February 20, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -33,9 +34,16 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        successfulResetOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "SuccessfulReset", scriptName: "SettingsScene.cs" );
-        areYouSureOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSure", scriptName: "SettingsScene.cs" );
+        successfulResetOverlay = FindAndInit.InitializeGameObject( gameObjectName: "SuccessfulReset", scriptName: "SettingsScene.cs" );
+        areYouSureOverlay = FindAndInit.InitializeGameObject( gameObjectName: "AreYouSure", scriptName: "SettingsScene.cs" );
         settingsButtons = FindAndInit.InitializeGameObject( gameObjectName: "SettingsButtons", scriptName: "SettingsScene.cs" );
+
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = false;
     }
 
     /// <summary>
@@ -43,6 +51,15 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     public void ResetAllGameData( )
     {
+        StartCoroutine( routine: ResetWaitForAudio( ) );
+    }
+
+    private IEnumerator ResetWaitForAudio( )
+    {
+        while( ButtonAudioEffects.audioSource.isPlaying )
+        {
+            yield return null;
+        }
         SaveSystem.ResetAllData( );
         ShowsuccessfulResetOverlay( );
     }
@@ -52,9 +69,7 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     public void ShowAreYouSureOverlay( )
     {
-        areYouSureOverlay.SetActive( value: true );
-        successfulResetOverlay.SetActive( value: false );
-        settingsButtons.SetActive( value: false );
+        StartCoroutine( routine: ShowAreYouSureWaitForAudio( ) );
     }
 
     /// <summary>
@@ -62,9 +77,7 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     public void HideAreYouSureOverlay( )
     {
-        areYouSureOverlay.SetActive( value: false );
-        successfulResetOverlay.SetActive( value: false );
-        settingsButtons.SetActive( value: true );
+        StartCoroutine( routine: HideAreYouSureWaitForAudio( ) );
     }
 
     /// <summary>
@@ -72,9 +85,7 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     private void ShowsuccessfulResetOverlay( )
     {
-        successfulResetOverlay.SetActive( value: true );
-        areYouSureOverlay.SetActive( value: false );
-        settingsButtons.SetActive( value: false );
+        StartCoroutine( routine: ShowSuccessfulResetWaitForAudio( ) );
     }
 
     /// <summary>
@@ -82,8 +93,82 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     public void HidesuccessfulResetOverlay( )
     {
-        successfulResetOverlay.SetActive( value: false );
-        areYouSureOverlay.SetActive( value: false );
-        settingsButtons.SetActive( value: true );
+        StartCoroutine( routine: HideSuccessfulResetWaitForAudio( ) );
+    }
+
+    private IEnumerator ShowAreYouSureWaitForAudio( )
+    {
+        while( ButtonAudioEffects.audioSource.isPlaying )
+        {
+            yield return null;
+        }
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 1f;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        settingsButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = true;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).interactable = false;
+    }
+
+    private IEnumerator HideAreYouSureWaitForAudio( )
+    {
+        while( ButtonAudioEffects.audioSource.isPlaying )
+        {
+            yield return null;
+        }
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        settingsButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
+
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).interactable = true;
+    }
+
+    private IEnumerator ShowSuccessfulResetWaitForAudio( )
+    {
+        while( ButtonAudioEffects.audioSource.isPlaying )
+        {
+            yield return null;
+        }
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 1f;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        settingsButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = true;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).interactable = false;
+    }
+
+    private IEnumerator HideSuccessfulResetWaitForAudio( )
+    {
+        while( ButtonAudioEffects.audioSource.isPlaying )
+        {
+            yield return null;
+        }
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        settingsButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
+
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).interactable = true;
     }
 }
