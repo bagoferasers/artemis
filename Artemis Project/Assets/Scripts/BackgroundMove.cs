@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,11 +47,29 @@ public class BackgroundMove : MonoBehaviour
     private float startObjectY;
 
     /// <summary>
+    /// The amount of time to wait before moving background.
+    /// </summary>
+    [SerializeField] private float waitTime = 3f;
+
+    /// <summary>
+    /// Controls when to move background.
+    /// </summary>
+    private bool doneWaiting = false;
+
+    /// <summary>
     /// List of blocks.
     /// </summary>
     /// <typeparam name="BlockMouse">a gameobject block of mouse down.</typeparam>
     /// <returns></returns>
      [SerializeField] private List<BlockMouse> blockMouse = new List<BlockMouse>();
+
+    /// <summary>
+    /// Start is called before the first frame update.  Starts the waiting to move IEnumerator.
+    /// </summary>
+     void Start( )
+     {
+        StartCoroutine( routine: WaitToMove( ) );
+     }
 
     /// <summary>
     /// Handles player input for dragging the background and updates the pause state.
@@ -59,26 +78,48 @@ public class BackgroundMove : MonoBehaviour
     /// </summary>
     void Update()
     {
-        bool insideBlockingArea = false;
-        foreach( BlockMouse b in blockMouse )
+        if( doneWaiting )
         {
-            if( b.clickedOutsideArea )
+            bool insideBlockingArea = false;
+            foreach( BlockMouse b in blockMouse )
             {
-                insideBlockingArea = true;
-                break;
+                if( b.clickedOutsideArea )
+                {
+                    insideBlockingArea = true;
+                    break;
+                }
             }
-        }
 
-        if( !insideBlockingArea )
-        {
-            HandleDrag( );
-        }
+            if( !insideBlockingArea )
+            {
+                HandleDrag( );
+            }
 
-        if (Input.GetMouseButtonUp(button: 0))
-        {
-            paused = false;
-            isDragging = false;
+            if (Input.GetMouseButtonUp(button: 0))
+            {
+                paused = false;
+                isDragging = false;
+            }            
         }
+    }
+
+    /// <summary>
+    /// Waits a certain amount of time before allowing background to move.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator WaitToMove( )
+    {
+        gameObject.GetComponent< CanvasGroup >( ).alpha = 0f;
+        float elapsedTime = 0f;
+        while ( elapsedTime < waitTime )
+        {
+            gameObject.GetComponent< CanvasGroup >( ).alpha = Mathf.Lerp( a: 0f, b: 1f, t: elapsedTime / waitTime );
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        gameObject.GetComponent< CanvasGroup >( ).alpha = 1f;
+        yield return new WaitForSeconds( seconds: waitTime );
+        doneWaiting = true;
     }
 
     /// <summary>
@@ -121,7 +162,7 @@ public class BackgroundMove : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        if (!paused && !isDragging)
+        if (doneWaiting && !paused && !isDragging)
         {
             MoveBackground();
         }

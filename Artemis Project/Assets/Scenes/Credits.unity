@@ -1187,6 +1187,7 @@ GameObject:
   - component: {fileID: 959872842}
   - component: {fileID: 959872845}
   - component: {fileID: 959872846}
+  - component: {fileID: 959872847}
   m_Layer: 5
   m_Name: Move
   m_TagString: Untagged
@@ -1229,6 +1230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -3
+  waitTime: 1
   blockMouse:
   - {fileID: 268523357}
   - {fileID: 491796874}
@@ -1285,6 +1287,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 123.30524, y: 2155.9817}
   m_EdgeRadius: 0
+--- !u!225 &959872847
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959872840}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1090964200
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,7 +2714,7 @@ VideoPlayer:
   m_RenderMode: 2
   m_AspectRatio: 1
   m_DataSource: 0
-  m_TimeUpdateMode: 2
+  m_TimeUpdateMode: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources: []
