@@ -431,6 +431,7 @@
 "Assets/SaveGame/Scripts/TestSaveGame.cs"
 "Assets/Scripts/BackgroundMove.cs"
 "Assets/Scripts/BlinkingLight.cs"
+"Assets/Scripts/BlockMouse.cs"
 "Assets/Scripts/ButtonAudioEffects.cs"
 "Assets/Scripts/CreditsScene.cs"
 "Assets/Scripts/EndGame.cs"
