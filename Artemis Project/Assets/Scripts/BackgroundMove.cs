@@ -32,7 +32,7 @@ public class BackgroundMove : MonoBehaviour
     /// Indicates whether the player is currently dragging the background with the mouse.
     /// This flag is used to enable manual movement of the background via mouse drag.
     /// </summary>
-    private bool isDragging = false;
+    public static bool isDragging = false;
 
     /// <summary>
     /// Stores the starting Y position of the mouse when the drag begins.
@@ -64,10 +64,16 @@ public class BackgroundMove : MonoBehaviour
      [SerializeField] private List<BlockMouse> blockMouse = new List<BlockMouse>();
 
     /// <summary>
+    /// The starting position Y to have the credits scene at on start().
+    /// </summary>
+     private float startingPosY = -44;
+
+    /// <summary>
     /// Start is called before the first frame update.  Starts the waiting to move IEnumerator.
     /// </summary>
      void Start( )
      {
+        this.transform.position = new Vector2( x: 0f, y: startingPosY );
         StartCoroutine( routine: WaitToMove( ) );
      }
 
@@ -146,7 +152,7 @@ public class BackgroundMove : MonoBehaviour
                 }
             }
 
-            if (isDragging )
+            if (isDragging && BeginningBlock.blockedBeginning == false )
             {
                 Vector3 currentMousePos = Input.mousePosition;
                 currentMousePos.z = -cameraToObjectDistance; // Adjust Z distance for current mouse position
