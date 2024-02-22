@@ -1,9 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /*
    File: BackgroundMove.cs
    Description: Represents the class that moves the backdrop of the game.
-   Last Modified: February 21, 2024
+   Last Modified: February 22, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -30,7 +32,7 @@ public class BackgroundMove : MonoBehaviour
     /// Indicates whether the player is currently dragging the background with the mouse.
     /// This flag is used to enable manual movement of the background via mouse drag.
     /// </summary>
-    private bool isDragging = false;
+    public static bool isDragging = false;
 
     /// <summary>
     /// Stores the starting Y position of the mouse when the drag begins.
@@ -45,45 +47,119 @@ public class BackgroundMove : MonoBehaviour
     private float startObjectY;
 
     /// <summary>
+    /// The amount of time to wait before moving background.
+    /// </summary>
+    [SerializeField] private float waitTime = 3f;
+
+    /// <summary>
+    /// Controls when to move background.
+    /// </summary>
+    private bool doneWaiting = false;
+
+    /// <summary>
+    /// List of blocks.
+    /// </summary>
+    /// <typeparam name="BlockMouse">a gameobject block of mouse down.</typeparam>
+    /// <returns></returns>
+     [SerializeField] private List<BlockMouse> blockMouse = new List<BlockMouse>();
+
+    /// <summary>
+    /// The starting position Y to have the credits scene at on start().
+    /// </summary>
+     private float startingPosY = -44;
+
+    /// <summary>
+    /// Start is called before the first frame update.  Starts the waiting to move IEnumerator.
+    /// </summary>
+     void Start( )
+     {
+        this.transform.position = new Vector2( x: 0f, y: startingPosY );
+        StartCoroutine( routine: WaitToMove( ) );
+     }
+
+    /// <summary>
     /// Handles player input for dragging the background and updates the pause state.
     /// On mouse down, checks if the background was clicked and initiates dragging if so.
     /// On mouse up, stops dragging and resumes automatic movement if applicable.
     /// </summary>
     void Update()
     {
+        if( doneWaiting )
+        {
+            bool insideBlockingArea = false;
+            foreach( BlockMouse b in blockMouse )
+            {
+                if( b.clickedOutsideArea )
+                {
+                    insideBlockingArea = true;
+                    break;
+                }
+            }
+
+            if( !insideBlockingArea )
+            {
+                HandleDrag( );
+            }
+
+            if (Input.GetMouseButtonUp(button: 0))
+            {
+                paused = false;
+                isDragging = false;
+            }            
+        }
+    }
+
+    /// <summary>
+    /// Waits a certain amount of time before allowing background to move.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator WaitToMove( )
+    {
+        gameObject.GetComponent< CanvasGroup >( ).alpha = 0f;
+        float elapsedTime = 0f;
+        while ( elapsedTime < waitTime )
+        {
+            gameObject.GetComponent< CanvasGroup >( ).alpha = Mathf.Lerp( a: 0f, b: 1f, t: elapsedTime / waitTime );
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        gameObject.GetComponent< CanvasGroup >( ).alpha = 1f;
+        yield return new WaitForSeconds( seconds: waitTime );
+        doneWaiting = true;
+    }
+
+    /// <summary>
+    /// Handles Player drag of background.
+    /// </summary>
+    private void HandleDrag()
+    {
         // Calculate the distance from the camera to the GameObject along the Z axis
         float cameraToObjectDistance = Camera.main.transform.position.z - transform.position.z;
 
-        if (Input.GetMouseButtonDown(button: 0))
-        {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = -cameraToObjectDistance; // Set the Z distance
-            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(position: mousePos);
-            RaycastHit2D hit = Physics2D.Raycast(origin: mouseWorldPos, direction: Vector2.zero);
-
-            if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+            if (Input.GetMouseButtonDown(button: 0) )
             {
-                paused = true;
-                isDragging = true;
-                startMouseY = mouseWorldPos.y;
-                startObjectY = transform.position.y;
+                Vector3 mousePos = Input.mousePosition;
+                mousePos.z = -cameraToObjectDistance; // Set the Z distance
+                Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(position: mousePos);
+                RaycastHit2D hit = Physics2D.Raycast(origin: mouseWorldPos, direction: Vector2.zero);
+
+                if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+                {
+                    paused = true;
+                    isDragging = true;
+                    startMouseY = mouseWorldPos.y;
+                    startObjectY = transform.position.y;
+                }
             }
-        }
 
-        if (isDragging)
-        {
-            Vector3 currentMousePos = Input.mousePosition;
-            currentMousePos.z = -cameraToObjectDistance; // Adjust Z distance for current mouse position
-            Vector2 currentMouseWorldPos = Camera.main.ScreenToWorldPoint(position: currentMousePos);
-            float deltaY = currentMouseWorldPos.y - startMouseY;
-            transform.position = new Vector3(x: transform.position.x, y: startObjectY + deltaY, z: transform.position.z);
-        }
-
-        if (Input.GetMouseButtonUp(button: 0))
-        {
-            paused = false;
-            isDragging = false;
-        }
+            if (isDragging && BeginningBlock.blockedBeginning == false )
+            {
+                Vector3 currentMousePos = Input.mousePosition;
+                currentMousePos.z = -cameraToObjectDistance; // Adjust Z distance for current mouse position
+                Vector2 currentMouseWorldPos = Camera.main.ScreenToWorldPoint(position: currentMousePos);
+                float deltaY = currentMouseWorldPos.y - startMouseY;
+                transform.position = new Vector3(x: transform.position.x, y: startObjectY + deltaY, z: transform.position.z);
+            }
     }
 
     /// <summary>
@@ -92,7 +168,7 @@ public class BackgroundMove : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        if (!paused && !isDragging)
+        if (doneWaiting && !paused && !isDragging)
         {
             MoveBackground();
         }

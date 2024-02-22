@@ -29,9 +29,8 @@ public class CreditsScene : MonoBehaviour
     private TextMeshProUGUI sourcesText;
 
     /// <summary>
-    /// Initializes
-    /// TextMeshProUGUI component, loads the sources to the sourcesList, and displays
-    /// sources to the UI.
+    /// Start is called before the first frame update.  Initializes TextMeshProUGUI component, 
+    /// loads the sources to the sourcesList, and displays sources to the UI.
     /// </summary>
     void Start()
     {
