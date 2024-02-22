@@ -259,7 +259,6 @@ public class GameManager : MonoBehaviour
     public void CheckAnswer( string incomingAnswerText )
     {   
         selectedButton = FindAndInit.InitializeGameObject( gameObjectName: incomingAnswerText, scriptName: "GameManager.cs" );
-
         if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
         {
             int currentScore;

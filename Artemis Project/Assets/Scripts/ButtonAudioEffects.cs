@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement; // Needed for UI event handling
+using UnityEngine.SceneManagement;
+using UnityEngine.UI; // Needed for UI event handling
 
 /*
    File: ButtonAudioEffects.cs

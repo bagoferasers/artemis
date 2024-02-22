@@ -37,9 +37,7 @@ public class Play1Scene : MonoBehaviour
         triviaHolder = FindAndInit.InitializeGameObject( gameObjectName: "TriviaHolder", scriptName: "Play1Scene.cs" );
         successfulResetOverlay = FindAndInit.InitializeGameObject( gameObjectName: "SuccessfulReset", scriptName: "SettingsScene.cs" );
         ProgressBar.paused = false;
-        HideAreYouSure( );
-        HideAreYouSure1( );
-        HideSettings( );
+        ShowMenuButtonsAndTrivia( );
     }
 
     /// <summary>
@@ -51,22 +49,12 @@ public class Play1Scene : MonoBehaviour
         ProgressBar.paused = true;
         BackgroundMove.paused = true;
         areYouSure.GetComponent< CanvasGroup >( ).alpha = 1f;
-        settings.GetComponent< CanvasGroup >( ).alpha = 0f;
-        menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
-        areYouSure1.GetComponent< CanvasGroup >( ).alpha = 0f;
-        triviaHolder.GetComponent< CanvasGroup >( ).alpha = 0f;
-
         areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-        settings.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        areYouSure1.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-
         areYouSure.GetComponent< CanvasGroup >( ).interactable = true;
-        settings.GetComponent< CanvasGroup >( ).interactable = false;
-        menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
-        areYouSure1.GetComponent< CanvasGroup >( ).interactable = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).interactable = false;
+        HideSettingsOverlay( );
+        HideAreYouSure1Overlay( );
+        HideMenuButtonsAndTrivia( );
+        HidesuccessfulResetOverlay( );
     }
 
     /// <summary>
@@ -77,23 +65,7 @@ public class Play1Scene : MonoBehaviour
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = false;
         BackgroundMove.paused = false;
-        areYouSure.GetComponent< CanvasGroup >( ).alpha = 0f;
-        settings.GetComponent< CanvasGroup >( ).alpha = 0f;
-        menuButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
-        areYouSure1.GetComponent< CanvasGroup >( ).alpha = 0f;
-        triviaHolder.GetComponent< CanvasGroup >( ).alpha = 1f;
-
-        areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        settings.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-        areYouSure1.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-
-        areYouSure.GetComponent< CanvasGroup >( ).interactable = false;
-        settings.GetComponent< CanvasGroup >( ).interactable = false;
-        menuButtons.GetComponent< CanvasGroup >( ).interactable = true;
-        areYouSure1.GetComponent< CanvasGroup >( ).interactable = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).interactable = true;
+        ShowMenuButtonsAndTrivia( );
     }
 
     /// <summary>
@@ -104,23 +76,13 @@ public class Play1Scene : MonoBehaviour
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = true;
         BackgroundMove.paused = true;
-        areYouSure.GetComponent< CanvasGroup >( ).alpha = 0f;
-        settings.GetComponent< CanvasGroup >( ).alpha = 0f;
-        menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+        HideSettingsOverlay( );
+        HideAreYouSureOverlay( );
+        HideMenuButtonsAndTrivia( );
+        HidesuccessfulResetOverlay( );
         areYouSure1.GetComponent< CanvasGroup >( ).alpha = 1f;
-        triviaHolder.GetComponent< CanvasGroup >( ).alpha = 0f;
-
-        areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        settings.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
         areYouSure1.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-        triviaHolder.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-
-        areYouSure.GetComponent< CanvasGroup >( ).interactable = false;
-        settings.GetComponent< CanvasGroup >( ).interactable = false;
-        menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
         areYouSure1.GetComponent< CanvasGroup >( ).interactable = true;
-        triviaHolder.GetComponent< CanvasGroup >( ).interactable = false;
     }
 
     /// <summary>
@@ -131,23 +93,7 @@ public class Play1Scene : MonoBehaviour
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = false;
         BackgroundMove.paused = false;
-        areYouSure.GetComponent< CanvasGroup >( ).alpha = 0f;
-        settings.GetComponent< CanvasGroup >( ).alpha = 0f;
-        menuButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
-        areYouSure1.GetComponent< CanvasGroup >( ).alpha = 0f;
-        triviaHolder.GetComponent< CanvasGroup >( ).alpha = 1f;
-
-        areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        settings.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-        areYouSure1.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-
-        areYouSure.GetComponent< CanvasGroup >( ).interactable = false;
-        settings.GetComponent< CanvasGroup >( ).interactable = false;
-        menuButtons.GetComponent< CanvasGroup >( ).interactable = true;
-        areYouSure1.GetComponent< CanvasGroup >( ).interactable = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).interactable = true;
+        ShowMenuButtonsAndTrivia( );
     }
 
     /// <summary>
@@ -158,23 +104,13 @@ public class Play1Scene : MonoBehaviour
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = true;
         BackgroundMove.paused = true;
-        areYouSure.GetComponent< CanvasGroup >( ).alpha = 0f;
+        HideAreYouSureOverlay( );
         settings.GetComponent< CanvasGroup >( ).alpha = 1f;
-        menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
-        areYouSure1.GetComponent< CanvasGroup >( ).alpha = 0f;
-        triviaHolder.GetComponent< CanvasGroup >( ).alpha = 0f;
-
-        areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
         settings.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        areYouSure1.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-
-        areYouSure.GetComponent< CanvasGroup >( ).interactable = false;
         settings.GetComponent< CanvasGroup >( ).interactable = true;
-        menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
-        areYouSure1.GetComponent< CanvasGroup >( ).interactable = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).interactable = false;
+        HidesuccessfulResetOverlay( );
+        HideAreYouSure1Overlay( );
+        HideMenuButtonsAndTrivia( );
     }
 
     /// <summary>
@@ -185,23 +121,7 @@ public class Play1Scene : MonoBehaviour
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = false;
         BackgroundMove.paused = false;
-        areYouSure.GetComponent< CanvasGroup >( ).alpha = 0f;
-        settings.GetComponent< CanvasGroup >( ).alpha = 0f;
-        menuButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
-        areYouSure1.GetComponent< CanvasGroup >( ).alpha = 0f;
-        triviaHolder.GetComponent< CanvasGroup >( ).alpha = 1f;
-
-        areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        settings.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-        areYouSure1.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-
-        areYouSure.GetComponent< CanvasGroup >( ).interactable = false;
-        settings.GetComponent< CanvasGroup >( ).interactable = false;
-        menuButtons.GetComponent< CanvasGroup >( ).interactable = true;
-        areYouSure1.GetComponent< CanvasGroup >( ).interactable = false;
-        triviaHolder.GetComponent< CanvasGroup >( ).interactable = true;
+        ShowMenuButtonsAndTrivia( );
     }
 
     /// <summary>
@@ -221,6 +141,40 @@ public class Play1Scene : MonoBehaviour
         areYouSure.GetComponent< CanvasGroup >( ).alpha = 0f;
         successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = true;
         areYouSure.GetComponent< CanvasGroup >( ).interactable = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+        areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+    }
+
+    private void HideSettingsOverlay( )
+    {
+        settings.GetComponent< CanvasGroup >( ).alpha = 0f;
+        settings.GetComponent< CanvasGroup >( ).interactable = false;
+        settings.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+    }
+
+    /// <summary>
+    /// Hides the successful reset overlay.
+    /// </summary>
+    private void HidesuccessfulResetOverlay( )
+    {
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+    }
+
+    private void HideAreYouSureOverlay( )
+    {
+        areYouSure.GetComponent< CanvasGroup >( ).alpha = 0f;
+        areYouSure.GetComponent< CanvasGroup >( ).interactable = false;
+        areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+
+    }
+
+    private void HideAreYouSure1Overlay( )
+    {
+        areYouSure1.GetComponent< CanvasGroup >( ).alpha = 0f;
+        areYouSure1.GetComponent< CanvasGroup >( ).interactable = false;
+        areYouSure1.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
     }
 
     private IEnumerator ResetWaitForAudio( )
@@ -239,5 +193,29 @@ public class Play1Scene : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    private void ShowMenuButtonsAndTrivia( )
+    {
+        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+        triviaHolder.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+        menuButtons.GetComponent< CanvasGroup >( ).interactable = true;
+        triviaHolder.GetComponent< CanvasGroup >( ).interactable = true;
+        menuButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
+        triviaHolder.GetComponent< CanvasGroup >( ).alpha = 1f;
+        HideAreYouSureOverlay( );
+        HideSettingsOverlay( );
+        HideAreYouSure1Overlay( );
+        HidesuccessfulResetOverlay( );
+    }
+
+    private void HideMenuButtonsAndTrivia( )
+    {
+        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        triviaHolder.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
+        triviaHolder.GetComponent< CanvasGroup >( ).interactable = false;
+        menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+        triviaHolder.GetComponent< CanvasGroup >( ).alpha = 0f;
     }
 }
