@@ -4,7 +4,6 @@ using UnityEngine;
 
 /*
    File: PlayerController.cs
-   Description: Represents the player controller.
    Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey

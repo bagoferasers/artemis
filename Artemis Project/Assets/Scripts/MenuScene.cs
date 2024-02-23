@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections;
 /*
    File: MenuScene.cs
-   Description: Script to handle the Main Menu Scene.
-   Last Modified: February 20, 2024
+   Last Modified: February 23, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey 
 */
@@ -47,10 +46,36 @@ public class MenuScene : MonoBehaviour
     private Button submitButton;
 
     /// <summary>
+    /// The AudioClip to play upon game exit.
+    /// </summary>
+    [SerializeField] private AudioClip shutDowncomputer;
+
+    /// <summary>
+    /// The AudioClip to play upon game enter.
+    /// </summary>    
+    [SerializeField] private AudioClip startUpcomputer;
+
+    /// <summary>
+    /// The duration to fade the audio out.
+    /// </summary>
+    [SerializeField] private float fadeOutDuration = 7.0f;
+
+    /// <summary>
+    /// The AudioSource that will play AudioClips.
+    /// </summary>
+    private AudioSource audioSource;
+
+    /// <summary>
     /// Initializes top player score to UI.
     /// </summary>    
     void Start( )
     {
+        audioSource = GetComponent< AudioSource >( );
+        if (SaveSystem.GetBool(name: "FirstLaunch") == false || !SaveSystem.GetBool(name: "FirstLaunch"))
+        {
+            StartCoroutine(routine: FadeAudioSourceStartToEnd(startVolume: 1f, endVolume: 0f, duration: fadeOutDuration, clip: startUpcomputer ) );
+        }
+
         //Find and initialize 
         submitButton = FindAndInit.InitializeGameObject( gameObjectName: "Submit", scriptName: "MenuScene.cs" ).GetComponent< Button >( );
         inputField = FindAndInit.InitializeGameObject( gameObjectName: "Field", scriptName: "MenuScene.cs" ).GetComponent< TMP_InputField >( );
@@ -89,7 +114,12 @@ public class MenuScene : MonoBehaviour
     /// </summary>
     public void ShowAskName( )
     {
-        StartCoroutine( routine: WaitForAudioSimple( ) );
+        enterName.GetComponent< CanvasGroup >( ).alpha = 1f;
+        menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+        enterName.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        enterName.GetComponent< CanvasGroup >( ).interactable = true;
+        menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
     }
 
     /// <summary>
@@ -101,36 +131,47 @@ public class MenuScene : MonoBehaviour
         if( inputField != "Enter your name..." )
         {
             SaveSystem.SetString( name: "PlayerName", val: inputField );
-            StartCoroutine( routine: WaitForAudio( ) );
+            enterName.GetComponent< CanvasGroup >( ).alpha = 0f;
+            menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+            enterName.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+            menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+            enterName.GetComponent< CanvasGroup >( ).interactable = false;
+            menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
+            SceneManager.LoadScene( sceneName: "Play1" );
         }
     }
 
-    private IEnumerator WaitForAudio( )
+    /// <summary>
+    /// Starts the audio fade out and disables buttons upon game exit.
+    /// </summary>
+    public void ExitGameFromMainMenu( )
     {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
+        StartCoroutine(routine: FadeAudioSourceStartToEnd(startVolume: 1f, endVolume: 0f, duration: fadeOutDuration, clip: shutDowncomputer ) );
         enterName.GetComponent< CanvasGroup >( ).alpha = 0f;
         menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
         enterName.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
         menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
         enterName.GetComponent< CanvasGroup >( ).interactable = false;
         menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
-        SceneManager.LoadScene( sceneName: "Play1" );
     }
 
-    private IEnumerator WaitForAudioSimple( )
+    /// <summary>
+    /// Coroutine to fade audio volume
+    /// </summary>
+    /// <param name="startVolume">The volume to start the audio at.</param>
+    /// <param name="endVolume">The volume to end the audio at.</param>
+    /// <param name="duration">The duration to fade the audio.</param>
+    /// <param name="clip">The AudioClip to fade.</param>
+    /// <returns></returns>
+    private IEnumerator FadeAudioSourceStartToEnd(float startVolume, float endVolume, float duration, AudioClip clip )
     {
-        while( ButtonAudioEffects.audioSource.isPlaying )
+        audioSource.PlayOneShot( clip );
+        float currentTime = 0;
+        while (currentTime < duration)
         {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(a: startVolume, b: endVolume, t: currentTime / duration);
             yield return null;
         }
-        enterName.GetComponent< CanvasGroup >( ).alpha = 1f;
-        menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
-        enterName.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
-        menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
-        enterName.GetComponent< CanvasGroup >( ).interactable = true;
-        menuButtons.GetComponent< CanvasGroup >( ).interactable = false;
     }
 }

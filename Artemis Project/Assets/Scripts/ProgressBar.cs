@@ -4,7 +4,6 @@ using System.Collections;
 
 /*
    File: PlayerController.cs
-   Description: Represents a progress bar in game.
    Last Modified: February 20, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey

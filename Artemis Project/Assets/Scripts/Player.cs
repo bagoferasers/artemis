@@ -1,6 +1,5 @@
 /*
    File: Player.cs
-   Description: Represents a player.
    Last Modified: February 10, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey

@@ -4,12 +4,14 @@ using UnityEngine.UI;
 
 /*
    File: FindAndInit.cs
-   Description: Script to handle finding and initializing different GameObjects or their components.
    Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
 
+/// <summary>
+/// Script to handle finding and initializing different GameObjects or their components.
+/// </summary>
 public class FindAndInit : MonoBehaviour
 {
     /// <summary>

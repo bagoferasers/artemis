@@ -4,10 +4,11 @@ using UnityEngine;
 using System.IO;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 
 /*
    File: GameManager.cs
-   Description: Manages the core functions of the trivia game.
    Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
@@ -259,7 +260,6 @@ public class GameManager : MonoBehaviour
     public void CheckAnswer( string incomingAnswerText )
     {   
         selectedButton = FindAndInit.InitializeGameObject( gameObjectName: incomingAnswerText, scriptName: "GameManager.cs" );
-
         if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
         {
             int currentScore;
@@ -294,9 +294,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void DisplayTrue( )
     {
-        selectedButton.GetComponentInParent< Image >( ).color = Color.green;
-        numberCorrect.color = Color.green;
-        StartCoroutine( routine: WaitForColor( timeInSeconds: 0.2f ) );
+        StartCoroutine( routine: WaitForColor( timeInSeconds: 0.2f, color: "green" ) );
     }
 
     /// <summary>
@@ -304,9 +302,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void DisplayFalse( )
     {
-        selectedButton.GetComponentInParent< Image >( ).color = Color.red;
-        numberCorrect.color = Color.red;
-        StartCoroutine( routine: WaitForColor( timeInSeconds: 0.2f ) );
+        StartCoroutine( routine: WaitForColor( timeInSeconds: 0.2f, color: "red" ) );
     }
 
     /// <summary>
@@ -314,15 +310,28 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="timeInSeconds">The time button will wait before returning to original color.</param>
     /// <returns></returns>
-    private IEnumerator WaitForColor( float timeInSeconds )
+    private IEnumerator WaitForColor( float timeInSeconds, string color )
     {
+        Color origButtonColor = selectedButton.GetComponentInParent< Image >( ).color;
+        Color origNumberCorrectColor = numberCorrect.color;
+        if( color == "green" )
+        {
+            selectedButton.GetComponentInParent< Image >( ).color = Color.green;
+            numberCorrect.color = Color.green;            
+        }
+        else if( color == "red" )
+        {
+            selectedButton.GetComponentInParent< Image >( ).color = Color.red;
+            numberCorrect.color = Color.red;   
+        }
         yield return new WaitForSeconds( seconds: timeInSeconds );
-        selectedButton.GetComponentInParent< Image >( ).color = Color.white;
-        numberCorrect.color = new Color( r: 108f, g: 126f, b: 162f );
+        selectedButton.GetComponentInParent< Image >( ).color = origButtonColor;
+        numberCorrect.color = origNumberCorrectColor;
         RemoveQuestion( );
         if( questions[ index: currentStageNumber ].stageQuestions.Count > 0 )
         {
             AskQuestion( );
         }
+        EventSystem.current.SetSelectedGameObject( selected: null );
     }
 }

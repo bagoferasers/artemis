@@ -1,29 +1,49 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement; // Needed for UI event handling
+using UnityEngine.SceneManagement;
 
 /*
    File: ButtonAudioEffects.cs
-   Description: Script to handle the audio effects of Buttons.
    Last Modified: February 20, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
 
+// Requires an AudioSource on gameObject.
 [RequireComponent(requiredComponent: typeof(AudioSource))]
-public class ButtonAudioEffects : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler // Implement IPointerDownHandler
-{
-    public AudioClip hoverClip; // Assign in the Inspector
-    public AudioClip clickClip; // Assign in the Inspector
 
+/// <summary>
+/// Script to handle the audio effects of Buttons.
+/// </summary>
+public class ButtonAudioEffects : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
+{
+    /// <summary>
+    /// AudioClip to play on button hover.
+    /// </summary>
+    public AudioClip hoverClip;
+
+    /// <summary>
+    /// AudioClip to play on button click.
+    /// </summary>
+    public AudioClip clickClip;
+
+    /// <summary>
+    /// AudioSource to play AudioClips.
+    /// </summary>
     public static AudioSource audioSource;
 
+    /// <summary>
+    /// Start is called before the first frame update.
+    /// </summary>
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Handle pointer enter (hover)
+    /// <summary>
+    /// Handle pointer enter (hover).
+    /// </summary>
+    /// <param name="eventData">Data from Mouse pointer.</param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (hoverClip && audioSource && SceneManager.GetActiveScene().name != "Main")
@@ -40,7 +60,10 @@ public class ButtonAudioEffects : MonoBehaviour, IPointerEnterHandler, IPointerD
         }
     }
 
-    // Handle pointer down
+    /// <summary>
+    /// Handle Mouse pointer down.
+    /// </summary>
+    /// <param name="eventData">Data from Mouse pointer.</param>
     public void OnPointerDown(PointerEventData eventData)
     {
         if (clickClip && audioSource && SceneManager.GetActiveScene().name != "Main")
@@ -57,6 +80,10 @@ public class ButtonAudioEffects : MonoBehaviour, IPointerEnterHandler, IPointerD
         }
     }
 
+    /// <summary>
+    /// Plays an AudioClip once.
+    /// </summary>
+    /// <param name="clip">The AudioClip to play.</param>
     private void PlayAudioClip(AudioClip clip)
     {
         if (gameObject.GetComponentInParent<CanvasGroup>())

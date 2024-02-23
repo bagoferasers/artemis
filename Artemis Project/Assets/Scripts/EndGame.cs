@@ -4,7 +4,6 @@ using UnityEngine;
 
 /*
    File: LostGame.cs
-   Description: Script to handle the EndGame Scene.
    Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
