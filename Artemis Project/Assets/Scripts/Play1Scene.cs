@@ -47,7 +47,6 @@ public class Play1Scene : MonoBehaviour
     {
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = true;
-        BackgroundMove.paused = true;
         areYouSure.GetComponent< CanvasGroup >( ).alpha = 1f;
         areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
         areYouSure.GetComponent< CanvasGroup >( ).interactable = true;
@@ -64,7 +63,6 @@ public class Play1Scene : MonoBehaviour
     {
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = false;
-        BackgroundMove.paused = false;
         ShowMenuButtonsAndTrivia( );
     }
 
@@ -75,7 +73,6 @@ public class Play1Scene : MonoBehaviour
     {
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = true;
-        BackgroundMove.paused = true;
         HideSettingsOverlay( );
         HideAreYouSureOverlay( );
         HideMenuButtonsAndTrivia( );
@@ -92,7 +89,6 @@ public class Play1Scene : MonoBehaviour
     {
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = false;
-        BackgroundMove.paused = false;
         ShowMenuButtonsAndTrivia( );
     }
 
@@ -103,7 +99,6 @@ public class Play1Scene : MonoBehaviour
     {
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = true;
-        BackgroundMove.paused = true;
         HideAreYouSureOverlay( );
         settings.GetComponent< CanvasGroup >( ).alpha = 1f;
         settings.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
@@ -120,7 +115,6 @@ public class Play1Scene : MonoBehaviour
     {
         StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = false;
-        BackgroundMove.paused = false;
         ShowMenuButtonsAndTrivia( );
     }
 
