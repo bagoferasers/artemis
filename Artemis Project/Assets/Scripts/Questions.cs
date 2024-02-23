@@ -3,15 +3,13 @@ using System;
 
 /*
    File: Questions.cs
-   Description: Script to represent each .csv as a list of Questions for each Stage in game. Also defines
-                a Question class that will represent a Question object.
    Last Modified: February 9, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
 
 /// <summary>
-/// Represents an object that will hold the list of Questions from a .csv.
+/// Script to represent each .csv as a list of Questions for each Stage in game. Also defines a Question class that will represent a Question object.
 /// </summary>
 public class Questions
 {

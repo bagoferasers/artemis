@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 /*
    File: Fade.cs
-   Description: Represents the fading in and out of a transition.
    Last Modified: February 19, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey

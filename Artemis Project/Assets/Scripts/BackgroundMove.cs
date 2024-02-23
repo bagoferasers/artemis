@@ -4,7 +4,6 @@ using UnityEngine;
 
 /*
    File: BackgroundMove.cs
-   Description: Represents the class that moves the backdrop of the game.
    Last Modified: February 22, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey

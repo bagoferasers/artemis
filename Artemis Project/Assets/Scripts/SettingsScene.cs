@@ -1,10 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
 /*
    File: SettingsScene.cs
-   Description: Script to handle the Settings Scene.
-   Last Modified: February 20, 2024
+   Last Modified: February 23, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -51,57 +49,14 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     public void ResetAllGameData( )
     {
-        StartCoroutine( routine: ResetWaitForAudio( ) );
-    }
-
-    private IEnumerator ResetWaitForAudio( )
-    {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
         SaveSystem.ResetAllData( );
-        ShowsuccessfulResetOverlay( );
-    }
+        ShowsuccessfulResetOverlay( );    }
 
     /// <summary>
     /// Shows the AreYouSure? overlay.
     /// </summary>
     public void ShowAreYouSureOverlay( )
     {
-        StartCoroutine( routine: ShowAreYouSureWaitForAudio( ) );
-    }
-
-    /// <summary>
-    /// Hides the AreYouSure? overlay.
-    /// </summary>
-    public void HideAreYouSureOverlay( )
-    {
-        StartCoroutine( routine: HideAreYouSureWaitForAudio( ) );
-    }
-
-    /// <summary>
-    /// Shows the successful reset overlay.
-    /// </summary>
-    private void ShowsuccessfulResetOverlay( )
-    {
-        StartCoroutine( routine: ShowSuccessfulResetWaitForAudio( ) );
-    }
-
-    /// <summary>
-    /// Hides the successful reset overlay.
-    /// </summary>
-    public void HidesuccessfulResetOverlay( )
-    {
-        StartCoroutine( routine: HideSuccessfulResetWaitForAudio( ) );
-    }
-
-    private IEnumerator ShowAreYouSureWaitForAudio( )
-    {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
         areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 1f;
         successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
         settingsButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
@@ -115,12 +70,11 @@ public class SettingsScene : MonoBehaviour
         settingsButtons.GetComponent< CanvasGroup >( ).interactable = false;
     }
 
-    private IEnumerator HideAreYouSureWaitForAudio( )
+    /// <summary>
+    /// Hides the AreYouSure? overlay.
+    /// </summary>
+    public void HideAreYouSureOverlay( )
     {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
         areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
         successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
         settingsButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
@@ -134,12 +88,11 @@ public class SettingsScene : MonoBehaviour
         settingsButtons.GetComponent< CanvasGroup >( ).interactable = true;
     }
 
-    private IEnumerator ShowSuccessfulResetWaitForAudio( )
+    /// <summary>
+    /// Shows the successful reset overlay.
+    /// </summary>
+    private void ShowsuccessfulResetOverlay( )
     {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
         successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 1f;
         areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
         settingsButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
@@ -153,12 +106,11 @@ public class SettingsScene : MonoBehaviour
         settingsButtons.GetComponent< CanvasGroup >( ).interactable = false;
     }
 
-    private IEnumerator HideSuccessfulResetWaitForAudio( )
+    /// <summary>
+    /// Hides the successful reset overlay.
+    /// </summary>
+    public void HidesuccessfulResetOverlay( )
     {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
         successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
         areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
         settingsButtons.GetComponent< CanvasGroup >( ).alpha = 1f;

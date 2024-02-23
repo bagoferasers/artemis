@@ -9,7 +9,6 @@ using UnityEngine.EventSystems;
 
 /*
    File: GameManager.cs
-   Description: Manages the core functions of the trivia game.
    Last Modified: February 17, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey

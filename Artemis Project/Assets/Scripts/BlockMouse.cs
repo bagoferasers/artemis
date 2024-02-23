@@ -2,7 +2,6 @@ using UnityEngine;
 
 /*
    File: BlockMouse.cs
-   Description: Represents the class prevents a player from Mouse Down input on game object.
    Last Modified: February 22, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey

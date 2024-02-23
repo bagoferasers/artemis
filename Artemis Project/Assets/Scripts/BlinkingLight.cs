@@ -4,7 +4,6 @@ using UnityEngine.Rendering.Universal;
 
 /*
    File: BlinkingLight.cs
-   Description: Represents the blinking of a light.
    Last Modified: February 19, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey

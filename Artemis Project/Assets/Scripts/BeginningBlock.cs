@@ -2,8 +2,6 @@ using UnityEngine;
 
 /*
    File: BeginningBlock.cs
-   Description: Represents the class that blocks a Player from moving 
-                credits up and down when colliding with the top of the credits.
    Last Modified: February 22, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey

@@ -1,12 +1,10 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine;
-using Unity.VisualScripting;
 
 /*
    File: SceneTransitions.cs
-   Description: Script to handle scene transitions.
-   Last Modified: February 20, 2024
+   Last Modified: February 23, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -16,8 +14,6 @@ using Unity.VisualScripting;
 /// </summary>
 public class SceneTransitions : MonoBehaviour
 {
-    public static SceneTransitions Instance { get; private set; }
-
     /// <summary>
     /// The CanvasGroup alpha to fade to.
     /// </summary>
@@ -43,13 +39,6 @@ public class SceneTransitions : MonoBehaviour
         SaveSystem.CheckForSaveSystem();
     }
 
-    void Awake( )
-    {
-        if( Instance == null )
-        {
-            Instance = this;
-        }
-    }
     /// <summary>
     /// When quitting application forcefully, save data first.
     /// </summary>
@@ -68,7 +57,6 @@ public class SceneTransitions : MonoBehaviour
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
         float elapsedTime = 0f;
-        StartCoroutine( routine: WaitForAudioSimple( ) );
         while (elapsedTime < fadeTime)
         {
             gameObject.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(a: fromFadeAlpha, b: toFadeAlpha, t: elapsedTime / fadeTime);
@@ -76,8 +64,7 @@ public class SceneTransitions : MonoBehaviour
             yield return null;
         }
         gameObject.GetComponent<CanvasGroup>().alpha = toFadeAlpha;
-        Debug.Log(message: "Exiting Game!");
-        Instance.WaitForAudioSimple( );
+        ExitGame( );
     }
 
     /// <summary>
@@ -105,36 +92,13 @@ public class SceneTransitions : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForAudio( string sceneName )
-    {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
-        SceneManager.LoadScene(sceneName: sceneName );
-    }
-
-    private IEnumerator WaitForAudioSimple( )
-    {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
-        Application.Quit();
-    }
-
     /// <summary>
     /// The method that transitions the Scene to the main menu.
     /// </summary>
     public static void MainMenuScene()
     {
-        Instance.LoadWhenAudioDone( sceneName: "Main" );
-    }
-
-    public void LoadWhenAudioDone( string sceneName )
-    {
-        CheckIfSceneExists(sceneName: sceneName);
-        StartCoroutine( routine: WaitForAudio( sceneName ) );
+        CheckIfSceneExists(sceneName: "Main");
+        SceneManager.LoadScene(sceneName: "Main" );
     }
 
     /// <summary>
@@ -150,7 +114,8 @@ public class SceneTransitions : MonoBehaviour
         {
             SaveSystem.SetBool(name: "Won", val: false);
         }
-        Instance.LoadWhenAudioDone( sceneName: "EndGame" );
+        CheckIfSceneExists(sceneName: "EndGame");
+        SceneManager.LoadScene(sceneName: "EndGame" );
     }
 
     /// <summary>
@@ -158,7 +123,8 @@ public class SceneTransitions : MonoBehaviour
     /// </summary>
     public static void CreditsScene()
     {
-        Instance.LoadWhenAudioDone( sceneName: "Credits" );
+        CheckIfSceneExists(sceneName: "Credits");
+        SceneManager.LoadScene(sceneName: "Credits" );
     }
 
     /// <summary>
@@ -167,7 +133,8 @@ public class SceneTransitions : MonoBehaviour
     public static void EndGameCreditsScene()
     {
         SaveSystem.SetInt(name: "LastPlayerScore", val: 0);
-        Instance.LoadWhenAudioDone( sceneName: "Credits" );
+        CheckIfSceneExists(sceneName: "Credits");
+        SceneManager.LoadScene(sceneName: "Credits" );
     }
 
     /// <summary>
@@ -175,7 +142,8 @@ public class SceneTransitions : MonoBehaviour
     /// </summary>
     public static void Play1Scene()
     {
-        Instance.LoadWhenAudioDone( sceneName: "Play1" );
+        CheckIfSceneExists(sceneName: "Play1");
+        SceneManager.LoadScene(sceneName: "Play1" );
     }
 
     /// <summary>
@@ -183,7 +151,8 @@ public class SceneTransitions : MonoBehaviour
     /// </summary>
     public static void SettingsScene()
     {
-        Instance.LoadWhenAudioDone( sceneName: "Settings" );
+        CheckIfSceneExists(sceneName: "Settings");
+        SceneManager.LoadScene(sceneName: "Settings" );
     }
 
     /// <summary>
@@ -194,7 +163,7 @@ public class SceneTransitions : MonoBehaviour
         Debug.Log(message: "Exiting Game!");
         SaveSystem.SetBool(name: "FirstLaunch", val: false);
         SaveSystem.SaveToDisk();
-        Instance.WaitForAudioSimple( );
+        Application.Quit();
     }
 
     /// <summary>
@@ -202,6 +171,7 @@ public class SceneTransitions : MonoBehaviour
     /// </summary>
     public void FadeOutAndExitGame()
     {
+        FindAndInit.InitializeGameObject( gameObjectName: "BackgroundNoise", scriptName: "SceneTransitions" ).GetComponent< BackgroundNoise >( ).OnApplicationQuit( );
         StartCoroutine(routine: FadeOut());
         SaveSystem.SetBool(name: "FirstLaunch", val: false);
         SaveSystem.SaveToDisk();

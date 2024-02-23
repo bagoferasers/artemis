@@ -1,11 +1,8 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 /*
    File: Play1Scene.cs
-   Description: Script to handle the Play1 Scene.
-   Last Modified: February 22, 2024
+   Last Modified: February 23, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -45,7 +42,6 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     public void ShowAreYouSure( )
     {
-        StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = true;
         areYouSure.GetComponent< CanvasGroup >( ).alpha = 1f;
         areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
@@ -61,7 +57,6 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     public void HideAreYouSure( )
     {
-        StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = false;
         ShowMenuButtonsAndTrivia( );
     }
@@ -71,7 +66,6 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     public void ShowAreYouSure1( )
     {
-        StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = true;
         HideSettingsOverlay( );
         HideAreYouSureOverlay( );
@@ -87,7 +81,6 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     public void HideAreYouSure1( )
     {
-        StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = false;
         ShowMenuButtonsAndTrivia( );
     }
@@ -97,7 +90,6 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     public void ShowSettings( )
     {
-        StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = true;
         HideAreYouSureOverlay( );
         settings.GetComponent< CanvasGroup >( ).alpha = 1f;
@@ -113,7 +105,6 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     public void HideSettings( )
     {
-        StartCoroutine( routine: WaitForAudio( ) );
         ProgressBar.paused = false;
         ShowMenuButtonsAndTrivia( );
     }
@@ -123,7 +114,8 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     public void ResetAllGameData( )
     {
-        StartCoroutine( routine: ResetWaitForAudio( ) );
+        SaveSystem.ResetAllData( );
+        ShowsuccessfulResetOverlay( );
     }
 
     /// <summary>
@@ -139,6 +131,9 @@ public class Play1Scene : MonoBehaviour
         areYouSure.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
     }
 
+    /// <summary>
+    /// Hides the settings overlay.
+    /// </summary>
     private void HideSettingsOverlay( )
     {
         settings.GetComponent< CanvasGroup >( ).alpha = 0f;
@@ -156,6 +151,9 @@ public class Play1Scene : MonoBehaviour
         successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
     }
 
+    /// <summary>
+    /// Hides the AreYouSure overlay.
+    /// </summary>
     private void HideAreYouSureOverlay( )
     {
         areYouSure.GetComponent< CanvasGroup >( ).alpha = 0f;
@@ -164,6 +162,9 @@ public class Play1Scene : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Hides the AreYouSure1 overlay.
+    /// </summary>
     private void HideAreYouSure1Overlay( )
     {
         areYouSure1.GetComponent< CanvasGroup >( ).alpha = 0f;
@@ -171,24 +172,9 @@ public class Play1Scene : MonoBehaviour
         areYouSure1.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
     }
 
-    private IEnumerator ResetWaitForAudio( )
-    {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
-        SaveSystem.ResetAllData( );
-        ShowsuccessfulResetOverlay( );
-    }
-
-    private IEnumerator WaitForAudio( )
-    {
-        while( ButtonAudioEffects.audioSource.isPlaying )
-        {
-            yield return null;
-        }
-    }
-
+    /// <summary>
+    /// Shows the menu buttons and trivia buttons.
+    /// </summary>
     private void ShowMenuButtonsAndTrivia( )
     {
         menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
@@ -203,6 +189,9 @@ public class Play1Scene : MonoBehaviour
         HidesuccessfulResetOverlay( );
     }
 
+    /// <summary>
+    /// Hides the menu buttons and trivia buttons.
+    /// </summary>
     private void HideMenuButtonsAndTrivia( )
     {
         menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
