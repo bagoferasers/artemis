@@ -47,7 +47,6 @@ public class SceneTransitions : MonoBehaviour
         Debug.Log(message: "Exiting Game!");
         SaveSystem.SetBool(name: "FirstLaunch", val: false);
         SaveSystem.SaveToDisk();
-
     }
 
     /// <summary>
@@ -55,15 +54,24 @@ public class SceneTransitions : MonoBehaviour
     /// </summary>
     private IEnumerator FadeOut()
     {
-        gameObject.GetComponent<CanvasGroup>().alpha = 0f;
+        GameObject backgroundNoiseGameObject = FindAndInit.InitializeGameObject( gameObjectName: "BackgroundNoise", scriptName: "SceneTransitions.cs" );
+        AudioSource audioSourceBackground = backgroundNoiseGameObject.GetComponent< AudioSource >( );
+        float backgroundVolume = audioSourceBackground.volume;
+        GameObject menuHandlerGameObject = FindAndInit.InitializeGameObject( gameObjectName: "MainMenuHandler", scriptName: "SceneTransitions.cs" );
+        AudioSource audioSourceMenu = menuHandlerGameObject.GetComponent< AudioSource >( );
+        float menuVolume = audioSourceMenu.volume;
         float elapsedTime = 0f;
         while (elapsedTime < fadeTime)
         {
-            gameObject.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(a: fromFadeAlpha, b: toFadeAlpha, t: elapsedTime / fadeTime);
+            this.gameObject.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(a: fromFadeAlpha, b: toFadeAlpha, t: elapsedTime / fadeTime);
+            audioSourceBackground.volume = Mathf.Lerp(a: toFadeAlpha, b: fromFadeAlpha, t: elapsedTime / fadeTime);
+            audioSourceMenu.volume = Mathf.Lerp(a: toFadeAlpha, b: fromFadeAlpha, t: elapsedTime / fadeTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        gameObject.GetComponent<CanvasGroup>().alpha = toFadeAlpha;
+        this.gameObject.GetComponent<CanvasGroup>().alpha = toFadeAlpha;
+        audioSourceBackground.volume = fromFadeAlpha;
+        audioSourceMenu.volume = fromFadeAlpha;
         ExitGame( );
     }
 
@@ -171,7 +179,6 @@ public class SceneTransitions : MonoBehaviour
     /// </summary>
     public void FadeOutAndExitGame()
     {
-        FindAndInit.InitializeGameObject( gameObjectName: "BackgroundNoise", scriptName: "SceneTransitions" ).GetComponent< BackgroundNoise >( ).OnApplicationQuit( );
         StartCoroutine(routine: FadeOut());
         SaveSystem.SetBool(name: "FirstLaunch", val: false);
         SaveSystem.SaveToDisk();

@@ -1816,7 +1816,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.99951196
+    width: 1
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
@@ -3302,8 +3302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundClip: {fileID: 8300000, guid: ed9a96a367f9252439dbea5c187d0b66, type: 3}
-  fadeInDuration: 5
-  fadeOutDuration: 1
+  fadeInDuration: 1
 --- !u!4 &1559449725
 Transform:
   m_ObjectHideFlags: 0

@@ -24,14 +24,9 @@ public class BackgroundNoise : MonoBehaviour
     [SerializeField] private float fadeInDuration = 2.0f;
 
     /// <summary>
-    /// The duration to fade the audio out.
-    /// </summary>
-    [SerializeField] private float fadeOutDuration = 2.0f;
-
-    /// <summary>
     /// The AudioSource to play the AudioClip from.
     /// </summary>
-    private AudioSource audioSource;
+    public static AudioSource audioSource;
 
     /// <summary>
     /// Ensure this object persists and doesn't get destroyed when loading a new scene.
@@ -80,13 +75,5 @@ public class BackgroundNoise : MonoBehaviour
         {
             source.Stop();
         }
-    }
-
-    /// <summary>
-    /// Register to the application quit event to fade audio out.
-    /// </summary>
-    public void OnApplicationQuit()
-    {
-        StartCoroutine(routine: FadeAudioSourceStartToEnd(startVolume: 1f, endVolume: 0f, duration: fadeOutDuration, source: audioSource, play: false));
     }
 }
