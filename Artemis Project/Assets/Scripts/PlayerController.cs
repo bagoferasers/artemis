@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
    File: PlayerController.cs
-   Last Modified: February 17, 2024
+   Last Modified: February 25, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Will hold the current player score.
     /// </summary>
-    private TextMeshProUGUI playerScoreText;
+    public TextMeshProUGUI playerScoreText;
 
     /// <summary>
     /// Will hold the current player name.
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
         playerNameText.text  = player.GetPlayerName( );
         playerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerScore", scriptName: "PlayerController.cs" );
         playerScoreText.text = player.GetScore( ).ToString( );
+        SaveSystem.SetString( name: "LastPlayerName", val: player.GetPlayerName( ) );
         
         //Grab all GameObjects of spacecraft.
         foreach ( Transform child in transform )
@@ -68,5 +69,6 @@ public class PlayerController : MonoBehaviour
     void Update( )
     {
         playerScoreText.text = player.GetScore( ).ToString( );
+        SaveSystem.SetInt( name: "PlayerScore", val: player.GetScore( ) );
     }
 }

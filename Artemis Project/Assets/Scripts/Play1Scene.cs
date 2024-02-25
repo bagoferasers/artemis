@@ -2,7 +2,7 @@ using UnityEngine;
 
 /*
    File: Play1Scene.cs
-   Last Modified: February 23, 2024
+   Last Modified: February 25, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -18,14 +18,9 @@ public class Play1Scene : MonoBehaviour
     private GameObject settings, areYouSure, menuButtons, areYouSure1, triviaHolder, successfulResetOverlay;
 
     /// <summary>
-    /// A BackGroundMove object that will be used to toggle as paused.
-    /// </summary>
-    public BackgroundMove backgroundMove;
-
-    /// <summary>
     /// Start is called before the first frame update. Initializes the Scene, GameObjects, and Buttons.
     /// </summary>    
-    void Start( )
+    void Awake( )
     {
         settings = FindAndInit.InitializeGameObject( gameObjectName: "SettingsButtons", scriptName: "Play1Scene.cs" );
         areYouSure = FindAndInit.InitializeGameObject( gameObjectName: "AreYouSure", scriptName: "Play1Scene.cs" );

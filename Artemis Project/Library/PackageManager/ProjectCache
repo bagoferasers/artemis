@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638418952736594498
-    m_Hash: 2672372591
+      ticks: 638443847806334645
+    m_Hash: 1795329449
   m_LockFileStatus:
     m_FilePath: E:/GitHubProjects/artemis/Artemis Project/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638443158560224567
-    m_Hash: 895546567
+      ticks: 638443847806359734
+    m_Hash: 658378195
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -1859,12 +1859,12 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.textmeshpro@3.0.6
+- packageId: com.unity.textmeshpro@3.0.8
   testable: 0
   isDirectDependency: 1
-  version: 3.0.6
+  version: 3.0.8
   source: 1
-  resolvedPath: E:\GitHubProjects\artemis\Artemis Project\Library\PackageCache\com.unity.textmeshpro@3.0.6
+  resolvedPath: E:\GitHubProjects\artemis\Artemis Project\Library\PackageCache\com.unity.textmeshpro@3.0.8
   assetPath: Packages/com.unity.textmeshpro
   name: com.unity.textmeshpro
   displayName: TextMeshPro
@@ -1873,7 +1873,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Text Rendering
-  type: asset
+  type: assets
   description: 'TextMeshPro is the ultimate text solution for Unity. It''s the perfect
     replacement for Unity''s UI Text and the legacy Text Mesh.
 
@@ -2034,13 +2034,13 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637547111200000000
-  documentationUrl: 
+  datePublishedTicks: 638433339070000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.textmeshpro.git
-    revision: 01e57e3b7de18af9dfe9baaa0a0ff5cc4765c899
+    revision: dd92f03985c9bda38a4721cc146a6b74d2832a1f
     path: 
   unityLifecycle:
     version: 3.0.6
