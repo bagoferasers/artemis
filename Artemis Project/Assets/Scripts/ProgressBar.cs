@@ -54,22 +54,17 @@ public class ProgressBar : MonoBehaviour
     /// </remarks>
     void Awake()
     {
-        // Ensure a single instance of the ProgressBar exists.
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(target: gameObject); // Prevents the object from being destroyed on scene loads.
+            DontDestroyOnLoad(target: gameObject);
         }
 
-        // Initialize slider and fillImage components from the GameObject named "ProgressBar".
         slider = FindAndInit.InitializeGameObject(gameObjectName: "ProgressBar", scriptName: "ProgressBar.cs").GetComponent<Slider>();
         fillImage = FindAndInit.InitializeGameObject(gameObjectName: "ProgressBar", scriptName: "ProgressBar.cs").GetComponentInChildren<Image>();
         
-        // Set initial values for the slider and its fill image.
         slider.value = 0f;
         fillImage.color = Color.green;
-        
-        // Configure the progress bar for the current game stage.
         SetupStage(stageNumber: GameManager.currentStageNumber);
     }
 
@@ -88,12 +83,12 @@ public class ProgressBar : MonoBehaviour
             if (!paused)
             {
                 slider.value = Mathf.Lerp(a: startValue, b: endValue, t: elapsedTime / duration);
-                ChangeSliderColorBasedOnValue(); // Update the color based on the new slider value.
+                ChangeSliderColorBasedOnValue();
                 elapsedTime += Time.deltaTime;
             }
             yield return null;
         }
-        slider.value = endValue; // Ensure slider reaches the end value.
+        slider.value = endValue;
         SaveSystem.SetBool(name: "StageFinish", val: true);
     }
 
@@ -109,9 +104,8 @@ public class ProgressBar : MonoBehaviour
         // Calculate the progress within the stage as a fraction of the stage's total range.
         float currentStageValue = slider.value - normalizedStartValue;
         float stageTotalRange = normalizedEndValue - normalizedStartValue;
-        float stageProgress = currentStageValue / stageTotalRange; // This should now correctly represent progress from 0 to 1 within the stage.
+        float stageProgress = currentStageValue / stageTotalRange;
 
-        // Update colors based on stageProgress.
         if (stageProgress <= 0.5)
             fillImage.color = Color.green;
         else if (stageProgress <= 0.75)
@@ -120,26 +114,15 @@ public class ProgressBar : MonoBehaviour
             fillImage.color = Color.red;
     }
 
-
     /// <summary>
     /// Resets the slider for the current stage, setting its value according to the stage's starting percentage,
     /// changing the fill color to green, and restarting the slider update coroutine with the current stage's duration.
     /// </summary>
-    /// <remarks>
-    /// If a slider update coroutine is already running, it stops the coroutine before starting a new one.
-    /// This ensures that the slider behavior and appearance are correctly initialized for the new stage.
-    /// </remarks>
     public void ResetSliderForStage()
     {
-        // Set the slider's value based on the current stage's starting percentage.
         slider.value = GameManager.sliderPercentageFrom / 100f * slider.maxValue;
-        
-        // Reset the fill color to green, indicating the start of a new stage.
         fillImage.color = Color.green;
-
         StopAllCoroutines( );
-
-        // Start a new coroutine to update the slider's value over time, based on the current stage's duration.
         coroutine = StartCoroutine(routine: UpdateSliderValue( duration: GameManager.sliderDuration ));
     }
 
@@ -147,23 +130,19 @@ public class ProgressBar : MonoBehaviour
     /// Configures the slider settings for a specified game stage and resets the slider to reflect these new settings.
     /// </summary>
     /// <param name="stageNumber">The number of the stage to set up. Each stage has predefined slider start and end percentages, and a duration.</param>
-    /// <remarks>
-    /// This method adjusts the game's difficulty and progression by changing the slider's range and the time allowed for completion based on the stage number.
-    /// Invokes <see cref="ResetSliderForStage"/> to apply the new settings and restart the slider.
-    /// </remarks>
     public void SetupStage(int stageNumber) {
         switch(stageNumber) {
             case 0: 
                 GameManager.sliderPercentageFrom = 0;
-                GameManager.sliderPercentageTo = 50;
-                GameManager.sliderDuration = 20; // Sets the duration for stage 0
-                ResetSliderForStage(); // Resets the slider for the new stage settings
+                GameManager.sliderPercentageTo = 25;
+                GameManager.sliderDuration = 30;
+                ResetSliderForStage();
                 break;
             case 1:
-                GameManager.sliderPercentageFrom = 50;
+                GameManager.sliderPercentageFrom = 25;
                 GameManager.sliderPercentageTo = 100;
-                GameManager.sliderDuration = 10; // Sets a longer duration for stage 1
-                ResetSliderForStage(); // Resets the slider to reflect stage 1 settings
+                GameManager.sliderDuration = 60;
+                ResetSliderForStage();
                 break;
         }
     }

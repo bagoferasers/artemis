@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
         numberCorrect.text = numberOfQuestionsRight.ToString();
         numberNeeded.text = numberOfQuestionsNeeded.ToString( );
         stageDisplay.text = currentStageNumber.ToString();
-        // SaveSystem.SetInt( name: "LastPlayerScore", val: playerController.player.GetScore( ) );
+
         if( currentStageNumber != -1 && currentStageNumber != 2 )
             CheckForStageCompletion();
     }
@@ -213,11 +213,14 @@ public class GameManager : MonoBehaviour
         {
             case -1:
                 //Current lost game
+                if( coroutine != null )
+                    StopCoroutine( routine: coroutine );
+                    
                 if( ProgressBar.Instance != null )
                     Destroy( obj: ProgressBar.Instance );
+
                 SaveSystem.SetInt( name: "LastPlayerScore", val: SaveSystem.GetInt(name: "PlayerScore") );
                 Debug.Log(message: "Lost game at stage " + currentStageNumber + " !");
-                // SaveSystem.SetInt(name: "LastPlayerScore", val: playerController.player.GetScore());
                 if ((SaveSystem.GetInt(name: "LastPlayerScore") <= 0 && SaveSystem.GetInt(name: "TopPlayerScore") == 0)
                     || (SaveSystem.GetInt(name: "LastPlayerScore") > SaveSystem.GetInt(name: "TopPlayerScore"))
                 )
@@ -225,8 +228,6 @@ public class GameManager : MonoBehaviour
                     SaveSystem.SetInt(name: "TopPlayerScore", val: SaveSystem.GetInt(name: "LastPlayerScore"));
                     SaveSystem.SetString( name: "TopPlayerName", val: SaveSystem.GetString(name: "LastPlayerName" ) );
                 }
-                if( coroutine != null )
-                    StopCoroutine( routine: coroutine );
                 SceneTransitions.EndGameScene(won: false);
                 break;
             case 0:
@@ -234,7 +235,7 @@ public class GameManager : MonoBehaviour
                 numberOfQuestionsNeeded = 5;
                 LoadQuestions();
                 SaveSystem.SetBool(name: "StageFinish", val: false);
-                if ( questions[index: currentStageNumber].stageQuestions.Count > 0 && numberOfQuestionsRight < numberOfQuestionsNeeded )
+                if ( questions[index: currentStageNumber].stageQuestions.Count > 2 )
                 {
                     AskQuestion();
                 }
@@ -246,12 +247,14 @@ public class GameManager : MonoBehaviour
                 SaveSystem.SetBool(name: "StageFinish", val: false);
                 break;
             case 2:
+                if( coroutine != null )
+                    StopCoroutine( routine: coroutine );
+
                 if( ProgressBar.Instance != null )
                     Destroy( obj: ProgressBar.Instance );
+
                 SaveSystem.SetInt( name: "LastPlayerScore", val: SaveSystem.GetInt(name: "PlayerScore") );
-                //Current won game. Update case # to always be the last before default.
                 Debug.Log(message: "Won game at stage " + currentStageNumber + " !");
-                // SaveSystem.SetInt(name: "LastPlayerScore", val: playerController.player.GetScore());
                 if ((SaveSystem.GetInt(name: "LastPlayerScore") <= 0 && SaveSystem.GetInt(name: "TopPlayerScore") == 0)
                     || (SaveSystem.GetInt(name: "LastPlayerScore") > SaveSystem.GetInt(name: "TopPlayerScore"))
                 )
@@ -259,8 +262,6 @@ public class GameManager : MonoBehaviour
                     SaveSystem.SetInt(name: "TopPlayerScore", val: playerController.player.GetScore());
                     SaveSystem.SetString(name: "TopPlayerName", val: playerController.player.GetPlayerName());
                 }
-                if( coroutine != null )
-                    StopCoroutine( routine: coroutine );
                 SceneTransitions.EndGameScene(won: true);
                 break;
             default:
@@ -336,7 +337,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void AskQuestion()
     {
-        if (questions[index: currentStageNumber].stageQuestions.Count > 0 && numberOfQuestionsRight < numberOfQuestionsNeeded)
+        if (questions[index: currentStageNumber].stageQuestions.Count > 2 )
         {
             randomQuestionNumber = rnd.Next(minValue: 0, maxValue: questions.Count - 1);
             questionT.text = questions[index: currentStageNumber].stageQuestions[index: randomQuestionNumber].GetQuestionText();
@@ -345,6 +346,12 @@ public class GameManager : MonoBehaviour
             answer2T.text = questions[index: currentStageNumber].stageQuestions[index: randomQuestionNumber].GetAnswer(i: 1).GetAnswerText();
             answer3T.text = questions[index: currentStageNumber].stageQuestions[index: randomQuestionNumber].GetAnswer(i: 2).GetAnswerText();
             answer4T.text = questions[index: currentStageNumber].stageQuestions[index: randomQuestionNumber].GetAnswer(i: 3).GetAnswerText();
+        }
+        else
+        {
+            currentStageNumber = -1;
+            numberOfQuestionsRight = 0;
+            HandleStage( stageNumber: currentStageNumber );
         }
     }
 
@@ -356,7 +363,7 @@ public class GameManager : MonoBehaviour
     public void CheckAnswer(string incomingAnswerText)
     {
         selectedButton = FindAndInit.InitializeGameObject(gameObjectName: incomingAnswerText, scriptName: "GameManager.cs");
-        if (questions[index: currentStageNumber].stageQuestions.Count > 0)
+        if ( questions[index: currentStageNumber].stageQuestions.Count > 2 )
         {
             int currentScore;
             if (questions[index: currentStageNumber].stageQuestions[index: randomQuestionNumber].GetCorrectAnswer().GetAnswerText() == selectedButton.GetComponent<TextMeshProUGUI>().text)
@@ -382,7 +389,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void RemoveQuestion()
     {
-        questions[index: currentStageNumber].stageQuestions.Remove(item: questions[index: currentStageNumber].stageQuestions[index: randomQuestionNumber]);
+        if( currentStageNumber != -1 && currentStageNumber != 2 )
+            questions[index: currentStageNumber].stageQuestions.Remove(item: questions[index: currentStageNumber].stageQuestions[index: randomQuestionNumber]);
     }
 
     /// <summary>
@@ -390,6 +398,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void DisplayTrue()
     {
+        if( coroutine != null )
+            StopCoroutine( routine: coroutine );
         coroutine = StartCoroutine(routine: WaitForColor(timeInSeconds: 0.1f, color: "green"));
     }
 
@@ -398,6 +408,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void DisplayFalse()
     {
+        if( coroutine != null )
+            StopCoroutine( routine: coroutine );
         coroutine = StartCoroutine(routine: WaitForColor(timeInSeconds: 0.1f, color: "red"));
     }
 
@@ -422,14 +434,17 @@ public class GameManager : MonoBehaviour
             playerController.playerScoreText.color = Color.red;
         }
         yield return new WaitForSeconds(seconds: timeInSeconds);
-        selectedButton.GetComponentInParent<Image>().color = origColor;
-        numberCorrect.color = origColor;
-        playerController.playerScoreText.color = origColor;
+        if( selectedButton )
+        {
+            selectedButton.GetComponentInParent<Image>().color = origColor;
+            numberCorrect.color = origColor;
+            playerController.playerScoreText.color = origColor; 
+        }
         RemoveQuestion();
-        if ( questions[index: currentStageNumber].stageQuestions.Count > 0 && numberOfQuestionsRight < numberOfQuestionsNeeded )
+        if ( currentStageNumber != -1 && currentStageNumber != 2 )
         {
             AskQuestion();
-        }
+        }           
         EventSystem.current.SetSelectedGameObject(selected: null);
     }
 }
