@@ -2,8 +2,7 @@ using UnityEngine;
 
 /*
    File: SettingsScene.cs
-   Description: Script to handle the Settings Scene.
-   Last Modified: February 11, 2024
+   Last Modified: February 23, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -24,11 +23,6 @@ public class SettingsScene : MonoBehaviour
     private GameObject settingsButtons;
 
     /// <summary>
-    /// The hazy dark background for the overlay.
-    /// </summary>
-    private GameObject haze;
-
-    /// <summary>
     /// The areYouSureOverlay GameObject overlay that will be toggled.
     /// </summary>
     private GameObject areYouSureOverlay;
@@ -38,10 +32,16 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        successfulResetOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "SuccessfulReset", sceneName: "SettingsScene.cs" );
-        areYouSureOverlay = FindAndInit.FindAndDeactivate( gameObjectName: "AreYouSure", sceneName: "SettingsScene.cs" );
-        settingsButtons = FindAndInit.InitializeGameObject( gameObjectName: "SettingsButtons", sceneName: "SettingsScene.cs" );
-        haze = FindAndInit.FindAndDeactivate( gameObjectName: "Haze", sceneName: "Play1Scene.cs" );
+        successfulResetOverlay = FindAndInit.InitializeGameObject( gameObjectName: "SuccessfulReset", scriptName: "SettingsScene.cs" );
+        areYouSureOverlay = FindAndInit.InitializeGameObject( gameObjectName: "AreYouSure", scriptName: "SettingsScene.cs" );
+        settingsButtons = FindAndInit.InitializeGameObject( gameObjectName: "SettingsButtons", scriptName: "SettingsScene.cs" );
+
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = false;
     }
 
     /// <summary>
@@ -50,18 +50,24 @@ public class SettingsScene : MonoBehaviour
     public void ResetAllGameData( )
     {
         SaveSystem.ResetAllData( );
-        ShowsuccessfulResetOverlay( );
-    }
+        ShowsuccessfulResetOverlay( );    }
 
     /// <summary>
     /// Shows the AreYouSure? overlay.
     /// </summary>
     public void ShowAreYouSureOverlay( )
     {
-        areYouSureOverlay.SetActive( value: true );
-        successfulResetOverlay.SetActive( value: false );
-        haze.SetActive( value: true );
-        settingsButtons.SetActive( value: false );
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 1f;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        settingsButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = true;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).interactable = false;
     }
 
     /// <summary>
@@ -69,10 +75,17 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     public void HideAreYouSureOverlay( )
     {
-        areYouSureOverlay.SetActive( value: false );
-        successfulResetOverlay.SetActive( value: false );
-        haze.SetActive( value: false );
-        settingsButtons.SetActive( value: true );
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        settingsButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
+
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).interactable = true;
     }
 
     /// <summary>
@@ -80,10 +93,17 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     private void ShowsuccessfulResetOverlay( )
     {
-        successfulResetOverlay.SetActive( value: true );
-        areYouSureOverlay.SetActive( value: false );
-        settingsButtons.SetActive( value: false );
-        haze.SetActive( value: true );
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 1f;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        settingsButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
+
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = true;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).interactable = false;
     }
 
     /// <summary>
@@ -91,9 +111,16 @@ public class SettingsScene : MonoBehaviour
     /// </summary>
     public void HidesuccessfulResetOverlay( )
     {
-        successfulResetOverlay.SetActive( value: false );
-        areYouSureOverlay.SetActive( value: false );
-        settingsButtons.SetActive( value: true );
-        haze.SetActive( value: false );
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        settingsButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
+
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+
+        successfulResetOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        areYouSureOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        settingsButtons.GetComponent< CanvasGroup >( ).interactable = true;
     }
 }

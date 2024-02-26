@@ -1,8 +1,31 @@
 Question^CA1^WA2^WA3^WA4
-This is the first question from stage 2.^answer 1^answer2^answer3^answer4
-This is the second question from stage 2.^answer 1^answer2^answer3^answer4
-This is the third question from stage 2.^answer 1^answer2^answer3^answer4
-This is the fourth question from stage 2.^answer 1^answer2^answer3^answer4
-This is the fifth question from stage 2.^answer 1^answer2^answer3^answer4
-This is the sixth question from stage 2.^answer 1^answer2^answer3^answer4
+At what NASA facility does the Artemis mission launch take place?^Kennedy Space Center^Johnson Space Center^Marshall Space Flight Center^Langley Research Center
+What is the main engine used on the SLS Core Stage?^RS-25^F-1^Raptor^Merlin
+How many RS-25 engines are used on the SLS Core Stage?^4^2^6^3
+What provides additional thrust for the SLS during the first two minutes of flight?^Solid Rocket Boosters^External Fuel Tank^Second Stage Engines^Aft Skirt Thrusters
+What is the total thrust capacity of the SLS at liftoff?^8.8 million pounds^1.5 million pounds^3 million pounds^6 million pounds
+How long does it take for the SLS to reach Mach 1 after liftoff?^90 seconds^60 seconds^120 seconds^30 seconds
+What part of the Artemis launch sequence involves the separation of the Solid Rocket Boosters?^Two minutes into the flight^At liftoff^Just before Main Engine Cut-Off^After reaching orbit
+Which NASA center is responsible for overseeing the launch operations of Artemis missions?^Kennedy Space Center^Johnson Space Center^Marshall Space Flight Center^Langley Research Center
+What is the name of the launch platform used for Artemis missions?^Launch Pad 39B^Launch Pad 39A^Launch Complex 41^Space Launch Complex 37
+What system is responsible for the countdown and launch decision process for Artemis missions?^Ground Launch Sequencer^Autonomous Launch Control System^Manual Control by Launch Director^Launch Vehicle Data Center
+Which part of the SLS will carry astronauts and cargo to the Moon?^Orion spacecraft^Interim Cryogenic Propulsion Stage^Core Stage^Solid Rocket Boosters
+What is the primary function of the SLS Block 1 configuration?^To launch the Orion spacecraft for crewed missions beyond low Earth orbit^To transport satellites into geostationary orbit^To supply the International Space Station^To conduct deep space probes
+How is the Orion spacecraft powered during its journey to the Moon?^By the European Service Module^Solar panels^Nuclear generators^Chemical batteries
+What safety feature allows the Orion capsule to abort during launch if necessary?^Launch Abort System^Emergency Detach System^Rapid Ejection Seat^Orbital Maneuvering System
+What technology is used to guide the SLS on its trajectory after liftoff?^Inertial Navigation System^GPS^Star trackers^Laser rangefinders
+What is the Artemis program's ultimate goal regarding human space exploration?^To land the first woman and next man on the Moon and establish sustainable exploration^To build a space hotel in lunar orbit^To launch a manned mission to Mars by 2030^To explore the outer planets with crewed missions
+Which launch vehicle is capable of carrying the heaviest payload directly to the Moon?^Space Launch System (SLS)^Falcon Heavy^Delta IV Heavy^New Glenn
+During the countdown, which team is responsible for monitoring the health and status of the SLS and Orion spacecraft?^Launch Control Center^Mission Control Center^Vehicle Assembly Building operations^Deep Space Network operations
+What type of propulsion does the SLS's Interim Cryogenic Propulsion Stage (ICPS) use?^Liquid hydrogen and liquid oxygen^Solid rocket fuel^Kerosene and liquid oxygen^Hybrid propellant
+How many flight computers control the SLS during launch?^4^2^3^1
+What distinguishes the SLS's Solid Rocket Boosters (SRBs) from those used on the Space Shuttle?^They have an additional segment for more power^They use a different type of propellant^They are reusable^They are smaller in size
+What ensures the Orion spacecraft's ability to withstand the extreme temperatures of re-entry?^Heat Shield^Reinforced Carbon-Carbon^Ablative Coating^Thermal Blankets
+Which NASA center is primarily responsible for the design and development of the SLS?^Marshall Space Flight Center^Kennedy Space Center^Johnson Space Center^Langley Research Center
+What is the expected duration from launch to Orion's insertion into a lunar trajectory?^4 days^2 days^1 week^12 hours
+Which critical event occurs first during an SLS launch?^Solid Rocket Boosters ignition^Core Stage engine start^Launch Abort System jettison^Interim Cryogenic Propulsion Stage ignition
+How is the Orion spacecraft retrieved after splashdown upon return to Earth?^By Navy ships^Using helicopters^Via autonomous drones^With specialized recovery vehicles
+What role does the Vehicle Assembly Building (VAB) at Kennedy Space Center play in the Artemis missions?^Assembly of the SLS and Orion spacecraft^Launch control operations^Mission planning and coordination^Development of propulsion systems
+What is the name of the maneuver used to direct Orion towards the Moon after launch?^Trans-Lunar Injection (TLI)^Lunar Orbit Insertion (LOI)^Gravity Assist^Lunar Slingshot
+Which system provides weather monitoring and analysis for Artemis launch operations?^Spaceport Weather Office^Deep Space Climate Observatory^Global Positioning System^Weather Radar Network
 //.end.//

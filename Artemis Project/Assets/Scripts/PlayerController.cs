@@ -4,8 +4,7 @@ using UnityEngine;
 
 /*
    File: PlayerController.cs
-   Description: Represents the player controller.
-   Last Modified: February 14, 2024
+   Last Modified: February 25, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -23,7 +22,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Will hold the current player score.
     /// </summary>
-    private TextMeshProUGUI playerScoreText;
+    public TextMeshProUGUI playerScoreText;
 
     /// <summary>
     /// Will hold the current player name.
@@ -41,11 +40,12 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start( )
     {
-        player = new Player( SaveSystem.GetInt( "PlayerScore" ), SaveSystem.GetString( "PlayerName" ) );
-        playerNameText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerName", sceneName: "PlayerController.cs" );
+        player = new Player( score: SaveSystem.GetInt( name: "PlayerScore" ), playerName: SaveSystem.GetString( name: "PlayerName" ) );
+        playerNameText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerName", scriptName: "PlayerController.cs" );
         playerNameText.text  = player.GetPlayerName( );
-        playerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerScore", sceneName: "PlayerController.cs" );
+        playerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "PlayerScore", scriptName: "PlayerController.cs" );
         playerScoreText.text = player.GetScore( ).ToString( );
+        SaveSystem.SetString( name: "LastPlayerName", val: player.GetPlayerName( ) );
         
         //Grab all GameObjects of spacecraft.
         foreach ( Transform child in transform )
@@ -69,5 +69,6 @@ public class PlayerController : MonoBehaviour
     void Update( )
     {
         playerScoreText.text = player.GetScore( ).ToString( );
+        SaveSystem.SetInt( name: "PlayerScore", val: player.GetScore( ) );
     }
 }
