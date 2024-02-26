@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 /*
    File: MenuScene.cs
-   Last Modified: February 23, 2024
+   Last Modified: February 25, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey 
 */
@@ -66,8 +66,13 @@ public class MenuScene : MonoBehaviour
     private AudioSource audioSource;
 
     /// <summary>
-    /// Initializes top player score to UI.
-    /// </summary>    
+    /// Performs initial setup operations such as fading audio, initializing UI components, and setting up listeners for player input.
+    /// </summary>
+    /// <remarks>
+    /// This method initializes various UI components including the submit button, input field, and display texts for the top player score and name.
+    /// It checks if the game is launched for the first time and fades out the audio if it is not.
+    /// Additionally, it sets listeners for the input field to handle player name input on pressing the return key and for the submit button click event.
+    /// </remarks>  
     void Start( )
     {
         audioSource = GetComponent< AudioSource >( );
@@ -83,7 +88,7 @@ public class MenuScene : MonoBehaviour
         menuButtons = FindAndInit.InitializeGameObject( gameObjectName: "MenuButtons", scriptName: "MenuScene.cs" );
         topPlayerScoreText = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerScore", scriptName: "MenuScene.cs" );
         topPlayerName = FindAndInit.InitializeTextMeshProUGUI( gameObjectName: "TopPlayerName", scriptName: "MenuScene.cs" );
-    
+
         //set score and Player name
         topPlayerScoreText.text = SaveSystem.GetInt( name: "TopPlayerScore" ).ToString( );
         topPlayerName.text = SaveSystem.GetString( name: "TopPlayerName" ).ToString( );
