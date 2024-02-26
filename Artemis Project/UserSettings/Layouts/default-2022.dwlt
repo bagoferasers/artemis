@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 3440
     height: 1349
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -189,8 +189,8 @@ MonoBehaviour:
     y: 0
     width: 576
     height: 803
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -248,15 +248,15 @@ MonoBehaviour:
     y: 803
     width: 2735
     height: 496
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 14}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
   - {fileID: 14}
   - {fileID: 22}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -303,10 +303,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 583
+    x: 576
     y: 73
-    width: 2150
-    height: 1003
+    width: 2157
+    height: 782
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -364,10 +364,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 583
+    x: 576
     y: 73
-    width: 2150
-    height: 1100
+    width: 2157
+    height: 782
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -478,7 +478,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 9afafffff4ffffff
+      m_ExpandedIDs: 56dffeff8cdffefff4e2feff70e3feff8ae3fefffce3feff4ae4feff7422ffffaa22ffff0a26ffff7e26ffff8e26fffff626ffff3c27ffff2e2fffff642fffffe632ffff5a33ffff6a33ffffd233ffff1834ffffaefaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -525,7 +525,7 @@ MonoBehaviour:
     x: 576
     y: 73
     width: 2157
-    height: 832
+    height: 782
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1074,10 +1074,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 583
+    x: 576
     y: 73
-    width: 2150
-    height: 1003
+    width: 2157
+    height: 782
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1130,10 +1130,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 583
+    x: 576
     y: 73
-    width: 2150
-    height: 1047
+    width: 2157
+    height: 782
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1269,9 +1269,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 926
+    y: 876
     width: 2734
-    height: 425
+    height: 475
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1293,7 +1293,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Sprites
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1301,16 +1301,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Sprites
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\GitHubProjects\artemis\Artemis Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 26e20300
-    m_LastClickedID: 254502
-    m_ExpandedIDs: 00000000a6810000a8810000aa810000
+    m_SelectedIDs: 4e820000
+    m_LastClickedID: 33358
+    m_ExpandedIDs: 00000000aa810000ac810000ae8100004e82000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1338,7 +1338,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a6810000a8810000aa810000
+    m_ExpandedIDs: 00000000aa810000ac810000ae810000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1363,10 +1363,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 88e20300
-    m_LastClickedInstanceID: 254600
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300007e740000da920000c4740000d2740000e4f2000056810000f87800001c72000032840000e06e000020720000bc7200004ea200009e7000005e02000062780000d83b01002c730000027a00001a7a0000f6740000887d0000467200004a72000098760000a0a6000084720000cc76000022f701003c720000aa730000ba7300007e730000a6760000567b0000dc81000046820000d20300001a7700005c0200006e74000056020000fcc90000c0c5000028f7000082c30000d8c3000064fa00003a7200004c760000d6730000de7700003e76000064760000167900005ce30000c0760000d2790000a6720000d07f0000d67d0000d87d0000d87b000042cafcff00730000d48e0000208000000e84000012840000168400001a8400002284000092a50100a4a10100b60200000cb00000de7c0000e87c00004e91000000000000227d0000
+    m_ExpandedInstanceIDs: c62300007e740000da920000c4740000d2740000e4f2000056810000f87800001c72000032840000e06e000020720000bc7200004ea200009e7000005e02000062780000d83b01002c730000027a00001a7a0000f6740000887d0000467200004a72000098760000a0a6000084720000cc76000022f701003c720000aa730000ba7300007e730000a6760000567b0000dc81000046820000d20300001a7700005c0200006e74000056020000fcc90000c0c5000028f7000082c30000d8c3000064fa00003a7200004c760000d6730000de7700003e76000064760000167900005ce30000c0760000d2790000a6720000d07f0000d67d0000d87d0000d87b000042cafcff00730000d48e0000208000000e84000012840000168400001a8400002284000092a50100a4a10100b60200000cb00000de7c0000e87c00004e91000000000000227d0000ac7f000000820000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
