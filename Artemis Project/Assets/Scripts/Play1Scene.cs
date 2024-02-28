@@ -1,8 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 /*
    File: Play1Scene.cs
-   Last Modified: February 25, 2024
+   Last Modified: February 28, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -15,7 +16,17 @@ public class Play1Scene : MonoBehaviour
     /// <summary>
     /// GameObject that will be toggled.
     /// </summary>
-    private GameObject settings, areYouSure, menuButtons, areYouSure1, triviaHolder, successfulResetOverlay;
+    private GameObject settings, areYouSure, menuButtons, areYouSure1, triviaHolder, successfulResetOverlay, beatStageOverlay;
+
+    /// <summary>
+    /// The amount of time to wait after completing a stage before continuing.
+    /// </summary>
+    [SerializeField] private float waitTime = 2f;
+
+    /// <summary>
+    /// Tracks whether it's done waiting or not before continuing to the next stage.
+    /// </summary>
+    public static bool doneWaiting = false;
 
     /// <summary>
     /// Start is called before the first frame update. Initializes the Scene, GameObjects, and Buttons.
@@ -28,8 +39,48 @@ public class Play1Scene : MonoBehaviour
         areYouSure1 = FindAndInit.InitializeGameObject( gameObjectName: "AreYouSure1", scriptName: "Play1Scene.cs" );
         triviaHolder = FindAndInit.InitializeGameObject( gameObjectName: "TriviaHolder", scriptName: "Play1Scene.cs" );
         successfulResetOverlay = FindAndInit.InitializeGameObject( gameObjectName: "SuccessfulReset", scriptName: "SettingsScene.cs" );
+        beatStageOverlay = FindAndInit.InitializeGameObject( gameObjectName: "BeatStage", scriptName: "SettingsScene.cs" );
         ProgressBar.paused = false;
         ShowMenuButtonsAndTrivia( );
+    }
+
+    /// <summary>
+    /// Checks if conditions are met for continuing to next stage.
+    /// </summary>
+    void Update( )
+    {
+        // Check if the current stage's objectives are met
+        bool objectivesMet = ( GameManager.numberOfQuestionsRight >= GameManager.numberOfQuestionsNeeded ) && (ProgressBar.slider.value < GameManager.sliderPercentageTo) && ( Play1Scene.doneWaiting == false );
+        if ( objectivesMet )
+        {
+            doneWaiting = false;
+            ShowBeatStage( );
+        }
+    }
+
+    /// <summary>
+    /// Hides the BeatStage overlay.
+    /// </summary>
+    public void HideBeatStage( )
+    {
+        ProgressBar.paused = false;
+        HideBeatStageOverlay( );
+        ShowMenuButtonsAndTrivia( );
+    }
+
+    /// <summary>
+    /// Shows the BeatStage overlay and waits a certain amount of time before continuing to the next question set/stage.
+    /// </summary>
+    public void ShowBeatStage( )
+    {
+        ProgressBar.paused = true;
+        StartCoroutine( routine: WaitForSuccessfulStageCompletion( ) );
+        ShowBeatStageOverlay( );
+        HideSettingsOverlay( );
+        HideAreYouSureOverlay( );
+        HideAreYouSure1Overlay( );
+        HideMenuButtonsAndTrivia( );
+        HidesuccessfulResetOverlay( );
     }
 
     /// <summary>
@@ -114,6 +165,26 @@ public class Play1Scene : MonoBehaviour
     }
 
     /// <summary>
+    /// Hides the BeatStage overlay.
+    /// </summary>
+    private void HideBeatStageOverlay( )
+    {
+        beatStageOverlay.GetComponent< CanvasGroup >( ).alpha = 0f;
+        beatStageOverlay.GetComponent< CanvasGroup >( ).interactable = false;
+        beatStageOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = false;
+    }
+
+    /// <summary>
+    /// Shows the BeatStage overlay.
+    /// </summary>
+    private void ShowBeatStageOverlay( )
+    {
+        beatStageOverlay.GetComponent< CanvasGroup >( ).alpha = 1f;
+        beatStageOverlay.GetComponent< CanvasGroup >( ).interactable = true;
+        beatStageOverlay.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
+    }
+
+    /// <summary>
     /// Shows the successful reset overlay.
     /// </summary>
     private void ShowsuccessfulResetOverlay( )
@@ -172,12 +243,14 @@ public class Play1Scene : MonoBehaviour
     /// </summary>
     private void ShowMenuButtonsAndTrivia( )
     {
+        doneWaiting = false;
         menuButtons.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
         triviaHolder.GetComponent< CanvasGroup >( ).blocksRaycasts = true;
         menuButtons.GetComponent< CanvasGroup >( ).interactable = true;
         triviaHolder.GetComponent< CanvasGroup >( ).interactable = true;
         menuButtons.GetComponent< CanvasGroup >( ).alpha = 1f;
         triviaHolder.GetComponent< CanvasGroup >( ).alpha = 1f;
+        HideBeatStageOverlay( );
         HideAreYouSureOverlay( );
         HideSettingsOverlay( );
         HideAreYouSure1Overlay( );
@@ -195,5 +268,15 @@ public class Play1Scene : MonoBehaviour
         triviaHolder.GetComponent< CanvasGroup >( ).interactable = false;
         menuButtons.GetComponent< CanvasGroup >( ).alpha = 0f;
         triviaHolder.GetComponent< CanvasGroup >( ).alpha = 0f;
+    }
+
+    /// <summary>
+    /// Waits an amount of time before continuing to next stage.
+    /// </summary>
+    private IEnumerator WaitForSuccessfulStageCompletion( )
+    {
+        yield return new WaitForSeconds( seconds: waitTime );
+        ShowMenuButtonsAndTrivia( );
+        doneWaiting = true;
     }
 }
