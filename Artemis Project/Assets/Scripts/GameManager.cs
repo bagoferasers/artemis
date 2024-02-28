@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 
 /*
    File: GameManager.cs
-   Last Modified: February 25, 2024
+   Last Modified: February 28, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
     public void CheckForStageCompletion()
     {
         // Check if the current stage's objectives are met
-        bool objectivesMet = ( numberOfQuestionsRight >= numberOfQuestionsNeeded ) && (ProgressBar.slider.value < sliderPercentageTo);
+        bool objectivesMet = ( numberOfQuestionsRight >= numberOfQuestionsNeeded ) && (ProgressBar.slider.value < sliderPercentageTo) && ( Play1Scene.doneWaiting == true );
         if ( objectivesMet )
         {
             ProceedToNextStage();
