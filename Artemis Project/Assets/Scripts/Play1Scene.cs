@@ -3,7 +3,7 @@ using UnityEngine;
 
 /*
    File: Play1Scene.cs
-   Last Modified: February 28, 2024
+   Last Modified: March 9, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -21,7 +21,7 @@ public class Play1Scene : MonoBehaviour
     /// <summary>
     /// The amount of time to wait after completing a stage before continuing.
     /// </summary>
-    [SerializeField] private float waitTime = 2f;
+    [SerializeField] private float waitTime = 4f;
 
     /// <summary>
     /// Tracks whether it's done waiting or not before continuing to the next stage.
@@ -277,6 +277,7 @@ public class Play1Scene : MonoBehaviour
     {
         yield return new WaitForSeconds( seconds: waitTime );
         ShowMenuButtonsAndTrivia( );
+        ProgressBar.paused = false;
         doneWaiting = true;
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 
 /*
    File: GameManager.cs
-   Last Modified: February 28, 2024
+   Last Modified: March 9, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -83,6 +83,11 @@ public class GameManager : MonoBehaviour
     public static int currentStageNumber = 0;
 
     /// <summary>
+    /// Tracks the current stage number for EndGame.unity Scene.
+    /// </summary>
+    public static int endGameStageNumber = 0;
+
+    /// <summary>
     /// Will be used to control the player.
     /// </summary>
     private PlayerController playerController;
@@ -100,7 +105,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// The score to decrement in Stage.
     /// </summary>
-    [SerializeField] private int scoreDecrement = 5;
+    [SerializeField] private int scoreDecrement = 2;
 
     /// <summary>
     /// The percentage to move the stage progress slider to.
@@ -151,6 +156,7 @@ public class GameManager : MonoBehaviour
         //Begin game by handling stage
         numberOfQuestionsRight = 0;
         currentStageNumber = 0;
+        endGameStageNumber = 0;
         HandleStage(stageNumber: currentStageNumber);
         stageDisplay.text = currentStageNumber.ToString();
     }
@@ -177,6 +183,7 @@ public class GameManager : MonoBehaviour
     void ProceedToNextStage()
     {
         currentStageNumber++;
+        endGameStageNumber++;
         numberOfQuestionsRight = 0;
         ProgressBar.Instance.StopAllCoroutines( );
         ProgressBar.Instance.SetupStage(stageNumber: currentStageNumber);
@@ -220,7 +227,7 @@ public class GameManager : MonoBehaviour
                     Destroy( obj: ProgressBar.Instance );
 
                 SaveSystem.SetInt( name: "LastPlayerScore", val: SaveSystem.GetInt(name: "PlayerScore") );
-                Debug.Log(message: "Lost game at stage " + currentStageNumber + " !");
+                Debug.Log(message: "Lost game at stage " + endGameStageNumber + " !");
                 if ((SaveSystem.GetInt(name: "LastPlayerScore") <= 0 && SaveSystem.GetInt(name: "TopPlayerScore") == 0)
                     || (SaveSystem.GetInt(name: "LastPlayerScore") > SaveSystem.GetInt(name: "TopPlayerScore"))
                 )
@@ -243,7 +250,7 @@ public class GameManager : MonoBehaviour
             case 1:
                 //Stage 1
                 SaveSystem.SetInt( name: "LastPlayerScore", val: SaveSystem.GetInt(name: "PlayerScore") );
-                numberOfQuestionsNeeded = 10;
+                numberOfQuestionsNeeded = 5;
                 SaveSystem.SetBool(name: "StageFinish", val: false);
                 break;
             case 2:
@@ -254,7 +261,7 @@ public class GameManager : MonoBehaviour
                     Destroy( obj: ProgressBar.Instance );
 
                 SaveSystem.SetInt( name: "LastPlayerScore", val: SaveSystem.GetInt(name: "PlayerScore") );
-                Debug.Log(message: "Won game at stage " + currentStageNumber + " !");
+                Debug.Log(message: "Won game at stage " + endGameStageNumber + " !");
                 if ((SaveSystem.GetInt(name: "LastPlayerScore") <= 0 && SaveSystem.GetInt(name: "TopPlayerScore") == 0)
                     || (SaveSystem.GetInt(name: "LastPlayerScore") > SaveSystem.GetInt(name: "TopPlayerScore"))
                 )
@@ -401,6 +408,7 @@ public class GameManager : MonoBehaviour
         if( coroutine != null )
             StopCoroutine( routine: coroutine );
         coroutine = StartCoroutine(routine: WaitForColor(timeInSeconds: 0.1f, color: "green"));
+        RemoveQuestion();
     }
 
     /// <summary>
@@ -411,6 +419,7 @@ public class GameManager : MonoBehaviour
         if( coroutine != null )
             StopCoroutine( routine: coroutine );
         coroutine = StartCoroutine(routine: WaitForColor(timeInSeconds: 0.1f, color: "red"));
+        RemoveQuestion();
     }
 
     /// <summary>
@@ -421,6 +430,7 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitForColor(float timeInSeconds, string color)
     {
         Color origColor = selectedButton.GetComponentInParent<Image>().color;
+
         if (color == "green")
         {
             selectedButton.GetComponentInParent<Image>().color = Color.green;
@@ -433,14 +443,18 @@ public class GameManager : MonoBehaviour
             numberCorrect.color = Color.red;
             playerController.playerScoreText.color = Color.red;
         }
+
         yield return new WaitForSeconds(seconds: timeInSeconds);
+
         if( selectedButton )
         {
             selectedButton.GetComponentInParent<Image>().color = origColor;
             numberCorrect.color = origColor;
             playerController.playerScoreText.color = origColor; 
         }
-        RemoveQuestion();
+
+        // RemoveQuestion();
+
         if ( currentStageNumber != -1 && currentStageNumber != 2 )
         {
             AskQuestion();

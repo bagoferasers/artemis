@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 
 /*
    File: PlayerController.cs
-   Last Modified: February 25, 2024
+   Last Modified: March 9, 2024
    Last Modified By: Colby Bailey
    Authors: Colby Bailey
 */
@@ -135,7 +135,7 @@ public class ProgressBar : MonoBehaviour
             case 0: 
                 GameManager.sliderPercentageFrom = 0;
                 GameManager.sliderPercentageTo = 25;
-                GameManager.sliderDuration = 30;
+                GameManager.sliderDuration = 60;
                 ResetSliderForStage();
                 break;
             case 1:
